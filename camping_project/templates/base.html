@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>base 페이지</title>
+    <link rel="stylesheet" href="{% static '/css/product.css' %}">
+</head>
+<body>
+    <div id="wrap">
+    {% include "nvbar.html" %}
+    <hr>
+    {% block content %}    
+    {% endblock content %}
+    </div>
+</body>
+</html>
