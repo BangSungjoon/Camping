@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li><a href="{% url 'index' %}">HOME</a></li>
-        <li><a href="#">캠핑 정보 조회</a></li>
+        <li><a href="{% url 'camping_search_form' %}">캠핑 정보 조회</a></li>
 
         {% if user.is_authenticated %}
             {% comment %} 로그인 상태인 경우 {% endcomment %}
