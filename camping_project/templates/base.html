@@ -4,18 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>base 페이지</title>
-    <link rel="stylesheet" href="{% static '/css/product.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/slideShow.css' %}">
-
+    <link rel="stylesheet" href="{% static '/css/camping.css' %}">
+    <link rel="stylesheet" href="{% static '/css/users.css' %}">
     <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
-    <script src="{% static '/js/slideShow.js' %}"></script>
+    <script src="{% static '/js/camping.js' %}"></script>
+    
 </head>
 <body>
     <div id="wrap">
-    {% include "nvbar.html" %}
-    <hr>
-    {% block content %}    
-    {% endblock content %}
-    </div>
+        {% include "header.html" %}
+        <hr>
+        {% include "nvbar.html" %}
+        <hr>
+        {% block content %}   
+         
+        {% endblock content %} 
+        <hr>
+        {% include "footer.html" %}
+
+        </div>
 </body>
 </html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}   
+
+        <h2>캠핑장 찾아보기</h2>
+    <div id='wrap'>
+        
+        내 위치에서 가까운 캠핑장
+        <button onclick="search_button_mylocation()">검색</button>
+
+        <p>
+        주소로 검색하기
+        <button onclick="search_button()">검색</button>
+        </p><p>
+        키워드로 검색하기
+        <button onclick="search_button()">검색</button>
+        </p><p>
+
+        <table id="camping_list">
+            <tr>
+                <th>번호</th>
+                <th>캠핑장</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>캠핑장 환경</th>
+                <th>캠핑장 유형</th>
+                <th>운영기간</th>
+                <th>운영일</th>
+            </tr>
+            {% for camp in campings %}
+            <tr>
+                <td><a href="{% url 'camping_detail' camp.cam_no %}">{{ camp.cam_no }}</a></td>
+                <td>{{ camp.cam_name }}</td>
+                <td>{{ camp.cam_address}}</td>
+                <td>{{ camp.cam_tel}}</td>
+                <td>{{ camp.cam_env }}</td>
+                <td>{{ camp.cam_type }}</td>
+                <td>{{ camp.cam_period }}</td>
+                <td>{{ camp.cam_day }}</td>
+                {% comment %} <td><a href="{% url 'camping_update' camp.cam_no %}">
+                    <button class='btn'>수정요청</button></a></td>
+                <td><a href="{% url 'camping_QnA' camp.cam_no %}">
+                    <button class='btn'>문의하기</button></a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock content %}

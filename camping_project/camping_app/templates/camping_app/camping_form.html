@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}   
+
+<h2>캠핑장 등록</h2>
+검수 후 등록됩니다!
+<form method="post">
+    {% csrf_token %}
+    <table id="form_tbl">
+        {{ form }}
+    </table><br>
+    <button id="form_btn" type="submit">등록</button>
+</form>
+
+{% endblock content %}
