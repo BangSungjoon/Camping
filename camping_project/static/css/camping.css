@@ -5,12 +5,12 @@
     text-align: center;
 }
 
-ul {
+.nav_ul {
   padding: 0;
   list-style: none;
 }
 
-ul li {
+.nav_ul li {
   display: inline-block;
   margin-left:30px;
   margin-right: 30px;

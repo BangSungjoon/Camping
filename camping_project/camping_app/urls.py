@@ -9,5 +9,5 @@ urlpatterns = [
     path('camping/insert/', views.camping_insert, name='camping_form'),
     path('camp_images/<int:pk>/', CampImagesDetailView.as_view(), name='camp_images_detail'),
     path('camping/safety/', views.camping_safety, name='camping_safety'),
-
+    path('detail/', views.detail, name='detail'),
 ]
