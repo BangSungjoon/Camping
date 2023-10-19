@@ -86,13 +86,6 @@ body {
   box-sizing: border-box;
   float: left;
 }
-.layout,
-.layout2 {
-  display: block;
-  position: relative;
-  width: 1200px;
-  margin: 0 auto;
-}
 .skip {
   overflow: hidden;
   position: absolute;
@@ -401,13 +394,11 @@ button,
   align-content: center;
 }
 
-.camp_tab05 ul {
-  background-color : red
-}
-
 .camp_tab05 li {
   text-align: center;
+  width: 20%;
   margin-right: 0; /* 탭 간 여백을 없애기 */
+  height: 100%;
 }
 
 .camp_tab05 a {
@@ -419,11 +410,12 @@ button,
 }
 
 .camp_intro {
-  margin-top: 20px;
   width: 100%;
+  margin-top: 30px;
   position: relative;
   overflow: hidden;
 }
+
 .image-list {
   list-style: none;
   padding: 0;
@@ -433,7 +425,7 @@ button,
 
 .image-list li {
   flex: 1;
-  padding: 10px; /* 필요에 따라 패딩을 조정하세요. */
+  padding: 10px; /* 필요에 따라 패딩을 조정 */
 }
 
 .image-list img {
