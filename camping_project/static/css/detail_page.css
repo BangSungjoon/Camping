@@ -397,10 +397,15 @@ button,
   padding: 0;
   margin: 0;
   display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.camp_tab05 ul {
+  background-color : red
 }
 
 .camp_tab05 li {
-  flex: 1;
   text-align: center;
   margin-right: 0; /* 탭 간 여백을 없애기 */
 }
