@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}   
+<article  id="slideShow"> <!-- 슬라이드 쇼 -->  
+    <!-- 이전/다음 버튼 -->
+    <div id="prevNextButtonBox">
+        <img id="prevButton" src="{% static 'image/prevButton.png' %}">
+        <img id="nextButton" src="{% static 'image/nextButton.png' %}">
+    </div>
+    <div id="slideShowBox">
+        <div id="slidePanel">
+            <img src= "{% static 'image/slide_img_01.jpg' %}" class="slideImage">
+            <img src= "{% static 'image/slide_img_02.jpg' %}" class="slideImage">
+            <img src= "{% static 'image/slide_img_03.jpg' %}" class="slideImage">
+            <img src= "{% static 'image/slide_img_04.jpg' %}" class="slideImage">
+        </div>
+    </div> <!-- slideShowBox 끝 -->  
+</article> 
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}   
+
+        <h2>내 위치에서 가까운 캠핑장</h2>
+    <div id='wrap'>
+
+        <br><br>
+        <table id="camping_list">
+            <tr>
+                <th>번호</th>
+                <th>캠핑장</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>캠핑장 환경</th>
+                <th>캠핑장 유형</th>
+                <th>운영기간</th>
+                <th>운영일</th>
+            </tr>
+            {% for camp in campings %}
+            <tr>
+                <td><a href="{% url 'camping_detail' camp.camp_no %}">{{ camp.camp_no }}</a></td>
+                <td>{{ camp.camp_name }}</td>
+                <td>{{ camp.camp_address}}</td>
+                <td>{{ camp.camp_call}}</td>
+                <td>{{ camp.camp_environment }}</td>
+                <td>{{ camp.camp_type }}</td>
+                <td>{{ camp.camp_ope_period }}</td>
+                <td>{{ camp.camp_ope_day }}</td>
+                {% comment %} <td><a href="{% url 'camping_update' camp.camp_no %}">
+                    <button class='btn'>수정요청</button></a></td>
+                <td><a href="{% url 'camping_QnA' camp.camp_no %}">
+                    <button class='btn'>문의하기</button></a></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endblock content %}

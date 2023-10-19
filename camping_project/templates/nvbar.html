@@ -1,0 +1,35 @@
+<nav>
+    <ul>
+
+        <li><a href="{% url 'camping_list' %}">캠핑장 찾아보기</a></li>
+        <li><a href="{% url 'camping_form' %}">캠핑장 등록요청</a></li>
+        <li><a href="{% url 'camping_safety' %}">캠핑은 안전하게</a></li>
+        {% comment %} <li><a href="{% url 'camping_safety' %}">캠핑장 안전수칙</a></li> {% endcomment %}
+
+
+        {% comment %} <li><a href="{% url 'camping_list' %}">상품 정보 조회</a></li>
+        <li><a href="{% url 'camping_insert' %}">상품 등록</a></li>
+        <li><a href="{% url 'camping_search_form' %}">상품 검색</a></li>
+        <li><a href="{% url 'camping_search_form2' %}">Ajax 상품 검색</a></li>
+
+        <li><a href="{% url 'ajax_test' %}">ajax test</a></li>
+
+        {% if user.is_authenticated %} {% endcomment %}
+
+            {% comment %} 로그인 상태인 경우 {% endcomment %}
+{% comment %} 
+            <li><a href="">{{ user.username }}님 로그인했음</a></li>
+            <li><a href="{% url 'sign_out' %}">로그아웃</a></li>
+        {% else %} {% endcomment %}
+
+             {% comment %} 로그아웃 상태인 경우 {% endcomment %}
+
+            {% comment %} <li><a href="{% url 'sign_in' %}">로그인</a></li>
+            <li><a href="{% url 'sign_in2' %}">로그인2</a></li>
+            <li><a href="{% url 'sign_up' %}">회원가입</a></li>
+            <li><a href="{% url 'sign_up2' %}">회원가입2</a></li>
+        {% endif %} {% endcomment %}
+
+
+    </ul>
+</nav>

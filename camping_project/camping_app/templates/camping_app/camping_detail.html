@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}   
+
+    <h2>{{ camping.camp_name }}</h2> <br>
+    <div id='wrap'>
+        <div id='camp_info'>
+            <div id='camp_main_img'>
+                <img src="{% static CampImages.main_image_path %}" alt="캠핑장 이미지">
+            </div>
+            <div id="info_table">
+                <table>
+                    <tr><th>주소</th><td>{{ camping.camp_address }}</td></tr>
+                    <tr><th>문의처</th><td>{{ camping.camp_call }}</td></tr>
+                    <tr><th>캠핑장 환경</th><td>{{ camping.camp_environment }}</td></tr>
+                    <tr><th>캠핑장 유형</th><td>{{ camping.camp_type }}</td></tr>
+                    <tr><th>운영기간</th><td>{{ camping.camp_ope_period }}</td></tr>
+                    <tr><th>운영일</th><td>{{ camping.camp_ope_day }}</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+
