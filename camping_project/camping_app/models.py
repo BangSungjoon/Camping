@@ -84,7 +84,7 @@ class AllCamp(models.Model):
         managed = False
         db_table = 'all_camp'
 
-
+# 저희 테이블명 compFac인가요 comFacInfo인가요?
 class CampFac(models.Model):
     camp_no = models.OneToOneField('CampInfo', models.DO_NOTHING, db_column='camp_no', primary_key=True)
     camp_main_fac = models.CharField(max_length=100, blank=True, null=True)     
@@ -96,22 +96,34 @@ class CampFac(models.Model):
         managed = False
         db_table = 'camp_fac'
 
+# 저희 테이블명 compFac인가요 comFacInfo인가요?
+class CampFacInfo(models.Model):
+    camp_no = models.OneToOneField('CampInfo', models.DO_NOTHING, db_column='camp_no', primary_key=True)
+    camp_main_fac = models.CharField(max_length=100, blank=True, null=True)    
+    camp_etc_info = models.CharField(max_length=45, blank=True, null=True) 
+    camp_brazier = models.CharField(max_length=10, blank=True, null=True)  
+    camp_safe_fac = models.CharField(max_length=45, blank=True, null=True) 
+
+    class Meta:
+        managed = False
+        db_table = 'camp_fac_info'
+
 
 class CampInfo(models.Model):
     camp_no = models.AutoField(primary_key=True)
-    camp_name = models.CharField(max_length=100, blank=True, null=True)
-    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)
-    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)       
-    camp_address = models.CharField(max_length=100, blank=True, null=True)      
-    camp_call = models.CharField(max_length=100, blank=True, null=True)
-    camp_environment = models.CharField(max_length=100, blank=True, null=True)  
-    camp_type = models.CharField(max_length=100, blank=True, null=True)
-    camp_ope_period = models.CharField(max_length=100, blank=True, null=True)   
-    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)      
-    camp_pagelink = models.CharField(max_length=500, blank=True, null=True)     
-    camp_book = models.CharField(max_length=100, blank=True, null=True)
+    camp_name = models.CharField(max_length=100, blank=True, null=True)    
+    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)    
+    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)  
+    camp_address = models.CharField(max_length=100, blank=True, null=True) 
+    camp_call = models.CharField(max_length=100, blank=True, null=True)    
+    camp_environment = models.CharField(max_length=100, blank=True, null=True)
+    camp_type = models.CharField(max_length=100, blank=True, null=True)    
+    camp_ope_period = models.CharField(max_length=100, blank=True, null=True)
+    camp_ope_day = models.CharField(max_length=100, blank=True, null=True) 
+    camp_pagelink = models.CharField(max_length=500, blank=True, null=True)    
+    camp_book = models.CharField(max_length=100, blank=True, null=True)    
     camp_itd = models.TextField(blank=True, null=True)
-    company_id = models.CharField(max_length=100, blank=True, null=True)        
+    company_id = models.CharField(max_length=100, blank=True, null=True)   
 
     class Meta:
         managed = False

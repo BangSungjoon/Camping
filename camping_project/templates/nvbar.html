@@ -1,8 +1,14 @@
 <nav>
+<<<<<<< HEAD
     <ul class="nav_ul">
 
         <li><a href="{% url 'camping_list' %}">캠핑장 찾아보기</a></li>
         <li><a href="{% url 'detail' %}">캠핑장 상세보기</a></li>
+=======
+    <ul>
+
+        <li><a href="{% url 'camping_list' %}">캠핑장 찾아보기</a></li>
+>>>>>>> kmy
         <li><a href="{% url 'camping_form' %}">캠핑장 등록요청</a></li>
         <li><a href="{% url 'camping_safety' %}">캠핑은 안전하게</a></li>
         {% comment %} <li><a href="{% url 'camping_safety' %}">캠핑장 안전수칙</a></li> {% endcomment %}
@@ -26,7 +32,13 @@
              {% comment %} 로그아웃 상태인 경우 {% endcomment %}
 
             {% comment %} <li><a href="{% url 'sign_in' %}">로그인</a></li>
+<<<<<<< HEAD
             <li><a href="{% url 'sign_up' %}">회원가입</a></li>
+=======
+            <li><a href="{% url 'sign_in2' %}">로그인2</a></li>
+            <li><a href="{% url 'sign_up' %}">회원가입</a></li>
+            <li><a href="{% url 'sign_up2' %}">회원가입2</a></li>
+>>>>>>> kmy
         {% endif %} {% endcomment %}
 
 
