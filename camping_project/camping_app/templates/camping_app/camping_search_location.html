@@ -18,7 +18,6 @@
             </tr>
             {% for camp in campings %}
             <tr>
-<<<<<<< HEAD
                 <td><a href="{% url 'camping_detail' camp.cam_no %}">{{ camp.cam_no }}</a></td>
                 <td>{{ camp.cam_name }}</td>
                 <td>{{ camp.cam_address}}</td>
@@ -30,19 +29,6 @@
                 {% comment %} <td><a href="{% url 'camping_update' camp.cam_no %}">
                     <button class='btn'>수정요청</button></a></td>
                 <td><a href="{% url 'camping_QnA' camp.cam_no %}">
-=======
-                <td><a href="{% url 'camping_detail' camp.camp_no %}">{{ camp.camp_no }}</a></td>
-                <td>{{ camp.camp_name }}</td>
-                <td>{{ camp.camp_address}}</td>
-                <td>{{ camp.camp_call}}</td>
-                <td>{{ camp.camp_environment }}</td>
-                <td>{{ camp.camp_type }}</td>
-                <td>{{ camp.camp_ope_period }}</td>
-                <td>{{ camp.camp_ope_day }}</td>
-                {% comment %} <td><a href="{% url 'camping_update' camp.camp_no %}">
-                    <button class='btn'>수정요청</button></a></td>
-                <td><a href="{% url 'camping_QnA' camp.camp_no %}">
->>>>>>> kmy
                     <button class='btn'>문의하기</button></a></td> {% endcomment %}
             </tr>
             {% endfor %}
