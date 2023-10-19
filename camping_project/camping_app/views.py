@@ -42,4 +42,7 @@ class CampImagesDetailView(DetailView):
     model = CampImages
     template_name = 'camping_detail.html'
     context_object_name = 'camp'
+
+def detail(request):
+    return render(request, 'camping_app/detail.html')
     

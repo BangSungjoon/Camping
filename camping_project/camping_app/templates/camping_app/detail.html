@@ -1,20 +1,463 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/detail_page.css' %}">
+{% endblock %}
 
-{% block content %}   
-<article  id="slideShow"> <!-- 슬라이드 쇼 -->  
-    <!-- 이전/다음 버튼 -->
-    <div id="prevNextButtonBox">
-        <img id="prevButton" src="{% static 'image/prevButton.png' %}">
-        <img id="nextButton" src="{% static 'image/nextButton.png' %}">
-    </div>
-    <div id="slideShowBox">
-        <div id="slidePanel">
-            <img src= "{% static 'image/slide_img_01.jpg' %}" class="slideImage">
-            <img src= "{% static 'image/slide_img_02.jpg' %}" class="slideImage">
-            <img src= "{% static 'image/slide_img_03.jpg' %}" class="slideImage">
-            <img src= "{% static 'image/slide_img_04.jpg' %}" class="slideImage">
+{% block content %}
+      <div id="s_contanier">
+        <!--상단타이틀영역-->
+        <div id="sub_title_wrap2">
+          <div class="layout">
+            <h2>
+              <span class="skip">사천비토솔섬오토캠핑장</span>
+            </h2>
+            <!--타이틀-->
+            <div class="s_title2">
+              <p class="camp_name">사천비토솔섬오토캠핑장</p>
+              <p class="camp_s_tt">일몰과 바다 전망이 장관인 솔섬오토캠핑장.</p>
+              <i class="camp_type03"><span class="skip">산</span></i>
+            </div>
+            <!--//타이틀-->
+            <!--태그영역-->
+            <div class="camp_tag">
+              <p class="tag_tt">태그</p>
+              <ul class="tag_list">
+                <li>#친절한</li>
+                <li>#여유있는</li>
+                <li>#사이트 간격이 넓은</li>
+                <li>#깨끗한</li>
+                <li>#온수 잘 나오는</li>
+                <li>#차대기 편한</li>
+                <li>#수영장 있는</li>
+                <li>#아이들 놀기 좋은</li>
+                <li>#생태교육</li>
+                <li>#물맑은</li>
+                <li>#바다가 보이는</li>
+                <li>#그늘이 많은</li>
+                <li>#문화유적</li>
+                <li>#축제</li>
+                <li>#별 보기 좋은</li>
+                <li>#힐링</li>
+                <li>#가족</li>
+              </ul>
+            </div>
+            <!--//태그영역-->
+          </div>
+          <div class="sub_bg_w">
+            <div class="camp_bg_03"></div>
+          </div>
         </div>
-    </div> <!-- slideShowBox 끝 -->  
-</article> 
+        <!--//상단타이틀영역-->
+        <div class="gray_bar">
+          <span class="skip">공백영역입니다.</span>
+        </div>
+
+        <section
+          id="section1"
+          style="right: 0px"
+        >
+          <h2 class="skip">캠핑장정보 영역 입니다.</h2>
+          <!--콘텐츠박스-->
+          <div id="cont_inner">
+            <div class="sub_layout layout">
+              <article>
+                <header class="camp_top_info">
+                  <h2 class="skip">캠핑장 정보</h2>
+                  <div class="camp_info_box">
+                    <div class="img_b">
+                      <img
+                        src="/upload/camp/1776/thumb/thumb_720_7922zTbLn3nQp8qLRrnUilVU.jpg"
+                        alt="캠핑장 메인 이미지"
+                      />
+                    </div>
+                    <!--//S:table-->
+                    <div class="cont_tb">
+                      <table class="table">
+                        <caption>
+                          캠핑장 기본정보입니다. 주소, 문의처, 캠핑장 환경, 캠핑장 유형, 운영기간, 운영일, 홈페이지, 예약방법, 찾아오시는길로 나뉘어 설명합니다.
+                        </caption>
+                        <colgroup>
+                          <col style="width: 30%" />
+                          <col style="width: 70%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="col">주소</th>
+                            <td>경남 사천시 서포면 토끼로 245-29</td>
+                          </tr>
+                          <tr class="camp_call_pcVer">
+                            <th scope="col">문의처</th>
+                            <td>055-854-0404 , 010-4955-0506</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">캠핑장 환경</th>
+                            <td>산, 숲 / 민간</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">캠핑장 유형</th>
+                            <td>자동차야영장</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">운영기간</th>
+                            <td>봄, 여름, 가을, 겨울</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">운영일</th>
+                            <td>평일+주말</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">홈페이지</th>
+                            <td>
+                              <a
+                                href="http://cafe.daum.net/solsumcamping"
+                                target="_BLANK"
+                                title="새창열림"
+                                >홈페이지 바로가기</a
+                              >
+                              <i class="ico_link"><span class="skip">새창으로</span></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="col">주변이용가능시설</th>
+                            <td>산책로, 낚시, 강/물놀이, 청소년체험시설</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="camp_call_tmVer">
+                        <ul>
+                          <li class="tt">문의처</li>
+                          <li class="call">
+                            <a
+                              href="tel:0558540404"
+                              title="전화하기"
+                              class="btn_bB1 best"
+                              >전화하기</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="btn_w">
+                        <button
+                          type="button"
+                          class="btn_bB1 best"
+                          onclick="fnCampLike(); return false"
+                        >
+                          추천하기
+                        </button>
+                        <button
+                          type="button"
+                          class="btn_rB1 zzim"
+                          onclick="fnCampBkmk(); return false"
+                        >
+                          찜하기
+                        </button>
+                        <button
+                          type="button"
+                          class="btn_gB1 btn_modify"
+                          onclick="location.href='/zboard/createForm.do?lmCode=campRequest&amp;c_no=1776'; return false;"
+                        >
+                          정보수정요청
+                        </button>
+                      </div>
+                    </div>
+                    <!--//E:table-->
+                  </div>
+                </header>
+              </article>
+            </div>
+
+            <!-- 이벤트3행시배너 -->
+            <!-- //이벤트3행시배너 -->
+
+            <!--내용시작-->
+            <div id="contents">
+              <div class="camp_cont_w">
+                <h2 class="skip">캠핑장 이용안내</h2>
+                <div class="line_100">
+                  <span class="skip">탭영역 다단 라인</span>
+                </div>
+                <div class="layout">
+                  <ul class="camp_tab05">
+                    <li>
+                      <a href="#">캠핑장 소개</a>
+                    </li>
+                    <li id="c_guide">
+                      <a href="#" class="camp_guide">이용안내</a>
+                    </li>
+                    <li id="c_map">
+                      <a href="#" class="camp_map">위치/주변정보</a>
+                    </li>
+                    <li id="c_review">
+                      <a href="#" class="camp_review">캠핑&amp;여행후기</a>
+                    </li>
+                    <li id="c_notice">
+                      <a href="#" class="camp_notice">날씨</a>
+                    </li>
+                  </ul>
+
+                  <div class="camp_intro">
+                    <ul class="image-list">
+                      <li class="col_03 img_box">
+                        <img
+                          src="/upload/camp/1776/thumb/thumb_384_5279UH8MOjvavzyufngnft1L.jpg"
+                          class="imgFit"
+                          alt="캠핑장소개 이미지"
+                        />
+                      </li>
+                      <li class="col_03 img_box">
+                        <img
+                          src="/upload/camp/1776/thumb/thumb_384_2144aouSuIP9conBJJtCtQup.jpg"
+                          class="imgFit"
+                          alt="캠핑장소개 이미지"
+                        />
+                      </li>
+                      <li class="col_03 img_box">
+                        <img
+                          src="/upload/camp/1776/thumb/thumb_384_0380BTNC8wbwtxgWpB5PdIXD.jpg"
+                          class="imgFit"
+                          alt="캠핑장소개 이미지"
+                        />
+                      </li>
+                    </ul>
+                    <p class="camp_intro_txt">
+                      <span
+                        >솔섬오토캠핑장은 별주부전 테마파크가 있는 사천시 비토섬 인근 해안에 위치하고 있는 캠핑장이다. 바닥은 파쇄석으로 되어 있으며, 바다
+                        사이트와 일반 사이트로 구분되어져 있다. 황토방과 펜션도 함께 운영하고 있어 초보 캠퍼가 이용하기 좋은 캠핑장이다. 바다 사이트 쪽은
+                        카라반과 트레일러의 입장이 안된다. 그늘막이 있는 수영장과 항상 깨끗하게 관리되고 있는 화장실과 개수대, 샤워장은 24시간 온수가 나와
+                        좋으며, 개수대에는 전자레인지와 공용 냉장고가 설치되어 있어, 언제나 편리하게 신선한 음식을 먹을 수 있어 좋다. 캠핑장 바로 앞이 바닷가라
+                        갯벌체험을 할 수 있도록 5000원에 장화와 호미를 대여해 주고 있다. 아이들과 갯벌에서의 바지락, 굴, 고동, 낚지 등을 잡아 저녁거리도
+                        준비하고 수다로 한편의 추억을 쌓아보자. 솔섬오토캠핑장은 일몰이 아름답기로 소문난 곳이다. 타이밍을 놓치지 말고 아름다운 노을을 감상하며
+                        사진으로 담아보길 권한다. 주변 관광지로는 별주부전 테마파크,삼천포 케이블카, 사천 항공우주박물관, 삼천포 수산시장이 있으니 아이들과
+                        방문해 보자.</span>
+                      <span class="date_info">최종 정보 수정일 : 2018-09-21</span>
+                    </p>
+                    <h3 class="icon_h3">캠핑장 시설정보</h3>
+                    <div class="camp_item_g">
+                      <ul>
+                        <li>
+                          <i class="ico_volt"><span>전기</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_wifi"><span>와이파이</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_wood"><span>장작판매</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_hotwater"><span>온수</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_pool"><span>물놀이장</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_playzone"><span>놀이터</span></i>
+                        </li>
+                        <li>
+                          <i class="ico_ico_sports"><span>운동시설</span></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <h3 class="icon_h3">기타 주요시설</h3>
+                    <section id="table_type03">
+                      <h2 class="skip">기타 주요시설 안내 테이블입니다.</h2>
+                      <div class="table_w">
+                        <table class="table_t4 camp_etc_tb">
+                          <caption>
+                            <strong>기타 주요시설 안내 테이블</strong>
+                            <p>주요시설, 사이트간격, 바닥형태, 편의시설, 캠핑장비대여, 반려동물출입, 화로대로 나뉘어 설명합니다.</p>
+                          </caption>
+
+                          <tbody class="t_c">
+                            <tr>
+                              <th scope="col">주요시설</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>자동차야영장사이트(30면)</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">기타 정보</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>개인 트레일러 입장가능</li>
+                                  <li>반려동물 동반 불가능</li>
+                                </ul>
+                                <br />
+                                <br />
+                                (※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">기타 부대시설</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>바다사이트쪽은 카라반,트레일러 입장금지</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">사이트 간격</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>3M</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">바닥형태 (단위:면)</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>파쇄석 (30)</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">사이트 크기</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>9 X 8 : 30개</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">캠핑장비대여</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>텐트</li>
+                                  <li>릴선</li>
+                                  <li>화로대</li>
+                                  <li>난방기구</li>
+                                  <li>식기</li>
+                                  <li>침낭</li>
+                                </ul>
+                              </td>
+                            </tr>
+                            <!--
+            <tr>
+              <th scope="col">반려동물 출입</th>
+              <td class="etc_type">불가능</td>
+            </tr>
+            -->
+                            <tr>
+                              <th scope="col">화로대</th>
+                              <td class="etc_type">개별</td>
+                            </tr>
+                            <tr>
+                              <th scope="col">안전시설현황</th>
+                              <td>
+                                <ul class="table_ul05">
+                                  <li>소화기 (20)</li>
+                                  <li>방화수 (1)</li>
+                                </ul>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <p class="camp_intro_txt">
+                        <span class="info_notice">
+                          &nbsp;* 고캠핑에 등록된 정보는 현장상황과 다소 다를 수 있으니
+                          <span class="info_f_red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리
+                          확인하시기 바랍니다.
+                        </span>
+                      </p>
+                    </section>
+                    <h3 class="icon_h3 mt_50">캠핑장 사진</h3>
+                    <div class="box_photo">
+                      <div
+                        id="gallery"
+                        style="max-width: 100%; min-width: 150px; height: auto; width: auto"
+                        class="ug-gallery-wrapper ug-theme-tiles">
+												<div class="ug-image-div">
+													<img
+														src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+														alt="사천비토솔섬오토캠핑장"
+														class="ug-thumb-image"
+													/>
+												</div>
+                        <div class="ug-image-div">
+                            <img
+                              src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                              alt="사천비토솔섬오토캠핑장"
+                              class="ug-thumb-image"
+                            />
+												</div>
+                        <div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+                        <div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												<div class="ug-image-div">
+                          <img
+                            src="https://gocamping.or.kr/upload/camp/1776/thumb/thumb_1000_7619f6ePR3uNqzVhzSUdMhNZ.jpg"
+                            alt="사천비토솔섬오토캠핑장"
+                            class="ug-thumb-image"
+                            />
+												</div>
+												
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+                    <!-- 		<button type="button" class="btn_grey_M">더보기</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--//내용종료-->
+          <!--//콘텐츠박스-->
+        </section>
 {% endblock content %}
