@@ -469,7 +469,7 @@ button,
   letter-spacing: -0.08em;
   word-break: break-all;
 }
-.camp_item_g {
+/* .camp_item_g {
   width: 94%;
   height: auto;
   overflow: hidden;
@@ -483,7 +483,86 @@ button,
   text-align: center;
   font-size: 15px;
   width: 12.5%;
+} */
+.camp_item_g {
+  width: 94%;
+  height: 100px;
+  overflow: hidden;
+  padding: 30px 3%;
+  background: #f9f9f9;
+  border-radius: 5px;
 }
+.camp_item_g ul li {
+  display: inline-block;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 15px;
+  width: 12.5%;
+}
+.camp_item_g ul {
+  margin: 0;
+  padding: 0;
+}
+.camp_item_g ul li i {
+  text-align: center;
+  display: block;
+  height: 60px;
+}
+
+.camp_item_g ul li i span {
+  padding-top: 38px;
+  display: inline-block;
+  font-style: normal;
+  line-height: 20px;
+}
+
+i.ico_volt {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_volt.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_wifi {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_wifi.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_wood {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_wood.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_hotwater {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_hotwater.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_pool {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_pool.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_playzone {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_playzone.png") no-repeat center 5px;
+  width: 100%;
+}
+
+i.ico_ico_sports {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_sports.png") no-repeat center 5px;
+  width: 100%;
+}
+i.ico_walk {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_walk.png") no-repeat center 5px;
+  width: 100%;
+}
+i.ico_mart {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_mart.png") no-repeat center 5px;
+  width: 100%;
+}
+i.ico_ico_ico_tramp {
+  background: url("https://gocamping.or.kr/img/2018/sub/ico_tramp.png") no-repeat center 5px;
+  width: 100%;
+}
+
 .table_w {
   position: relative;
   width: 99.5%;

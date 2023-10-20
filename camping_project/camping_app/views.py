@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Camping
+from .models import CampInfo
 from .forms import CampingForm
 from django.views.generic import DetailView
-from .models import CampImages
-
+from .models import ImageLink
+from .models import CampFacInfo
 
 # Create your views here.
 def index(request):
@@ -19,12 +19,20 @@ def camping_safety(request):
 #     return render(request, 'camping_app/camping_detail.html')
 
 def camping_list(request):
-    campings = Camping.objects.all()
+    campings = CampInfo.objects.all()
     return render(request, 'camping_app/camping_list.html', {'campings':campings})
 
-def camping_detail(request, cam_no):
-    camping = get_object_or_404(Camping, pk=cam_no)
-    return render(request, 'camping_app/camping_detail.html', {'camping':camping})
+# def camping_detail(request, camp_no):
+#     camping = get_object_or_404(CampInfo, pk=camp_no)
+#     return render(request, 'camping_app/detail.html', {'camping':camping})
+
+def camping_detail(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    image_links = get_object_or_404(ImageLink, pk=camp_no)
+    camp_fac_info = get_object_or_404(CampFacInfo, pk=camp_no)
+
+    return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info})
+
 
 def camping_insert(request):
     if request.method == "POST":
@@ -39,8 +47,8 @@ def camping_insert(request):
     return render(request, 'camping_app/camping_form.html', {'form':form})
 
 class CampImagesDetailView(DetailView):
-    model = CampImages
-    template_name = 'camping_detail.html'
+    model = ImageLink
+    template_name = 'detail.html'
     context_object_name = 'camp'
 
 def detail(request):

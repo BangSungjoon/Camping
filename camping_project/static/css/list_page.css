@@ -1,0 +1,526 @@
+/* default.css */
+/* 태그 선택자 */
+* {
+	margin:0px;
+	padding:0px;
+}
+body {
+	font-size:14px;
+	line-height:28px;
+	font-family:"NanumG","나눔고딕",Dotum,"돋움",Helvetica,AppleGothic,Sans-serif,"Tahoma","MS PGothic";
+	color:#626262;
+	letter-spacing:-1px;
+}
+html,body,div,span,ul,li,ol,img,fieldset,legend,form,input,select,textarea,object,a,table,th,td,dl,dt,dd,h1,h2,h3,h4,h5,h6,canvas,video,audio,details,figure,figcaption,header,footer,menu,nav,section,summary {
+	margin:0px;
+	padding:0px;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight:normal;
+}
+button,[type="button"],[type="reset"],[type="submit"] {
+	cursor:pointer;
+}
+button {
+	text-transform:none;
+	vertical-align:middle;
+}
+button {
+	margin:0px;
+	padding:0px;
+	border:0px;
+	background:transparent;
+	letter-spacing:-1px;
+	cursor:pointer;
+	font-family:"Malgun Gothic","맑은 고딕",Dotum,"돋움",Helvetica,AppleGothic,Sans-serif,"Tahoma","MS PGothic";
+}
+caption {
+	overflow:hidden;
+	position:absolute;
+	top:-10000px;
+	left:-10000px;
+	width:1px;
+	height:1px;
+	text-indent:-10000px;
+	z-index:-999;
+	font-size:1px;
+	padding:0;
+	margin:0;
+}
+table {
+	border-collapse:collapse;
+}
+input {
+	padding:0 8px;
+	border:1px solid #e5e5e5;
+	background:#f9f9f9;
+	font-size:inherit;
+	font-family:inherit;
+	color:inherit;
+	vertical-align:middle;
+}
+img,fieldset {
+	border: none;
+}
+select {
+	width:auto;
+	padding:0 3.5em 0 .5em;
+	font-family:inherit;
+	/* background:#fff url("/img/2018/layout/arr2.png") no-repeat 92% 50%;*/
+	border:1px solid #c7c7c7;
+	border-radius:0px;
+	appearance:none;
+	font-size:14px;
+}
+select {
+	font-size:inherit;
+	font-family:inherit;
+	color:inherit;
+	text-transform:none;
+	vertical-align:middle;
+}
+a {
+  text-decoration: none;
+}
+a:link,a:visited {
+	color: #626262;
+}
+/* 공통 css 및 레이아웃 */
+#wrap {
+	overflow:hidden;
+	position:relative;
+	width:100%;
+	margin:0;
+	padding:0;
+	padding:0;
+}
+#s_contanier {
+	position:relative;
+	width:100%;
+	height:auto;
+}
+#cont_inner {
+	width:100%;
+	position:relative;
+	height:auto;
+	clear:both;
+	padding:15px 0 95px 0;
+	background:#fff;
+}
+#section1 {
+	position:relative;
+	overflow:hidden;
+	width: 100%;
+}
+/* template */
+.skip {
+	overflow:hidden;
+	position:absolute;
+	top:-10000px;
+	left:-10000px;
+	width:auto;
+	height:1px;
+	text-indent:-999px;
+	z-index: -999;
+}
+/* */
+.layout,.layout2 {
+	display:block;
+	position:relative;
+	width:1200px;
+	margin:0 auto;
+}
+#cont_inner .title_w {
+	width:100%;
+	height:50px;
+	border-bottom:1px solid #dedede;
+	margin-bottom:30px;
+	padding-top:20px;
+}
+.title_w.mb_0 {
+	margin-bottom:0 !important;
+	border-bottom:0px !important;
+}
+#cont_inner .title_w h2.title2 {
+	display:inline-block;
+	font-size:22px;
+	font-weight:normal;
+	color:#000;
+	padding:0;
+}
+.em_org {
+	color:#eb831d !important;
+}
+#cont_inner .title_w ul.share {
+	position:absolute;
+	top:15px;
+	right:0;
+}
+#cont_inner .title_w ul.share>li {
+	float:left;
+	width:41px;
+	height:41px;
+}
+#cont_inner .title_w ul.share li.sns>button {
+	float:left;
+	width:41px;
+	height:41px;
+	background:url("https://gocamping.or.kr/img/2018/sub/share_ico.png") no-repeat 0 0;
+}
+#cont_inner .title_w ul.share li.link>a {
+	float:left;
+	width:41px;
+	height:41px;
+	background:url("https://gocamping.or.kr/img/2018/sub/share_ico.png") no-repeat -82px 0;
+}
+.title_w.mb_0 {
+	margin-bottom:0 !important;
+	border-bottom:0px !important;
+}
+#cont_inner .title_w {
+	width:100%;
+	height:50px;
+	border-bottom:1px solid #dedede;
+	margin-bottom:30px;
+	padding-top:20px;
+}
+#section1 {
+	position:relative;
+	overflow:hidden;
+	width:100%;
+}
+#contents {
+	clear:both;
+	position:relative;
+	color:#626262;
+	letter-spacing:-0.5px;
+}
+.search_list_gr {
+	position:relative;
+	width:100%;
+	height:auto;
+	padding:15px 20px 15px 0;
+	box-sizing:border-box;
+	min-height:31px;
+	background:#f4f4f4;
+	border-top:1px solid #dbdbdb;
+	border-bottom:2px solid #000000;
+	overflow:hidden;
+}
+div.select_box {
+	position:relative;
+	width:160px;
+	height:31px;
+	line-height:31px;
+	background:url("https://gocamping.or.kr/img/2018/layout/arr2.png") no-repeat right 10px center;
+	border:0;
+	margin:10px 0;
+}
+.array_select {
+	margin:0 10px 0 20px !important;
+	float:left !important;
+}
+div.select_box label {
+	display:none;
+	position:absolute;
+	font-size:14px;
+	color:#444444;
+	top:0px;
+	left:12px;
+	letter-spacing:1px;
+}
+div.select_box select.detail_select {
+	width:100%;
+	height:31px;
+	min-height:31px;
+	line-height:31px;
+	padding:0 10px;
+}
+.select_map {
+	float:right;
+}
+.select_map button {
+	padding:0 10px;
+	height:31px;
+	background:#4a4e57;
+	text-align:center;
+	color:#fff;
+}
+.camp_search_list {
+	position:relative;
+	width:100%;
+	height:auto;
+	clear:both;
+}
+.camp_search_list .c_list {
+	position:relative;
+	padding:25px 20px;
+	height:auto;
+	overflow:hidden;
+	border-bottom:1px solid #dbdbdb;
+}
+.camp_search_list .c_list .img_box {
+	width:275px;
+	height:195px;
+	position:relative;
+	float:left;
+}
+.img_box {
+	background:#f7f8f8;
+}
+.camp_search_list .c_list .img_box img {
+	width:100%;
+	height:100%;
+	object-fit:cover;
+}
+.c_list .img_box>.clist_icon {
+	position:absolute;
+	top:10px;
+	left:10px;
+	display:block;
+	z-index:99;
+}
+.c_list .img_box>.clist_icon ul {
+	height:47px;
+	float:left;
+}
+.c_list .img_box>.clist_icon ul li {
+	width:50px;
+	height:47px;
+	position:relative;
+	float:left;
+}
+.camp_search_list .c_list .img_box i.con_tip.c03 {
+	background:url("https://gocamping.or.kr/img/2018/sub/camp/cpS_type03.png") no-repeat 0 0;
+}
+.c_list .img_box>.clist_icon ul li i.con_tip {
+	width:47px;
+	height:47px;
+}
+.c_list.update .img_box i:last-child {
+	display:block !important;
+}
+.c_list .img_box i:last-child {
+	display:none;
+}
+.camp_cont {
+	width:850px;
+	height:auto;
+	float:right;
+}
+.camp_cont .item_group {
+	position:relative;
+	margin-bottom:20px;
+  padding-top: 1px;
+	height:auto;
+	clear:both;
+	overflow:hidden;
+}
+.camp_cont .item_group>span {
+	padding:0 8px;
+	float:left;
+	font-size:12px;
+	color:#fff;
+	height:23px;
+	line-height:23px;
+	margin:0 3px;
+}
+.camp_cont .item_group>span:first-child {
+	margin:0;
+}
+.camp_cont .item_group .item_t01 {
+	background:#547ac0;
+}
+.camp_cont .item_group .item_t02 {
+	background:#d6394c;
+}
+.camp_cont .item_group .item_t03 {
+	background:#444444;
+}
+.camp_cont .item_group .item_t04 {
+	background:#f7f7f7;
+	border:1px solid #ababab;
+	height:21px !important;
+	line-height:21px;
+	color:#5e5e5e !important;
+}
+.camp_tt {
+	text-align:left;
+	clear:both;
+	margin-top:22px;
+	display:block;
+	padding-bottom:5px;
+}
+.camp_stt {
+	display:block;
+	clear:both;
+	text-align:left;
+	font-size:16px;
+	letter-spacing:-0.083em;
+	color:#000;
+}
+.camp_txt {
+	font-size:14px;
+	line-height:20px;
+	text-align:left;
+	display:block;
+	margin-top:5px;
+	clear:both;
+	margin-bottom:25px;
+}
+.camp_info01 {
+	text-align:left;
+	list-style:none;
+	overflow:hidden;
+	width:100%;
+	height:auto;
+	box-sizing:border-box;
+	margin:0;
+}
+.camp_info01 li.addr {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_map01.png") no-repeat left 5px;
+	padding-left:25px;
+	margin-right:20px;
+}
+.camp_info01 li {
+	float:left;
+	font-size:14px;
+	color:#000;
+}
+.camp_info01 li.call_num {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_call01.png") no-repeat left 5px;
+	padding-left:25px;
+}
+.camp_search_list .c_list.update .camp_item_box {
+	width:100%;
+	box-sizing:border-box;
+	height:auto;
+	padding:5px 5px;
+	background:#fff;
+	border:1px solid #e8e8e8;
+	border-radius:5px;
+	margin:20px 0 0 0;
+	overflow:hidden;
+}
+.camp_item_box ul li {
+	display:inline-block;
+	padding:10px 0;
+	font-size:13px;
+	width:90px;
+}
+.camp_item_box ul li i {
+	text-align:center;
+	display:block;
+}
+.camp_item_box ul li i span {
+	padding-top:35px;
+	display:inline-block;
+	font-style:normal;
+}
+.camp_search_list .c_list {
+	position:relative;
+	padding:25px 20px;
+	height:auto;
+	overflow:hidden;
+	border-bottom:1px solid #dbdbdb;
+}
+.paging {
+	width:100%;
+	clear:both;
+	height:auto;
+	margin-top:40px;
+	overflow:hidden;
+}
+.paging ul {
+	text-align:center;
+}
+.paging ul li {
+	display:inline-block;
+}
+.paging ul li {
+	margin:0 2px;
+}
+.paging ul li a {
+	width:32px;
+	height:32px;
+	display:block;
+}
+.paging ul li img {
+	vertical-align:middle;
+}
+.paging ul li.num.on {
+	width:32px;
+	height:32px;
+	background:url("https://gocamping.or.kr/img/2018/sub/btn_bg_on.png") no-repeat;
+	text-align:center;
+	font-size:14px;
+}
+.paging ul li.num {
+	width:32px;
+	height:32px;
+	background:url("https://gocamping.or.kr/img/2018/sub/btn_bg.png") no-repeat;
+	text-align:center;
+	font-size:14px;
+}
+.paging ul li.num.on a {
+	color:#fff !important;
+}
+.paging ul li a {
+	width:32px;
+	height:32px;
+	display:block;
+}
+.paging_tm {
+	display:none;
+}
+.camp_search_list .c_list.update {
+	background: #f8fcfe;
+}
+/* 아이콘 */
+a.dc_none {
+	text-decoration:none;
+}
+i.ico_volt {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_volt.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_wifi {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_wifi.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_wood {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_wood.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_hotwater {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_hotwater.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_pool {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_pool.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_playzone {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_playzone.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_ico_sports {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_sports.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_walk {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_walk.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_mart {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_mart.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_ico_ico_tramp {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_tramp.png") no-repeat center 5px;
+	width:100%;
+}
+i.ico_ground {
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_ground.png") no-repeat center 5px;
+	width: 100%;
+}
