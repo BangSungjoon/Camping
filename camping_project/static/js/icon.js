@@ -12,7 +12,7 @@
         alert("URL이 복사되었습니다.")
       };
     // "camp_item_box" 클래스 하위에 있는 li 요소를 가져옵니다.
-    var listItems = document.querySelectorAll(".camp_item_box li i");
+    var listItems = document.querySelectorAll(".camp_item_g li i");
     // 각 li 요소에 대한 반복문
     listItems.forEach(function (i) {
         var text = i.textContent.trim(); // 텍스트 내용 가져오기 (앞뒤 공백 제거)
