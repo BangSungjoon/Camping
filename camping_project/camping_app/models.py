@@ -85,7 +85,7 @@ class AllCamp(models.Model):
         db_table = 'all_camp'
 
 
-class CampFac(models.Model):
+class CampFacInfo(models.Model):
     camp_no = models.OneToOneField('CampInfo', models.DO_NOTHING, db_column='camp_no', primary_key=True)
     camp_main_fac = models.CharField(max_length=100, blank=True, null=True)     
     camp_etc_info = models.CharField(max_length=45, blank=True, null=True)      
@@ -94,7 +94,7 @@ class CampFac(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'camp_fac'
+        db_table = 'camp_fac_info'
 
 
 class CampInfo(models.Model):

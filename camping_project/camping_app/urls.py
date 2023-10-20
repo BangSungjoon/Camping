@@ -10,4 +10,5 @@ urlpatterns = [
     path('camp_images/<int:pk>/', CampImagesDetailView.as_view(), name='camp_images_detail'),
     path('camping/safety/', views.camping_safety, name='camping_safety'),
     path('detail/', views.detail, name='detail'),
+    path('camping/search/location', views.camping_search_location, name='camping_search_location'),
 ]

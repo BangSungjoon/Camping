@@ -45,4 +45,7 @@ class CampImagesDetailView(DetailView):
 
 def detail(request):
     return render(request, 'camping_app/detail.html')
+
+def camping_search_location(request):
+    return render(request, 'camping_app/camping_search_location.html')
     
