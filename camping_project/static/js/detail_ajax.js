@@ -1,13 +1,12 @@
 $(document).ready(function(){
     $('.camp_introduce').on('click', function(event){
-        event.preventDefault(); // 기본 링크 동작을 막습니다.
+        event.preventDefault();
 
-        // AJAX 요청을 수행하여 "detail_intro.html" 파일의 내용을 가져오기
         $.ajax({
-            url: 'detail_intro.html', // 파일의 경로를 수정하세요.
+            url: "{% url 'detail_intro' camping.camp_no %}",  // URL 패턴의 이름을 사용하여 URL을 생성
             dataType: 'html',
             success: function(result){
-                $('#resultbox').html(result); // 결과를 resultbox에 삽입
+                $('#resultbox').html(result); 
             },
             error: function(){
                 // 오류 발생 시 수행되는 함수

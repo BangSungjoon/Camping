@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse, HttpResponse
+import os
 from .models import CampInfo
 from .forms import CampingForm
 from django.views.generic import DetailView
@@ -57,3 +59,22 @@ def detail(request):
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
     
+def get_detail_intro(request):
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'camping_app/detail_intro.html'), 'r') as file:
+            content = file.read()
+        # HTML 형식으로 반환
+        return HttpResponse(content, content_type='text/html')
+    except Exception as e:
+        # 오류 발생 시 JSON 형식으로 반환
+        return JsonResponse({'error': 'Failed to load content'})
+
+def detail_intro(request, camp_no):
+    try:
+        with open(os.path.join(os.path.dirname(__file__), f'camping_app/detail_intro.html'), 'r') as file:
+            content = file.read()
+        # HTML 형식으로 반환
+        return HttpResponse(content, content_type='text/html')
+    except Exception as e:
+        # 오류 발생 시 처리
+        return HttpResponse('Failed to load content', status=404)
