@@ -102,7 +102,7 @@ body {
   color: #fff;
   top: 75px;
   text-shadow: 2px 2px 3px #000;
-  background: url('/img/2018/sub/line50p.png') repeat-x 0 bottom;
+  background: url('https://gocamping.or.kr/img/2018/sub/line50p.png') repeat-x 0 bottom;
   padding-bottom: 20px;
 }
 .s_title2 > .camp_name {
@@ -658,11 +658,11 @@ ul.table_ul05 li {
 }
  .box_photo {
   width: 100%;
-  height: auto;
+  height: 208px !important;
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
-  padding-top: 20px;
-  min-height: 700px;
+  padding-top: 12px;
+  /* min-height: 212px; */
   margin-bottom: 30px;
 }
 #gallery {
