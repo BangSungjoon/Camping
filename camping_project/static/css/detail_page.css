@@ -30,7 +30,7 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 28px;
-  font-family: 'NanumG', '나눔고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
+  font-family: 'Nanum Gothic', '나눔고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
   color: #626262;
   letter-spacing: -1px;
   height: 100%;
@@ -54,6 +54,8 @@ body {
   padding-bottom: 50px;
   clear: both;
   padding-top: 10px;
+  background: url("https://media.istockphoto.com/id/1456809857/ko/%EC%82%AC%EC%A7%84/%EA%B0%80%EC%A1%B1-%ED%9C%B4%EA%B0%80-%EC%97%AC%ED%96%89-rv-%EC%BA%A0%ED%95%91%EC%B9%B4%EC%97%90%EC%84%9C-%ED%9C%B4%EA%B0%80-%EC%97%AC%ED%96%89.jpg?s=2048x2048&w=is&k=20&c=gkH8z4_9QBK_3CcHM9MQF53JPIMcxBnT9zAGKzWla8M=") no-repeat center -100px;
+  background-size: 100% auto;
 }
 .location_w2 {
   width: 100%;
@@ -102,7 +104,7 @@ body {
   color: #fff;
   top: 75px;
   text-shadow: 2px 2px 3px #000;
-  background: url('/img/2018/sub/line50p.png') repeat-x 0 bottom;
+  background: url('https://gocamping.or.kr/img/2018/sub/line50p.png') repeat-x 0 bottom;
   padding-bottom: 20px;
 }
 .s_title2 > .camp_name {
@@ -210,6 +212,7 @@ body {
   overflow: hidden;
   clear: both;
   margin-bottom: 100px;
+  text-align: left;
 }
 .camp_info_box .img_b {
   width: 60%;
@@ -387,11 +390,12 @@ button,
 
 .camp_tab05 {
   list-style: none;
-  padding: 0;
+  padding: 19px 0 0 0;
   margin: 0;
   display: flex;
   justify-content: space-between;
   align-content: center;
+
 }
 
 .camp_tab05 li {
@@ -452,6 +456,7 @@ button,
   color: #000;
   display: block;
   line-height: 25px;
+  text-align: left;
 }
 .camp_intro_txt > span.date_info {
   display: block;
@@ -463,11 +468,12 @@ button,
   position: relative;
   font-size: 20px;
   color: #000;
-  padding-left: 29px;
+  padding-left: 10px;
   line-height: 27px;
-  margin: 40px 0 13px 0;
+  margin: 40px 0 15px 0;
   letter-spacing: -0.08em;
   word-break: break-all;
+  text-align: left;
 }
 /* .camp_item_g {
   width: 94%;
@@ -658,11 +664,11 @@ ul.table_ul05 li {
 }
  .box_photo {
   width: 100%;
-  height: auto;
+  height: 208px !important;
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
-  padding-top: 20px;
-  min-height: 700px;
+  padding-top: 12px;
+  /* min-height: 212px; */
   margin-bottom: 30px;
 }
 #gallery {
