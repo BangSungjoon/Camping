@@ -104,9 +104,14 @@
                   </h2>
                   <span class="camp_stt">{{camp.camp_s_tt}}</span>
                   <span class="camp_txt">
-                    <a href="/bsite/camp/info/read.do?c_no=1776&amp;viewType=read01&amp;listOrdrTrget=c_rdcnt"
-                      ><span class="skip">캠핑장정보 더보기</span> {{camp.camp_no.camp_itd}}</a
-                    >
+                    <a href="{% url 'camping_detail' camp.camp_no %}">
+                      <span class="skip">캠핑장정보 더보기</span> 
+                      
+                      <span style="max-height: 2.7em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal;">
+                        {{ camp.camp_itd }}
+                    </span>
+                    
+                    </a>
                   </span>
                   <ul class="camp_info01">
                     <li class="addr">{{ camp.camp_address}}</li>
