@@ -24,10 +24,6 @@ def camping_list(request):
     campings = CampInfo.objects.all()
     return render(request, 'camping_app/camping_list.html', {'campings':campings})
 
-# def camping_detail(request, camp_no):
-#     camping = get_object_or_404(CampInfo, pk=camp_no)
-#     return render(request, 'camping_app/detail.html', {'camping':camping})
-
 def camping_detail(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
     image_links = get_object_or_404(ImageLink, pk=camp_no)
@@ -53,8 +49,8 @@ class CampImagesDetailView(DetailView):
     template_name = 'detail.html'
     context_object_name = 'camp'
 
-def detail(request):
-    return render(request, 'camping_app/detail.html')
+# def detail(request):
+#     return render(request, 'camping_app/detail.html')
 
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
@@ -69,7 +65,7 @@ def get_detail_intro(request):
         # 오류 발생 시 JSON 형식으로 반환
         return JsonResponse({'error': 'Failed to load content'})
 
-def detail_intro(request, camp_no):
+def detail_intro3(request, camp_no):
     try:
         with open(os.path.join(os.path.dirname(__file__), f'camping_app/detail_intro.html'), 'r') as file:
             content = file.read()
@@ -78,3 +74,6 @@ def detail_intro(request, camp_no):
     except Exception as e:
         # 오류 발생 시 처리
         return HttpResponse('Failed to load content', status=404)
+    
+def detail_intro(request):
+    return render(request, 'camping_app/detail_intro.html')

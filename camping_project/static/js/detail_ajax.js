@@ -3,8 +3,9 @@ $(document).ready(function(){
         event.preventDefault();
 
         $.ajax({
-            url: "{% url 'detail_intro' camping.camp_no %}",  // URL 패턴의 이름을 사용하여 URL을 생성
-            dataType: 'html',
+            type:'get',
+            url : "/camping/detail_intro/",
+            // dataType: 'html',
             success: function(result){
                 $('#resultbox').html(result); 
             },
