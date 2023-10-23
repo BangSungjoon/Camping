@@ -75,7 +75,7 @@
                 {% for camp in campings %}
               <div class="c_list update">
                 <a
-                  href="/bsite/camp/info/read.do?c_no=1776&amp;viewType=read01&amp;listOrdrTrget=c_rdcnt"
+                  href="{% url 'camping_detail' camp.camp_no %}"
                   class="dc_none"
                   ><span class="skip">캠핑장정보 더보기</span>
                   <div class="img_box">
@@ -84,7 +84,7 @@
                       alt="{{camp.camp_name}}"
                     />
                     <div class="clist_icon">
-                      <ul>
+                      <ul> 
                         <li>
                           <i class="con_tip c03"><span class="skip">산</span></i>
                         </li>
@@ -95,10 +95,12 @@
                 <div class="camp_cont">
                   <p class="item_group">
                     <span class="item_t01">{{camp.camp_utility.wifi}}</span>
-                    <span class="item_t02">리뷰수 0</span> <span class="item_t03">조회수 244702</span> <span class="item_t04">추천수 17</span>
+                    <span class="item_t02">리뷰수 0</span> 
+                    <span class="item_t03">조회수 244702</span> 
+                    <span class="item_t04">추천수 17</span>
                   </p>
                   <h2 class="camp_tt">
-                    <a href="/bsite/camp/info/read.do?c_no=1776&amp;viewType=read01&amp;listOrdrTrget=c_rdcnt">{{camp.camp_name}}</a>
+                    <a href="{% url 'camping_detail' camp.camp_no %}">{{camp.camp_name}}</a>
                   </h2>
                   <span class="camp_stt">{{camp.camp_s_tt}}</span>
                   <span class="camp_txt">
