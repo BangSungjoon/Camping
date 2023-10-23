@@ -12,7 +12,8 @@ import math
 
 # Create your views here.
 def index(request):
-    return render(request, 'camping_app/index.html')
+    camp_count = CampInfo.objects.count()
+    return render(request, 'camping_app/index.html',{'camp_count':camp_count})
 
 def camping_safety(request):
     return render(request, 'camping_app/camping_safety.html')
@@ -31,11 +32,14 @@ def camping_list(request):
     next_tens_page = math.ceil(campings.number / 10) * 10 + 1
     prev_tens_page = max(1, (math.floor((campings.number - 1) / 10) * 10))
 
+    camp_count = CampInfo.objects.count()
+    
     context = {
         'campings': campings,
         'page_range': range(start, end + 1),
         'next_tens_page': next_tens_page,
         'prev_tens_page': prev_tens_page,
+        'camp_count':camp_count
     }
 
     return render(request, 'camping_app/camping_list.html', context)
