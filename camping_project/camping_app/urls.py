@@ -11,6 +11,6 @@ urlpatterns = [
     path('camping/safety/', views.camping_safety, name='camping_safety'),
     # path('detail/', views.detail, name='detail'),
     path('camping/search/location', views.camping_search_location, name='camping_search_location'),
-    path('get_detail_intro/', views.get_detail_intro, name='get_detail_intro'),
-    path('camping/detail_intro/', views.detail_intro, name='detail_intro'),
+    path('camping/detail_intro/<int:camp_no>', views.detail_intro, name='detail_intro'),
+    path('camping/detail_text/<int:camp_no>', views.detail_text, name='detail_text'),
 ]

@@ -1,6 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse, HttpResponse
-import os
 from .models import CampInfo
 from .forms import CampingForm
 from django.views.generic import DetailView
@@ -54,26 +52,40 @@ class CampImagesDetailView(DetailView):
 
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
-    
-def get_detail_intro(request):
-    try:
-        with open(os.path.join(os.path.dirname(__file__), 'camping_app/detail_intro.html'), 'r') as file:
-            content = file.read()
-        # HTML 형식으로 반환
-        return HttpResponse(content, content_type='text/html')
-    except Exception as e:
-        # 오류 발생 시 JSON 형식으로 반환
-        return JsonResponse({'error': 'Failed to load content'})
 
-def detail_intro3(request, camp_no):
-    try:
-        with open(os.path.join(os.path.dirname(__file__), f'camping_app/detail_intro.html'), 'r') as file:
-            content = file.read()
-        # HTML 형식으로 반환
-        return HttpResponse(content, content_type='text/html')
-    except Exception as e:
-        # 오류 발생 시 처리
-        return HttpResponse('Failed to load content', status=404)
-    
-def detail_intro(request):
-    return render(request, 'camping_app/detail_intro.html')
+# def detail_intro(request):
+#     return render(request, 'camping_app/detail_intro.html')
+
+# def detail_intro(request):
+#     # 데이터베이스에서 이미지 링크를 조회하거나 원하는 방식으로 데이터를 가져옴
+#     image_links = ImageLink.objects.all()  # 예시로 모든 이미지 링크를 가져옴
+
+#     context = {
+#         'image_links': image_links  # 템플릿으로 전달할 데이터를 context에 추가
+#     }
+
+#     return render(request, 'camping_app/detail_intro.html', context)
+
+# def detail_intro(request, camp_no):
+#     # 데이터베이스에서 camp_no와 일치하는 데이터를 조회
+#     try:
+#         image_links = ImageLink.objects.get(camp_no=camp_no)
+#     except ImageLink.DoesNotExist:
+#         # 예외 처리: 해당 camp_no를 가진 데이터가 없는 경우
+#         image_links = None
+
+#     context = {
+#         'image_links': image_links
+#     }
+
+#     return render(request, 'camping_app/detail_intro.html', context)
+
+def detail_intro(request, camp_no):
+    image_links = get_object_or_404(ImageLink, pk=camp_no)
+    print(image_links)
+    return render(request, 'camping_app/detail_intro.html', {'image_links': image_links})
+
+def detail_text(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    print(camping)
+    return render(request, 'camping_app/detail_text.html', {'camping': camping})

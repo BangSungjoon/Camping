@@ -176,10 +176,12 @@
                 <div class="layout">
                   <ul class="camp_tab05">
                     <li>
-                      <a href="#" class="camp_introduce">캠핑장 소개</a>
+                      <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                      <a href="#" class="camp_introduce">갤러리</a>
                     </li>
                     <li id="c_guide">
-                      <a href="#" class="camp_guide">이용안내</a>
+                      <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                      <a href="#" class="camp_guide">소개</a>
                     </li>
                     <li id="c_map">
                       <a href="#" class="camp_map">위치/주변정보</a>
@@ -192,10 +194,9 @@
                     </li>
                   </ul>
 
-                  <div id="resultbox"></div>
-
                   <div class="camp_intro">
-                    <ul class="image-list">
+                    <div id="resultbox"></div>
+                    <!-- <ul class="image-list">
                       <li class="col_03 img_box">
                         <img
                           src="{{ image_links.col1_img_link }}"
@@ -217,11 +218,11 @@
                           alt="캠핑장소개 이미지"
                         />
                       </li>
-                    </ul>
-                    <p class="camp_intro_txt">
+                    </ul> -->
+                    <!-- <p class="camp_intro_txt">
                       <span
                         >{{ camping.camp_itd }}</span>
-                    </p>
+                    </p> -->
                     <h3 class="icon_h3">캠핑장 시설정보</h3>
                     <div class="camp_item_g">
                       <ul>
