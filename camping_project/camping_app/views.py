@@ -9,6 +9,7 @@ from .models import ImageLink
 from .models import CampFacInfo
 from .models import CampUtility
 from .form_book import bookcampingForm
+from .review_from import campreviewform
 
 # Create your views here.
 def index(request):
@@ -96,19 +97,51 @@ def camping_book(request, camp_no):
                 # 유효성 확인할 때 중복되면 오류창 뜸 
                 # 4) form에 저장된 데이터를 아직 완전 저장하지 않고 
                 # 현재는 이 부분 없어도 됨 : 저장 지연
-                product_book = forms.save(commit=False)
+                camping_book = forms.save(commit=False)
                 # 수행할 작업이 있다면 여기서 수행 (우리는 현재 다른 작업 없음)
-                # product.....() 작업 
+             
                 # 5) 여기에서 db 저장 
-                product_book.save()
+                camping_book.save()
                 # 6) db에 저장 후 결과 확인하기 위해 상품조회 화면으로 이동 (포워딩)
                 # redirect() 사용
-                return redirect('product_list')
+                return redirect('camping_list')
         else:
             forms = bookcampingForm(instance=camping)
 
         #7) else : post 요청이 아니라면 입력 폼 그대로 출력 
         return render(request, 'camping_app/camp_book.html', {'forms':forms})
+    # else:
+    #     messagebox.showinfo('경고','로그인 후 가능합니다.')
+    #     return redirect('../../../users/sign_in')
+    #     # 비로그인 시 로그인 화면으로 이동 
+
+
+# 리뷰 등록
+def camping_review(request, camp_no):
+    # if request.user.is_authenticated:
+        camping= get_object_or_404(CampInfo, pk=camp_no)
+        # 1) 요청이 post 인지 확인하고 
+        if request.method == "POST":
+            #2) 폼 데이터의 내용을 form 변수에 저장
+            rform = campreviewform(request.POST)
+            #3) django 기본 기능인 is_valid() 사용해서 데이터 유효성 확인 
+            if rform.is_valid():
+                # 유효성 확인할 때 중복되면 오류창 뜸 
+                # 4) form에 저장된 데이터를 아직 완전 저장하지 않고 
+                # 현재는 이 부분 없어도 됨 : 저장 지연
+                review_form = rform.save(commit=False)
+                # 수행할 작업이 있다면 여기서 수행 (우리는 현재 다른 작업 없음)
+         
+                # 5) 여기에서 db 저장 
+                review_form.save()
+                # 6) db에 저장 후 결과 확인하기 위해 상품조회 화면으로 이동 (포워딩)
+                # redirect() 사용
+                return redirect('camping_list')
+        else:
+            rform = campreviewform(instance=camping)
+
+        #7) else : post 요청이 아니라면 입력 폼 그대로 출력 
+        return render(request, 'camping_app/camping_review.html', {'rform':rform})
     # else:
     #     messagebox.showinfo('경고','로그인 후 가능합니다.')
     #     return redirect('../../../users/sign_in')
