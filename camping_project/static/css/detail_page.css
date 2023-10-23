@@ -54,6 +54,8 @@ body {
   padding-bottom: 50px;
   clear: both;
   padding-top: 10px;
+  background: url("https://media.istockphoto.com/id/1456809857/ko/%EC%82%AC%EC%A7%84/%EA%B0%80%EC%A1%B1-%ED%9C%B4%EA%B0%80-%EC%97%AC%ED%96%89-rv-%EC%BA%A0%ED%95%91%EC%B9%B4%EC%97%90%EC%84%9C-%ED%9C%B4%EA%B0%80-%EC%97%AC%ED%96%89.jpg?s=2048x2048&w=is&k=20&c=gkH8z4_9QBK_3CcHM9MQF53JPIMcxBnT9zAGKzWla8M=") no-repeat center -100px;
+  background-size: 100% auto;
 }
 .location_w2 {
   width: 100%;
@@ -387,11 +389,12 @@ button,
 
 .camp_tab05 {
   list-style: none;
-  padding: 0;
+  padding: 19px 0 0 0;
   margin: 0;
   display: flex;
   justify-content: space-between;
   align-content: center;
+
 }
 
 .camp_tab05 li {
