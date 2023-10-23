@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>캠핑 예약</h2>
+
+<form method="post">
+    {% csrf_token %} 
+    <!-- # form 취약한 해킹코드 방지, 입력한 다음 값 못들어오도록 막아줌 -->
+    <table id="form_tbl">
+        {{forms}}
+    </table><br>
+    <button id="form_btn" type="submit">등록</button>
+</form>
+{% endblock content %}

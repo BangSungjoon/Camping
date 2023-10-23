@@ -13,4 +13,5 @@ urlpatterns = [
     path('camping/search/location', views.camping_search_location, name='camping_search_location'),
     path('get_detail_intro/', views.get_detail_intro, name='get_detail_intro'),
     path('camping/detail_intro/', views.detail_intro, name='detail_intro'),
+    path('product/book/<str:camp_no>/' , views.camping_book, name='camping_book'),
 ]
