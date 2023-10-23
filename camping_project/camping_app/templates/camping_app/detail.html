@@ -137,14 +137,14 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="btn_w">
+                      <div class="btn_w"><a href="{% url 'camping_book' camping.camp_no%}">
                         <button
                           type="button"
                           class="btn_bB1 best"
                           onclick="fnCampLike(); return false"
-                        >
-                          추천하기
+                        >예약하기
                         </button>
+                      </a>
                         <button
                           type="button"
                           class="btn_rB1 zzim"
@@ -445,6 +445,31 @@
 												</div>
                       </div>
                     </div>
+                    <table id="detail_tbl">
+                      <tr><th></th><td><a href="{% url 'camping_review' camping.camp_no%}"><button>리뷰쓰기</button></a></td></tr>
+                  </table>
+                  <hr>
+                  <table id="prd_list">
+                      <tr>
+                          <th>제목</th>
+                          <th>리뷰 내용</th>
+                          <th>리뷰날짜</th>
+                          <th>평점</th>
+                          <th>사용자id</th>
+                          <th>캠핑장고유번호</th>
+                  
+                      </tr>
+                      {% for review in  reviews %}
+                      <tr>
+                          <td>{{ review.rev_title}}</td>
+                          <td>{{ review.rev_content}}</td>
+                          <td>{{ review.rev_date}}</td>
+                          <td>{{ review.rev_rate}}</td>
+                          <td>{{ review.id}}</td>
+                          <td>{{ review.prd_no}}</td>
+                      </tr>
+                      {% endfor %}
+                  </table>
                   </div>
                     </div>
                     <!-- 		<button type="button" class="btn_grey_M">더보기</button> -->
