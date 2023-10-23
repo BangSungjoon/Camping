@@ -1,17 +1,108 @@
 {% extends 'base.html' %}
-
-{% block content %}   
-
-    <h3>즐거움에 끝이 없는 캠핑 여행!</h3>
-
-    <div id='wrap'>
-        <div id='slide'>
-            #이미지 소스 슬라이드
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/index.css' %}">
+<script src="{% static '/js/index.js' %}"></script>
+  {% endblock %}
+{% block content %}
+  <section id="section1" style="right: 0px">
+    <h2>
+      <span class="skip">캠핑장 정보검색</span>
+    </h2>
+    <div class="section_01">
+      <div class="layout">
+        <div class="main_top">
+          <section id="layer_search">
+            <h2>
+              <span class="skip">검색 레이어박스</span>
+            </h2>
+            <!--타이틀-->
+            <div class="m_title">
+              <p class="m_title_01">
+                <span>캠핑장 정보</span> 어디에서 찾으세요?
+              </p>
+              <!-- <p class="s_title01">고캠핑에는 관광사업자에 등록된 3720개의 캠핑장 정보가 있습니다.</p> -->
+              <p class="s_title01">캠핑어때에는 3720개의 캠핑장 정보가 있습니다.</p>
+            </div>
+            <!--//타이틀-->
+            <div class="search_box">
+              <form id="campSearchForm01" action="/bsite/camp/info/list.do" method="get">
+                <!-- <button type="button" class="btn_mylocation" onclick="geoFindMe(30, ''); return false;">내주변 캠핑장</button> -->
+                <button type="button" class="btn_dsearch">상세검색</button>
+                <!--검색박스-->
+                <div class="search_box_form">
+                  <div class="form1_1">
+                    <p class="tt">키워드검색</p>
+                    <label class="skip" for="searchKrwd_f">검색어를 입력하세요.</label> <input type="text" class="keyword2" id="searchKrwd_f" name="searchKrwd" title="검색어를 입력하세요.">
+                  </div>
+                  <div class="form1_2">
+                    <p class="tt">지역별</p>
+                    <label class="skip" for="c_do">지역별 검색</label>
+                      <select name="c_do" class="select_01" title="검색할 지역을 선택하세요." id="c_do" onchange="updateSubregions()">
+                        <option value="" selected>전체/도</option>
+                        <option value="서울">서울특별시</option>
+                        <option value="부산">부산광역시</option>
+                        <option value="대구">대구광역시</option>
+                        <option value="인천">인천광역시</option>
+                        <option value="광주">광주광역시</option>
+                        <option value="대전">대전광역시</option>
+                        <option value="울산">울산광역시</option>
+                        <option value="세종">세종특별자치시</option>
+                        <option value="경기">경기도</option>
+                        <option value="강원">강원도</option>
+                        <option value="충청북도">충청북도</option>
+                        <option value="충청남도">충청남도</option>
+                        <option value="전라북도">전라북도</option>
+                        <option value="전라남도">전라남도</option>
+                        <option value="경상북도">경상북도</option>
+                        <option value="경상남도">경상남도</option>
+                        <option value="제주">제주도</option>
+                    </select>
+                      <label class="skip" for="c_signgu">시군별 검색</label> 
+                      <select name="c_signgu" id="c_signgu" class="select_02" title="검색할 지역을 선택하세요.">
+                      <option value="" selected>전체/시/군</option>
+                    </select>
+                  </div>
+                  <div class="form1_2">
+                    <p class="tt">테마별</p>
+                    <label class="skip" for="searchLctCl">테마별 검색</label> <select name="searchLctCl" id="searchLctCl" class="select_03" title="검색할 테마를 선택하세요.">
+                      <option value="">전체테마</option>
+                      <option value="해변">해변</option>
+                      <option value="섬">섬</option>
+                      <option value="산">산</option>
+                      <option value="숲">숲</option>
+                      <option value="계곡">계곡</option>
+                      <option value="강">강</option>
+                      <option value="호수">호수</option>
+                      <option value="도심">도심</option>
+                      </select>
+                    <button type="submit" class="btnSearch_black01">검색</button>
+                    <!-- <button type="button" class="mylocation_tmv btn_none" onclick="geoFindMe(30, ''); return false;">내주변 캠핑장 검색</button> -->
+                  </div>
+                </div>
+                <!--//검색박스-->
+              </form>
+            </div><!--search-box 닫는 태그-->
+          </section><!--layer-search 닫는 태그-->
+        </div><!--main-top 닫는 태그-->
+      </div><!--layout 닫는 태그-->
+      <!--S:비쥬얼영역-->
+      <div class="m_bg_w slick-initialized slick-slider slick-dotted">
+        <div class="slick-list draggable">
+          <div class="slick-track" style="opacity: 1; width: 100%;">
+            <div class="m_bg_01 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 100%; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0" role="tabpanel" id="slick-slide40" aria-describedby="slick-slide-control40">
+              <span class="skip">고캠핑의 메인 대표이미지 1</span>
+            </div>
+            <!-- <div class="m_bg_02 slick-slide" data-slick-index="1" aria-hidden="true" style="width: 963px; position: relative; left: -963px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;" tabindex="-1" role="tabpanel" id="slick-slide41" aria-describedby="slick-slide-control41">
+              <span class="skip">고캠핑의 메인 대표이미지 2</span>
+            </div>
+            <div class="m_bg_03 slick-slide" data-slick-index="2" aria-hidden="true" style="width: 963px; position: relative; left: -1926px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;" tabindex="-1" role="tabpanel" id="slick-slide42" aria-describedby="slick-slide-control42">
+              <span class="skip">고캠핑의 메인 대표이미지 3</span> -->
+            </div>
+          </div>
         </div>
-        <div id='recommend_site'>
-            <h3>이번달엔 여기로 가볼까?</h3>
-            #근방 추천 여행지
-        </div>
-    </div>
-
+      </div>
+      <!--E:비쥬얼영역-->
+    
+  </section>
 {% endblock content %}
