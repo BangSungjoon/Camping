@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4s35lz2206"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+
+        function printName()  {
+            const name = document.getElementById('name').value;
+            document.getElementById("result").innerText = name;
+        }
+
+        locate = "경상북도 영덕군 병곡면 고래불로 12";
+        road(locate);
+    
+        // 좌표값 변환 [https://www.vworld.kr/dev/v4dv_geocoderguide2_s001.do]
+        function road(locate){
+            $.ajax({
+                url: "https://api.vworld.kr/req/address?",
+                type: "GET",
+                dataType: "jsonp",
+                data: {
+                    service: "address",
+                    request: "GetCoord",
+                    version: "2.0",
+                    crs: "EPSG:4326",
+                    type: "ROAD",
+                    address: locate,
+                    format: "json",
+                    errorformat: "json",
+                    key: "656E0744-0C72-35DD-BDED-24126938F03D"
+                },
+        
+                success: function (result) {
+                    if (result["response"]["status"] != "NOT_FOUND"){
+                        coord = []
+                        coord.push(result["response"]["result"]["point"]["x"]);
+                        coord.push(result["response"]["result"]["point"]["y"]);
+                        main(coord);
+                    }                 
+                }
+            })
+        }
+
+        function main(coord){
+            console.log(coord);
+        
+            var HOME_PATH = window.HOME_PATH || '.';
+            var land_mark = new naver.maps.LatLng(coord[1], coord[0]);
+
+            // 좌표값 지도 중심
+            var map = new naver.maps.Map('map', {
+                center: land_mark,
+                scaleControl: false,
+                logoControl: false,
+                mapDataControl: false,
+                zoomControl: true,
+                minZoom: 6,
+                zoom: 15
+            });
+    
+            var mapOptions = {
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: naver.maps.ZoomControlStyle.SMALL,
+                    position: naver.maps.Position.TOP_RIGHT
+                }
+            };
+
+            // 마커 표시하기
+            var marker = new naver.maps.Marker({
+                position: land_mark,
+                map: map
+            });
+
+            // 이벤트 리스너
+            naver.maps.Event.addListener(marker, "click", function(e) {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker);
+                }
+            });
+
+            // 정보 설명
+            var contentString = [
+                '<div class="iw_inner">',
+                '   <h3>서울특별시청</h3>',
+                '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
+                '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+                '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
+                '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+                '   </p>',
+                '</div>'
+            ].join('');
+
+            // 정보창 생성
+            var infowindow = new naver.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 140,
+                backgroundColor: "#eee",
+                borderColor: "#2db400",
+                borderWidth: 5,
+                anchorSize: new naver.maps.Size(30, 30),
+                anchorSkew: true,
+                anchorColor: "#eee",
+                pixelOffset: new naver.maps.Point(20, -20)
+            });
+        
+            // 지도 유형
+            infowindow.open(map, marker);
+        }
+    </script>
+</head>
+<body>
+
+    <div id = "map" style = "width: 80%;height:700px;"></div>
+
+</body>
+</html>

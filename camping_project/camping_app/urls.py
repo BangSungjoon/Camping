@@ -13,4 +13,6 @@ urlpatterns = [
     path('camping/search/location', views.camping_search_location, name='camping_search_location'),
     path('camping/detail_intro/<int:camp_no>', views.detail_intro, name='detail_intro'),
     path('camping/detail_text/<int:camp_no>', views.detail_text, name='detail_text'),
+    path('camping/detail_weather/', views.detail_weather, name='detail_weather'),
+    path('camping/detail_map/', views.detail_map, name='detail_map'),
 ]

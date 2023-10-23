@@ -55,33 +55,6 @@ class CampImagesDetailView(DetailView):
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
 
-# def detail_intro(request):
-#     return render(request, 'camping_app/detail_intro.html')
-
-# def detail_intro(request):
-#     # 데이터베이스에서 이미지 링크를 조회하거나 원하는 방식으로 데이터를 가져옴
-#     image_links = ImageLink.objects.all()  # 예시로 모든 이미지 링크를 가져옴
-
-#     context = {
-#         'image_links': image_links  # 템플릿으로 전달할 데이터를 context에 추가
-#     }
-
-#     return render(request, 'camping_app/detail_intro.html', context)
-
-# def detail_intro(request, camp_no):
-#     # 데이터베이스에서 camp_no와 일치하는 데이터를 조회
-#     try:
-#         image_links = ImageLink.objects.get(camp_no=camp_no)
-#     except ImageLink.DoesNotExist:
-#         # 예외 처리: 해당 camp_no를 가진 데이터가 없는 경우
-#         image_links = None
-
-#     context = {
-#         'image_links': image_links
-#     }
-
-#     return render(request, 'camping_app/detail_intro.html', context)
-
 def detail_intro(request, camp_no):
     image_links = get_object_or_404(ImageLink, pk=camp_no)
     print(image_links)
@@ -91,3 +64,9 @@ def detail_text(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
     print(camping)
     return render(request, 'camping_app/detail_text.html', {'camping': camping})
+
+def detail_weather(request):
+    return render(request, 'camping_app/detail_weather.html')
+
+def detail_map(request):
+    return render(request, 'camping_app/detail_map.html')
