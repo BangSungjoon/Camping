@@ -16,7 +16,7 @@
             document.getElementById("result").innerText = name;
         }
 
-        locate = "경상북도 영덕군 병곡면 고래불로 12";
+        locate = "{{ camping.camp_address }}";
         road(locate);
     
         // 좌표값 변환 [https://www.vworld.kr/dev/v4dv_geocoderguide2_s001.do]
@@ -91,11 +91,11 @@
             // 정보 설명
             var contentString = [
                 '<div class="iw_inner">',
-                '   <h3>서울특별시청</h3>',
-                '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-                '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-                '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-                '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
+                '   <h3>{{ camping.camp_address }}</h3>',
+                '   <p>{{ camping.camp_address }}<br />',
+                '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="캠핑장" class="thumb" /><br />',
+                '       02-120 | 캠핑 &gt; 캠핑장<br />',
+                '       <a href="{{ camping.camp_pagelink }}" target="_blank">{{ camping.camp_pagelink }}/</a>',
                 '   </p>',
                 '</div>'
             ].join('');

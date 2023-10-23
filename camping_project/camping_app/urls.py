@@ -14,7 +14,7 @@ urlpatterns = [
     path('camping/detail_intro/<int:camp_no>', views.detail_intro, name='detail_intro'),
     path('camping/detail_text/<int:camp_no>', views.detail_text, name='detail_text'),
     path('camping/detail_weather/', views.detail_weather, name='detail_weather'),
-    path('camping/detail_map/', views.detail_map, name='detail_map'),
+    path('camping/detail_map/<int:camp_no>', views.detail_map, name='detail_map'),
     path('camping/book/<str:camp_no>/' , views.camping_book, name='camping_book'),
     path('camping/review/<str:camp_no>/' , views.camping_review, name='camping_review'),
 ]

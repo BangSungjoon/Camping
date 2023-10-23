@@ -71,8 +71,10 @@ def detail_text(request, camp_no):
 def detail_weather(request):
     return render(request, 'camping_app/detail_weather.html')
 
-def detail_map(request):
-    return render(request, 'camping_app/detail_map.html')
+def detail_map(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    print(camping)
+    return render(request, 'camping_app/detail_map.html', {'camping': camping})
 
 # 캠핑 예약 - 로그인 시에만 가능 
 def camping_book(request, camp_no):

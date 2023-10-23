@@ -46,9 +46,11 @@ $(document).ready(function(){
     $('.camp_map').on('click', function(event){
         event.preventDefault();
 
+        camp_no = document.getElementById('camp_no').value;
+
         $.ajax({
             type:'get',
-            url : "/camping/detail_map/",
+            url : "/camping/detail_map/" + camp_no,
             success: function(result){
                 $('#resultbox').html(result); 
             },
