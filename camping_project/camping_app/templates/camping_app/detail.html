@@ -225,7 +225,63 @@
                     <h3 class="icon_h3">캠핑장 시설정보</h3>
                     <div class="camp_item_g">
                       <ul>
-                        <li>
+                          {% if camp_utility.electric %}
+                            <li>
+                              <i class="ico_volt"><span>전기</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.wifi %}
+                            <li>
+                              <i class="ico_wifi"><span>와이파이</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.firewood %}
+                            <li>
+                              <i class="ico_wood"><span>장작판매</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.warm_water %}
+                            <li>
+                              <i class="ico_hotwater"><span>온수</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.water_playground %}
+                            <li>
+                              <i class="ico_pool"><span>물놀이장</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.adv_ground %}
+                            <li>
+                              <i class="ico_playzone"><span>놀이터</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.athletic_fac %}
+                            <li>
+                              <i class="ico_ico_sports"><span>운동시설</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.sports_ground %}
+                            <li>
+                              <i class="sports_ground"><span>운동장</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.walking_load %}
+                            <li>
+                              <i class="ico_walk"><span>산책로</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.market %}
+                            <li>
+                              <i class="ico_mart"><span>마트.편의점</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp_utility.trampoline %}
+                            <li>
+                              <i class="ico_ico_ico_tramp"><span>트렘폴린</span></i>
+                            </li>
+                          {% endif %}
+
+                        <!-- <li>
                           <i class="ico_volt"><span>전기</span></i>
                         </li>
                         <li>
@@ -245,7 +301,7 @@
                         </li>
                         <li>
                           <i class="ico_ico_sports"><span>운동시설</span></i>
-                        </li>
+                        </li> -->
                       </ul>
                     </div>
                     <h3 class="icon_h3">기타 주요시설</h3>
