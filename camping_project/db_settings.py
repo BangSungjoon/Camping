@@ -1,7 +1,7 @@
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",  # 엔진
-        "NAME": "camping_db",  # 데이터베이스 이름
+        "NAME": "camping",  # 데이터베이스 이름
         "USER": "root",  # 사용자
         "PASSWORD": "1234",  # 비밀번호
         "HOST": "localhost",  # 호스트
