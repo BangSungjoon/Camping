@@ -212,6 +212,7 @@ body {
   overflow: hidden;
   clear: both;
   margin-bottom: 100px;
+  text-align: left;
 }
 .camp_info_box .img_b {
   width: 60%;
@@ -455,6 +456,7 @@ button,
   color: #000;
   display: block;
   line-height: 25px;
+  text-align: left;
 }
 .camp_intro_txt > span.date_info {
   display: block;
@@ -466,11 +468,12 @@ button,
   position: relative;
   font-size: 20px;
   color: #000;
-  padding-left: 29px;
+  padding-left: 10px;
   line-height: 27px;
-  margin: 40px 0 13px 0;
+  margin: 40px 0 15px 0;
   letter-spacing: -0.08em;
   word-break: break-all;
+  text-align: left;
 }
 /* .camp_item_g {
   width: 94%;
