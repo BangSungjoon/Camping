@@ -2,6 +2,27 @@
 {% load static %}
 {% block extrahead %}
 <link rel="stylesheet" href="{% static '/css/detail_page.css' %}">
+<script>
+  // 원본 문자열 가져오기
+  window.onload = function() {
+  var originalTagString = document.querySelector('#tag_list li').textContent;
+  console.log(originalTagString)
+  // ','를 '#'로 대체하고 문자열을 분할
+  var tags = originalTagString.split(',');
+  console.log(tags)
+  // 빈 문자열 제거
+  console.log(tags)
+
+  // 결과 출력
+  var tagList = document.querySelector('#tag_list');
+  tagList.innerHTML = '';
+  tags.forEach(function (tag) {
+    var li = document.createElement('li');
+    li.textContent = '#' + tag.trim();
+    tagList.appendChild(li);
+  });
+  }
+</script>
 {% endblock %}
 
 {% block content %}
@@ -22,24 +43,10 @@
             <!--태그영역-->
             <div class="camp_tag">
               <p class="tag_tt">태그</p>
-              <ul class="tag_list">
-                <li>#친절한</li>
-                <li>#여유있는</li>
-                <li>#사이트 간격이 넓은</li>
-                <li>#깨끗한</li>
-                <li>#온수 잘 나오는</li>
-                <li>#차대기 편한</li>
-                <li>#수영장 있는</li>
-                <li>#아이들 놀기 좋은</li>
-                <li>#생태교육</li>
-                <li>#물맑은</li>
-                <li>#바다가 보이는</li>
-                <li>#그늘이 많은</li>
-                <li>#문화유적</li>
-                <li>#축제</li>
-                <li>#별 보기 좋은</li>
-                <li>#힐링</li>
-                <li>#가족</li>
+              <ul class="tag_list" id="tag_list">
+                
+                <li>{{ camping.camp_tag_li }}</li>
+                
               </ul>
             </div>
             <!--//태그영역-->
@@ -280,28 +287,6 @@
                               <i class="ico_ico_ico_tramp"><span>트렘폴린</span></i>
                             </li>
                           {% endif %}
-
-                        <!-- <li>
-                          <i class="ico_volt"><span>전기</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_wifi"><span>전기</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_wood"><span>장작판매</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_hotwater"><span>온수</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_pool"><span>물놀이장</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_playzone"><span>놀이터</span></i>
-                        </li>
-                        <li>
-                          <i class="ico_ico_sports"><span>운동시설</span></i>
-                        </li> -->
                       </ul>
                     </div>
                     <h3 class="icon_h3">기타 주요시설</h3>
@@ -334,57 +319,6 @@
                                 (※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
                               </td>
                             </tr>
-                            <!-- <tr>
-                              <th scope="col">기타 부대시설</th>
-                              <td>
-                                <ul class="table_ul05">
-                                  <li>바다사이트쪽은 카라반,트레일러 입장금지</li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="col">사이트 간격</th>
-                              <td>
-                                <ul class="table_ul05">
-                                  <li>3M</li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="col">바닥형태 (단위:면)</th>
-                              <td>
-                                <ul class="table_ul05">
-                                  <li>파쇄석 (30)</li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="col">사이트 크기</th>
-                              <td>
-                                <ul class="table_ul05">
-                                  <li>9 X 8 : 30개</li>
-                                </ul>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="col">캠핑장비대여</th>
-                              <td>
-                                <ul class="table_ul05">
-                                  <li>텐트</li>
-                                  <li>릴선</li>
-                                  <li>화로대</li>
-                                  <li>난방기구</li>
-                                  <li>식기</li>
-                                  <li>침낭</li>
-                                </ul>
-                              </td>
-                            </tr> -->
-                            <!--
-            <tr>
-              <th scope="col">반려동물 출입</th>
-              <td class="etc_type">불가능</td>
-            </tr>
-            -->
                             <tr>
                               <th scope="col">화로대</th>
                               <td class="etc_type">{{ camp_fac_info.camp_brazier }}</td>
@@ -401,9 +335,9 @@
                         </table>
                       </div>
                       <p class="camp_intro_txt">
-                        <span class="info_notice">
-                          &nbsp;* 캠핑어때에 등록된 정보는 현장상황과 다소 다를 수 있으니
-                          <span class="info_f_red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리
+                        <span class="info_notice" style="font-size: 15px;">
+                          &nbsp;* <span style="color : #ffbd59">캠핑어때</span>에 등록된 정보는 현장상황과 다소 다를 수 있으니
+                          <span style="color: red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리
                           확인하시기 바랍니다.
                         </span>
                       </p>

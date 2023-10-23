@@ -21,10 +21,14 @@ def camping_safety(request):
 # def camping_detail(request):
 #     return render(request, 'camping_app/camping_detail.html')
 
-def camping_list(request):
-    campings = CampInfo.objects.all()
-    return render(request, 'camping_app/camping_list.html', {'campings':campings})
+# def camping_list(request):
+#     campings = CampInfo.objects.all()
+#     return render(request, 'camping_app/camping_list.html', {'campings':campings})
 
+def camping_list(request):
+    campings = campings = ImageLink.objects.select_related('camp_no__camputility').all()
+    return render(request, 'camping_app/camping_list.html', {'campings':campings})
+    
 def camping_detail(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
     image_links = get_object_or_404(ImageLink, pk=camp_no)
