@@ -7,6 +7,8 @@ from django.views.generic import DetailView
 from .models import ImageLink
 from .models import CampFacInfo
 from .models import CampUtility
+from django.core.paginator import Paginator
+import math
 
 # Create your views here.
 def index(request):
@@ -25,9 +27,60 @@ def camping_safety(request):
 #     campings = CampInfo.objects.all()
 #     return render(request, 'camping_app/camping_list.html', {'campings':campings})
 
+# def camping_list(request):
+    # campings = campings = ImageLink.objects.select_related('camp_no__camputility').all()
+    # return render(request, 'camping_app/camping_list.html', {'campings':campings})
+    
+# def camping_list(request):
+#     # 모든 캠핑 데이터 가져오기
+#     all_camping_data = ImageLink.objects.all()
+
+#     # 페이징 처리
+#     paginator = Paginator(all_camping_data, 10)  # 한 페이지당 10개씩 표시
+#     page = request.GET.get('page')
+#     campings = paginator.get_page(page)
+
+#     return render(request, 'camping_app/camping_list.html', {'campings': campings})
+
+# def camping_list(request):
+#     page = request.GET.get('page', 1)
+#     campings = Paginator(CampInfo.objects.all(), 10).get_page(page)
+
+#     start = math.floor((campings.number - 1) / 10) * 10 + 1
+#     end = min(campings.paginator.num_pages, start + 9)
+#     next_tens_page = math.ceil(campings.number / 10) * 10 + 1
+#     prev_tens_page = max(1, (math.floor((campings.number - 1) / 10) * 10))
+
+#     context = {
+#         'campings': campings,
+#         'page_range': range(start, end + 1),
+#         'next_tens_page': next_tens_page,
+#         'prev_tens_page': prev_tens_page,
+#     }
+
+#     return render(request, 'camping_app/camping_list.html', context)
+
 def camping_list(request):
-    campings = campings = ImageLink.objects.select_related('camp_no__camputility').all()
-    return render(request, 'camping_app/camping_list.html', {'campings':campings})
+    page = request.GET.get('page', 1)
+    campings = Paginator(CampInfo.objects.all(), 10).get_page(page)
+
+    for camp in campings:
+        camp.image_link = ImageLink.objects.get(camp_no=camp.camp_no)
+        camp.camp_utility = CampUtility.objects.get(camp_no=camp.camp_no)
+
+    start = math.floor((campings.number - 1) / 10) * 10 + 1
+    end = min(campings.paginator.num_pages, start + 9)
+    next_tens_page = math.ceil(campings.number / 10) * 10 + 1
+    prev_tens_page = max(1, (math.floor((campings.number - 1) / 10) * 10))
+
+    context = {
+        'campings': campings,
+        'page_range': range(start, end + 1),
+        'next_tens_page': next_tens_page,
+        'prev_tens_page': prev_tens_page,
+    }
+
+    return render(request, 'camping_app/camping_list.html', context)
     
 def camping_detail(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
