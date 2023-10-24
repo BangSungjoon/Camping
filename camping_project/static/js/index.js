@@ -6,7 +6,7 @@ function updateSubregions() {
   var region = regionSelect.value;
 
   var option = document.createElement("option");
-  option.value = "전체/시/군";
+  option.value = "";
   option.text = "전체/시/군";
   subregionSelect.add(option);
 
@@ -98,7 +98,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  } else if (region === "충청북도") {
+  } else if (region === "충북") {
       var chungbukSubregions = ["괴산군","단양군","보은군","영동군","옥천군","음성군","제천시","증평군","진천군","청원군","청주시","충주시"];
       for (var i = 0; i < chungbukSubregions.length; i++) {
           var option = document.createElement("option");
@@ -107,7 +107,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  } else if (region === "충청남도") {
+  } else if (region === "충남") {
       var chungnamSubregions = ["계룡시","공주시","금산군","논산시","당진시","보령시","부여군","서산시","아산시","예산군","천안시","청양군","태안군","홍선군"];
       for (var i = 0; i < chungnamSubregions.length; i++) {
           var option = document.createElement("option");
@@ -116,7 +116,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  } else if (region === "전라북도") {
+  } else if (region === "전북") {
       var jeonbukSubregions = ["고창군","군산시","김제시","남원시","무주군","부안군","순창군","완주군","익산시","임실군","장수군","전주시","정읍시","진안군"];
       for (var i = 0; i < jeonbukSubregions.length; i++) {
           var option = document.createElement("option");
@@ -125,7 +125,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  }else if (region === "전라남도") {
+  }else if (region === "전남") {
       var jeonnamSubregions = ["강진군","고흥군","곡성군","광양시","구례군","나주시","담양군","목포시","무안군","보성군","순천시","신안군","여수시","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
       for (var i = 0; i < jeonnamSubregions.length; i++) {
           var option = document.createElement("option");
@@ -134,7 +134,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  }else if (region === "경상북도") {
+  }else if (region === "경북") {
       var gyeongbukSubregions = ["경산시","경주시","고령군","구미시","김천시","문경시","봉화군","상주시","성주군","안동시","영덕군","영양군","영주시","영천시","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군","포항시"];
       for (var i = 0; i < gyeongbukSubregions.length; i++) {
           var option = document.createElement("option");
@@ -143,7 +143,7 @@ function updateSubregions() {
           subregionSelect.add(option);
       }
     
-  }else if (region === "경상남도") {
+  }else if (region === "경남") {
       var gyeongnamSubregions = ["거제시","거창군","고성군","김해시","남해군","밀양시","사천시","산청군","양산시","의령군","진주시","창년군","창원시","통영시","하동군","함안군","함양군","합천군"];
       for (var i = 0; i < gyeongnamSubregions.length; i++) {
           var option = document.createElement("option");
