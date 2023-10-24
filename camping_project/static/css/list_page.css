@@ -395,18 +395,21 @@ div.select_box select.detail_select {
 	width:100%;
 	box-sizing:border-box;
 	height:auto;
-	padding:5px 5px;
+	padding:5px 10px;
 	background:#fff;
 	border:1px solid #e8e8e8;
 	border-radius:5px;
 	margin:20px 0 0 0;
 	overflow:hidden;
+	min-height: 45px;
 }
 .camp_item_box ul li {
-	display:inline-block;
+	/* display:inline-block; */
 	padding:10px 0;
 	font-size:13px;
 	width:90px;
+	float: left;
+	margin-right: 4px;
 }
 .camp_item_box ul li i {
 	text-align:center;
@@ -416,6 +419,7 @@ div.select_box select.detail_select {
 	padding-top:35px;
 	display:inline-block;
 	font-style:normal;
+	font-size: 14px;
 }
 .camp_search_list .c_list {
 	position:relative;

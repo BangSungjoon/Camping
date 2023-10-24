@@ -1,46 +1,211 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/list_page.css' %}">
+<script type="text/javascript">
+
+  function clip(){
+  
+    var url = '';
+    var textarea = document.createElement("textarea");
+    document.body.appendChild(textarea);
+    url = window.document.location.href;
+    textarea.value = url;
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    alert("URL이 복사되었습니다.")
+  }
+</script>
+{% endblock %}
+
 {% block content %}   
-
-    <h2>캠핑장 찾아보기</h2>
-    <div id='wrap'>
-        
-        내 위치에서 가까운 캠핑장
-        <button onclick="search_button_mylocation()">검색</button>
-        <p>
-        주소로 검색하기
-        <button onclick="search_button()">검색</button>
-        </p><p>
-        키워드로 검색하기
-        <button onclick="search_button()">검색</button>
-        </p><p>
-
-        <table id="camping_list">
-            <tr>
-                <th>번호</th>
-                <th>캠핑장</th>
-                <th>주소</th>
-                <th>전화번호</th>
-                <th>캠핑장 환경</th>
-                <th>캠핑장 유형</th>
-                <th>운영기간</th>
-                <th>운영일</th>
-            </tr>
-            {% for camp in campings %}
-            <tr>
-                <td><a href="{% url 'camping_detail' camp.camp_no %}">{{ camp.camp_no }}</a></td>
-                <td>{{ camp.camp_name }}</td>
-                <td>{{ camp.camp_address}}</td>
-                <td>{{ camp.camp_call}}</td>
-                <td>{{ camp.camp_environment }}</td>
-                <td>{{ camp.camp_type }}</td>
-                <td>{{ camp.camp_ope_period }}</td>
-                <td>{{ camp.camp_ope_day }}</td>
-                {% comment %} <td><a href="{% url 'camping_update' camp.camp_no %}">
-                    <button class='btn'>수정요청</button></a></td>
-                <td><a href="{% url 'camping_QnA' camp.camp_no %}">
-                    <button class='btn'>문의하기</button></a></td> {% endcomment %}
-            </tr>
-            {% endfor %}
-        </table>
+<div id="s_contanier">
+    <div class="gray_bar"></div>
+  
+    <div id="cont_inner">
+      <div class="sub_layout layout">
+        <section
+          id="section1"
+          style="right: 0px"
+        >
+          <header class="title_w mb_0">
+            <h2 class="title2">총 <span class="em_org">{{camp_count}}개</span>의 캠핑장이 검색되었습니다.</h2>
+            <ul class="share">
+              <li class="link">
+                <a
+                  href="#"
+                  onclick="clip(); return false;"
+                ></a>
+              </li>
+            </ul>
+          </header>
+        </section>
+        <!--내용시작-->
+        <div id="contents">
+          <div class="search_list_gr">
+            <div class="select_box array_select">
+              <label
+                for="selectListOrdrTrget"
+                class="skip"
+                >정렬하기</label
+              >
+              <select
+                class="detail_select"
+                id="selectListOrdrTrget"
+                title="정렬하기"
+              >
+                <option value="last_updusr_pnttm">업데이트순</option>
+                <option value="frst_register_pnttm">등록일순</option>
+                <option
+                  value="c_rdcnt"
+                  selected="selected"
+                >
+                  조회순
+                </option>
+                <option value="c_recomend_cnt">추천순</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--리스트시작-->
+        <div class="camp_search_list">
+          <ul>
+            <li>
+                {% for camp in campings %}
+              <div class="c_list update">
+                <a
+                  href="{% url 'camping_detail' camp.camp_no %}"
+                  class="dc_none"
+                  ><span class="skip">캠핑장정보 더보기</span>
+                  <div class="img_box">
+                    <img
+                      src="{{ camp.image_link.main_img_link }}"
+                      alt="{{camp.camp_name}}"
+                    />
+                    <div class="clist_icon">
+                      <ul> 
+                        <li>
+                          <i class="con_tip c03"><span class="skip">산</span></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </a>
+                <div class="camp_cont">
+                  <p class="item_group">
+                    <span class="item_t01">관리사업자 등록업체</span>
+                    <span class="item_t02">리뷰수 0</span> 
+                    <span class="item_t03">조회수 244702</span> 
+                    <span class="item_t04">추천수 17</span>
+                  </p>
+                  <h2 class="camp_tt">
+                    <a href="{% url 'camping_detail' camp.camp_no %}">{{camp.camp_name}}</a>
+                  </h2>
+                  <span class="camp_stt">{{camp.camp_s_tt}}</span>
+                  <span class="camp_txt">
+                    <a href="{% url 'camping_detail' camp.camp_no %}">
+                      <span class="skip">캠핑장정보 더보기</span> 
+                      
+                      <span style="max-height: 2.7em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal;">
+                        {{ camp.camp_itd }}
+                    </span>
+                    
+                    </a>
+                  </span>
+                  <ul class="camp_info01">
+                    <li class="addr">{{ camp.camp_address}}</li>
+                    <li class="call_num">{{camp.camp_call}}</li>
+                  </ul>
+                  <!--아이콘모음-->
+                  <div class="camp_item_box">
+                    <ul>
+                        {% if camp.camp_utility.electric == 1 %}
+                            <li>
+                              <i class="ico_volt"><span>전기</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.wifi == 1 %}
+                          <li>
+                              <i class="ico_wifi"><span>와이파이</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.firewood == 1 %}
+                          <li>
+                              <i class="ico_wood"><span>장작판매</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.warm_water == 1 %}
+                          <li>
+                              <i class="ico_hotwater"><span>온수</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.water_playground == 1 %}
+                          <li>
+                              <i class="ico_pool"><span>물놀이장</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.adv_ground == 1 %}
+                          <li>
+                              <i class="ico_playzone"><span>놀이터</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.athletic_fac == 1 %}
+                          <li>
+                              <i class="ico_ico_sports"><span>운동시설</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.sports_ground == 1 %}
+                          <li>
+                              <i class="ico_ground"><span>운동장</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.walking_load == 1 %}
+                          <li>
+                              <i class="ico_walk"><span>산책로</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.market == 1 %}
+                          <li>
+                              <i class="ico_mart"><span>마트.편의점</span></i>
+                            </li>
+                          {% endif %}
+                          {% if camp.camp_utility.trampoline == 1 %}
+                          <li>
+                              <i class="ico_ico_ico_tramp"><span>트렘폴린</span></i>
+                            </li>
+                          {% endif %}
+                    </ul>
+                  </div>
+                  <!--//아이콘모음-->
+                </div>
+              </div>
+              {% endfor %}
+            </li>
+        </ul>
     </div>
+    <div class="paging">
+        <ul>
+            {% if campings.has_previous %}
+            <li><a href="?page=1"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre00.png" alt="처음으로" /></a></li>
+            <li><a href="?page={{ prev_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre01.png" alt="이전으로" /></a></li>
+            {% endif %}
+        
+            {% for page_number in page_range %}
+                <li class="num {% if page_number == campings.number %}on{% endif %}">
+                    <a href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+            {% endfor %}
+        
+            {% if campings.has_next %}
+            <li><a href="?page={{ next_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next01.png" alt="다음으로" /></a></li>
+            <li><a href="?page={{ campings.paginator.num_pages }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next00.png" alt="맨끝으로" /></a></li>
+            {% endif %}
+        </ul>
+      </div>
+    
+</div> <!--sub_layout layout div-->
+</div> <!--cont_inner-->
+</div> <!--s_con-->
+
 {% endblock content %}

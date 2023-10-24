@@ -7,26 +7,45 @@ from .models import ImageLink
 from .models import CampFacInfo
 from .models import CampUtility
 from .models import CampTypePrice, CampReview
+from django.core.paginator import Paginator
+import math
 from .form_book import bookcampingForm
 from .review_from import campreviewform
 
 # Create your views here.
 def index(request):
-    return render(request, 'camping_app/index.html')
+    camp_count = CampInfo.objects.count()
+    return render(request, 'camping_app/index.html',{'camp_count':camp_count})
 
 def camping_safety(request):
     return render(request, 'camping_app/camping_safety.html')
 
-# def camping_list(request):
-#     return render(request, 'camping_app/camping_list.html')
-
-# def camping_detail(request):
-#     return render(request, 'camping_app/camping_detail.html')
 
 def camping_list(request):
-    campings = CampInfo.objects.all()
-    return render(request, 'camping_app/camping_list.html', {'campings':campings})
+    page = request.GET.get('page', 1)
+    campings = Paginator(CampInfo.objects.all(), 10).get_page(page)
 
+    for camp in campings:
+        camp.image_link = ImageLink.objects.get(camp_no=camp.camp_no)
+        camp.camp_utility = CampUtility.objects.get(camp_no=camp.camp_no)
+
+    start = math.floor((campings.number - 1) / 10) * 10 + 1
+    end = min(campings.paginator.num_pages, start + 9)
+    next_tens_page = math.ceil(campings.number / 10) * 10 + 1
+    prev_tens_page = max(1, (math.floor((campings.number - 1) / 10) * 10))
+
+    camp_count = CampInfo.objects.count()
+    
+    context = {
+        'campings': campings,
+        'page_range': range(start, end + 1),
+        'next_tens_page': next_tens_page,
+        'prev_tens_page': prev_tens_page,
+        'camp_count':camp_count
+    }
+
+    return render(request, 'camping_app/camping_list.html', context)
+    
 def camping_detail(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
     image_links = get_object_or_404(ImageLink, pk=camp_no)
