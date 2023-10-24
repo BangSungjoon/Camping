@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
-
-        function printName()  {
-            const name = document.getElementById('name').value;
-            document.getElementById("result").innerText = name;
-        }
 
         locate = "{{ camping.camp_address }}";
         road(locate);
@@ -43,6 +38,218 @@
                         coord.push(result["response"]["result"]["point"]["x"]);
                         coord.push(result["response"]["result"]["point"]["y"]);
                         main(coord);
+                        api(parseInt(coord[1]), parseInt(coord[1]));
+                    }                 
+                }
+            })
+        }
+
+        function main(coord){
+            console.log(coord);
+        
+            var HOME_PATH = window.HOME_PATH || '.';
+            var land_mark = new naver.maps.LatLng(coord[1], coord[0]);
+
+            // 좌표값 지도 중심
+            var map = new naver.maps.Map('map', {
+                center: land_mark,
+                scaleControl: false,
+                logoControl: false,
+                mapDataControl: false,
+                zoomControl: true,
+                minZoom: 6,
+                zoom: 15
+            });
+    
+            var mapOptions = {
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: naver.maps.ZoomControlStyle.SMALL,
+                    position: naver.maps.Position.TOP_RIGHT
+                }
+            };
+
+            // 마커 표시하기
+            var marker = new naver.maps.Marker({
+                position: land_mark,
+                map: map
+            });
+
+            // 이벤트 리스너
+            naver.maps.Event.addListener(marker, "click", function(e) {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker);
+                }
+            });
+
+            // 정보 설명
+            var contentString = [
+            '<div class="iw_inner">',
+                '   <h3>{{ camping.camp_address }}</h3>',
+                '   <p>{{ camping.camp_name  }}<br />',
+                // '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="캠핑장" class="thumb" /><br />',
+                // '       02-120 | 캠핑 &gt; 캠핑장<br />',
+                '       <a href="{{ camping.camp_pagelink }}">홈페이지</a>',
+                '   </p>',
+                '</div>'
+            ].join('');
+
+            // 정보창 생성
+            var infowindow = new naver.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 140,
+                backgroundColor: "#eee",
+                borderColor: "#2db400",
+                borderWidth: 5,
+                anchorSize: new naver.maps.Size(30, 30),
+                anchorSkew: true,
+                anchorColor: "#eee",
+                pixelOffset: new naver.maps.Point(20, -20)
+            });
+        
+            // 지도 유형
+            infowindow.open(map, marker);
+        }
+
+        // 날씨 부분
+        function api(nx, ny){
+            // seperate_list1 = ["1시간 기온", "풍속 (동서)", "풍속 (남북)", "풍향",
+            //                   "풍속", "하늘 상태", "강수 형태", "강수 확률",
+            //                   "파고", "1시간 강수량"]
+
+            seperate_list = ["TMP", "UUU", "VVV", "VEC",
+                             "WSD", "SKY", "PTY", "POP",
+                             "WAV", "PCP"];
+
+            xhr = api_input(nx, ny);
+            api_output(xhr, seperate_list);
+            xhr.send('');
+        }
+
+        // api input
+        function api_input(nx, ny){
+            let today = new Date();
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();  // 날짜
+            weather_time = String(year) + String(month) + String(date);
+
+            var xhr = new XMLHttpRequest();
+            var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+            queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
+            queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(weather_time); /**/
+            queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0200'); /**/
+            queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent(nx); /**/
+            queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent(ny); /**/
+            xhr.open('GET', url + queryParams);
+            return xhr
+        };
+
+        // api 결과
+        function api_output(xhr, seperate_list){
+            answer = [];
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    temp = this.responseText;
+
+                    answer = []
+                    for (let i = 0; i < seperate_list.length; i++){
+                        mk_value = seperate_list[i];
+                        start = temp.search(mk_value) + mk_value.length;
+                        temp = temp.substring(start, temp.length);
+                        start   = temp.search("\"fcstValue\":\"") + "\"fcstValue\":\"".length;
+                        end     = temp.search("\",\"nx");
+                        answer.push(temp.substring(start, end));
+                        }
+                    answer = status(answer);
+                    console.log(answer);
+                }
+
+                const element = document.getElementById('weather');
+                seperate_list = ["1시간 기온", "동서풍", "남북풍", "풍향",
+                                  "풍속", "하늘 상태", "강수 형태", "강수 확률",
+                                  "파고", "1시간 강수량"]
+
+                output = "";
+                for (let i = 0; i < answer.length; i++) {
+                     output += (seperate_list[i] + " : [" + answer[i] + "] " + ", ");
+                }
+                element.innerHTML = output;
+
+            }   // 이 괄호를 넘어가면 값이 지워짐
+        }
+        
+        // 문서화
+        function status(answer){
+            if(answer[3] <= 45)            {answer[3] = "북, 북동";}
+            else if(answer[3] <= 90)       {answer[3] = "동, 북동";}
+            else if(answer[3] <= 135)      {answer[3] = "동, 남동";}
+            else if(answer[3] <= 180)      {answer[3] = "남, 남동";}
+            else if(answer[3] <= 225)      {answer[3] = "남, 남서";}
+            else if(answer[3] <= 270)      {answer[3] = "서, 남서";}
+            else if(answer[3] <= 315)      {answer[3] = "서, 북서";}
+            else {answer[3] = "북, 북서"}
+
+            if(answer[5] <= 5)         {answer[5] = "맑음";}
+            else if(answer[5] <= 8)    {answer[5] = "구름 많음";}
+            else                    {answer[5] = "흐림";}
+
+            return answer;
+        }
+    </script>
+</head>
+<body>
+    <div id = "map" style = "width: 100%;height:700px;"></div>
+    <div id = "weather" style = "width: 100%;height:100px;"></div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4s35lz2206"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+
+        locate = "{{ camping.camp_address }}";
+        road(locate);
+    
+        // 좌표값 변환 [https://www.vworld.kr/dev/v4dv_geocoderguide2_s001.do]
+        function road(locate){
+            $.ajax({
+                url: "https://api.vworld.kr/req/address?",
+                type: "GET",
+                dataType: "jsonp",
+                data: {
+                    service: "address",
+                    request: "GetCoord",
+                    version: "2.0",
+                    crs: "EPSG:4326",
+                    type: "ROAD",
+                    address: locate,
+                    format: "json",
+                    errorformat: "json",
+                    key: "656E0744-0C72-35DD-BDED-24126938F03D"
+                },
+        
+                success: function (result) {
+                    if (result["response"]["status"] != "NOT_FOUND"){
+                        coord = []
+                        coord.push(result["response"]["result"]["point"]["x"]);
+                        coord.push(result["response"]["result"]["point"]["y"]);
+                        main(coord);
+                        api(parseInt(coord[1]), parseInt(coord[1]));
                     }                 
                 }
             })
@@ -92,10 +299,10 @@
             var contentString = [
                 '<div class="iw_inner">',
                 '   <h3>{{ camping.camp_address }}</h3>',
-                '   <p>{{ camping.camp_address }}<br />',
-                '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="캠핑장" class="thumb" /><br />',
-                '       02-120 | 캠핑 &gt; 캠핑장<br />',
-                '       <a href="{{ camping.camp_pagelink }}" target="_blank">{{ camping.camp_pagelink }}/</a>',
+                '   <p>{{ camping.camp_name  }}<br />',
+                // '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="캠핑장" class="thumb" /><br />',
+                // '       02-120 | 캠핑 &gt; 캠핑장<br />',
+                '       <a href="{{ camping.camp_pagelink }}">홈페이지</a>',
                 '   </p>',
                 '</div>'
             ].join('');
@@ -116,11 +323,112 @@
             // 지도 유형
             infowindow.open(map, marker);
         }
+
+        // 날씨 부분
+        function api(nx, ny){
+            // seperate_list1 = ["1시간 기온", "풍속 (동서)", "풍속 (남북)", "풍향",
+            //                   "풍속", "하늘 상태", "강수 형태", "강수 확률",
+            //                   "파고", "1시간 강수량"]
+
+            seperate_list = ["TMP", "UUU", "VVV", "VEC",
+                             "WSD", "SKY", "PTY", "POP",
+                             "WAV", "PCP"];
+
+            xhr = api_input(nx, ny);
+            api_output(xhr, seperate_list);
+            xhr.send('');
+        }
+
+        // api input
+        function api_input(nx, ny){
+            let today = new Date();
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();  // 날짜
+            weather_time = String(year) + String(month) + String(date);
+
+            var xhr = new XMLHttpRequest();
+            var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+            queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
+            queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(weather_time); /**/
+            queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0200'); /**/
+            queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent(nx); /**/
+            queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent(ny); /**/
+            xhr.open('GET', url + queryParams);
+            return xhr
+        };
+
+        // api 결과
+        function api_output(xhr, seperate_list){
+            answer = [];
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    temp = this.responseText;
+                    answer = []
+                    for (let i = 0; i < seperate_list.length; i++){
+                        mk_value = seperate_list[i];
+                        start = temp.search(mk_value) + mk_value.length;
+                        temp = temp.substring(start, temp.length);
+                        start   = temp.search("\"fcstValue\":\"") + "\"fcstValue\":\"".length;
+                        end     = temp.search("\",\"nx");
+                        answer.push(temp.substring(start, end));
+                    }
+                    answer = status(answer);
+                    console.log(answer);
+                }
+
+                const element = document.getElementById('weather');
+                status_text = ["현재 기온", "동서풍", "남북풍", "풍향",
+                                  "풍속", "하늘 상태", "강수 형태", "강수 확률",
+                                  "파고", "현재 강수량"]
+
+                output = "";
+                // for (let i = 0; i < status_text.length; i++) {
+                //     output +=  status_text[i] + " : [" + answer[i] + "]" + ", ";
+                //     if (i == 5) {
+                //         output += "<br>";
+                //     }
+                // }
+                for (let i = 0; i < status_text.length; i++) {
+                    output += status_text[i] + " : [" + answer[i] + "]";
+    
+                    if (i < status_text.length - 1) {
+                        output += ", ";
+                    }
+    
+                     if (i == 5) {
+                        output += "<br>";
+                    }
+                }
+                element.innerHTML = output;
+
+            }   // 이 괄호를 넘어가면 값이 지워짐
+        }
+        
+        // 문서화
+        function status(answer){
+            if(answer[3] <= 45)            {answer[3] = "북, 북동";}
+            else if(answer[3] <= 90)       {answer[3] = "동, 북동";}
+            else if(answer[3] <= 135)      {answer[3] = "동, 남동";}
+            else if(answer[3] <= 180)      {answer[3] = "남, 남동";}
+            else if(answer[3] <= 225)      {answer[3] = "남, 남서";}
+            else if(answer[3] <= 270)      {answer[3] = "서, 남서";}
+            else if(answer[3] <= 315)      {answer[3] = "서, 북서";}
+            else {answer[3] = "북, 북서"}
+
+            if(answer[5] <= 5)         {answer[5] = "맑음";}
+            else if(answer[5] <= 8)    {answer[5] = "구름 많음";}
+            else                    {answer[5] = "흐림";}
+
+            return answer;
+        }
     </script>
 </head>
 <body>
-
-    <div id = "map" style = "width: 80%;height:700px;"></div>
-
+    <div id = "map" style = "width: 100%;height:700px;"></div>
+    <div id = "weather" style = "width: 100%;height:100px;"></div>
 </body>
 </html>

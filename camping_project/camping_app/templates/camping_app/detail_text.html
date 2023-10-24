@@ -1,7 +1,184 @@
-{% if camping %}
-    <p class="camp_intro_txt">
-        <span>{{ camping.camp_itd }}</span>
-    </p>
+{% if camp_type_price %}
+    <div class="camp_intro">
+        <style>
+            .icon_h6 {
+                font-size: 21px; /* 큰 글자 크기로 설정 */
+                text-align: left; /* 왼쪽 정렬 */
+                margin-bottom: 5px; /* 제목과 다음 테이블 간격 조절 */
+                padding-left: 11px; /* 왼쪽 여백 추가 */
+            }
+            .table_w {
+                margin-top: 5px; /* 테이블 위 간격 조절 */
+            }
+            .price_table {
+                font-size: 18px; /* 테이블 글자 크기를 크게 설정 */
+                border-collapse: collapse; /* 테이블 테두리를 합치기 */
+                width: 100%; /* 테이블 폭을 100%로 설정 */
+            }
+            .price_table th, .price_table td {
+                padding: 10px; /* 셀 간격을 조절 */
+                border: 1px solid #000; /* 테두리 추가 */
+            }
+        </style>
+        <h6 class="icon_h6">일반캠핑</h6>
+            <div class="table_w">
+                <!-- <table class="table camp_info_tb"> -->
+                <table class="price_table">
+                    <caption>
+                        <strong>일반캠핑 이용안내 테이블입니다.</strong>
+                        <p>일반 캠핑과 개인 카라반 사용시의 일반캠핑의 구분으로 평상시의 주중, 주말과 성수기의 주중, 주말로 나뉘어 설명합니다.</p>
+                    </caption>
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" scope="col">구분</th>
+                            <th colspan="2" scope="colgroup">평상시</th>
+                            <th colspan="2" scope="colgroup">성수기</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_c">
+                        <tr>
+                                <th scope="col">일반</th>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_normal_off_season_price_wd }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_normal_off_season_price_we }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_normal_peak_season_price_wd }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_normal_peak_season_price_wd }}</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+
+
+            <h6 class="icon_h6">오토캠핑</h6>
+            <div class="table_w">
+                <table class="price_table">
+                    <caption>
+                        <strong>오토캠핑 이용안내 테이블입니다.</strong>
+                    </caption>
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" scope="col">구분</th>
+                            <th colspan="2" scope="colgroup">평상시</th>
+                            <th colspan="2" scope="colgroup">성수기</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_c">
+                        <tr>
+                                <th scope="col">오토캠핑</th>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_auto_off_season_price_wd }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_auto_off_season_price_we }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_auto_peak_season_price_wd }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_auto_peak_season_price_we }}</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+    
+            <h6 class="icon_h6">글램핑</h6>
+            <div class="table_w">
+                <table class="price_table">
+                    <caption>
+                        <strong>글램핑 이용안내 테이블입니다.</strong>
+                    </caption>
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" scope="col">구분</th>
+                            <th colspan="2" scope="colgroup">평상시</th>
+                            <th colspan="2" scope="colgroup">성수기</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_c">
+                        <tr>
+                                <th scope="col">글램핑</th>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_glam_off_season_price_wd }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_glam_off_season_price_we }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_glam_peak_season_price_wd }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_glam_peak_season_price_we }}</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+
+            <h6 class="icon_h6">카라반</h6>
+            <div class="table_w">
+                <table class="price_table">
+                    <caption>
+                        <strong>카라반 이용안내 테이블입니다.</strong>
+                    </caption>
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" scope="col">구분</th>
+                            <th colspan="2" scope="colgroup">평상시</th>
+                            <th colspan="2" scope="colgroup">성수기</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                            <th scope="col" class="gray">주중</th>
+                            <th scope="col" class="gray">주말</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_c">
+                        <tr>
+                                <th scope="col">카라반</th>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_crv_off_season_price_wd }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_crv_off_season_price_we }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_crv_peak_season_price_wd }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_crv_peak_season_price_we }}</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+    </div>
 {% else %}
     <p>해당하는 데이터가 없습니다.</p>
 {% endif %}

@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 from .models import ImageLink
 from .models import CampFacInfo
 from .models import CampUtility
+from .models import CampTypePrice, CampReview
 from .form_book import bookcampingForm
 from .review_from import campreviewform
 
@@ -52,21 +53,20 @@ class CampImagesDetailView(DetailView):
     template_name = 'detail.html'
     context_object_name = 'camp'
 
-# def detail(request):
-#     return render(request, 'camping_app/detail.html')
-
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
 
 def detail_intro(request, camp_no):
     image_links = get_object_or_404(ImageLink, pk=camp_no)
+    camping = get_object_or_404(CampInfo, pk=camp_no)
     print(image_links)
-    return render(request, 'camping_app/detail_intro.html', {'image_links': image_links})
+    print(camping)
+    return render(request, 'camping_app/detail_intro.html', {'image_links': image_links,'camping': camping})
 
 def detail_text(request, camp_no):
-    camping = get_object_or_404(CampInfo, pk=camp_no)
-    print(camping)
-    return render(request, 'camping_app/detail_text.html', {'camping': camping})
+    camp_type_price = get_object_or_404(CampTypePrice, pk=camp_no)
+    print(camp_type_price)
+    return render(request, 'camping_app/detail_text.html', {'camp_type_price': camp_type_price})
 
 def detail_weather(request):
     return render(request, 'camping_app/detail_weather.html')
@@ -75,6 +75,15 @@ def detail_map(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
     print(camping)
     return render(request, 'camping_app/detail_map.html', {'camping': camping})
+
+def detail_review(request, camp_no):
+    # 필터링할 조건을 만들어 쿼리셋을 생성
+    reviews = CampReview.objects.filter(review_no=camp_no)
+    
+    # 필터링된 결과를 템플릿으로 전달
+    return render(request, 'camping_app/detail_review.html', {'reviews': reviews})
+
+
 
 # 캠핑 예약 - 로그인 시에만 가능 
 def camping_book(request, camp_no):

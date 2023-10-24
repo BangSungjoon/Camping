@@ -1,0 +1,22 @@
+{% if camping %}
+    <table id="prd_list">
+        <tr>
+            <th>제목</th>
+            <th>리뷰 내용</th>
+            <th>리뷰날짜</th>
+            <th>평점</th>
+            <th>사용자id</th>
+        </tr>
+        {% for review in  reviews %}
+        <tr>
+            <td>{{ review.rev_title}}</td>
+            <td>{{ review.rev_content}}</td>
+            <td>{{ review.rev_date}}</td>
+            <td>{{ review.rev_rate}}</td>
+            <td>{{ review.id}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+  <p>해당하는 리뷰가 없습니다.</p>
+{% endif %}

@@ -1,78 +1,89 @@
-<script>
-    api("55", "127");
-    function api(nx, ny){
-        // seperate_list1 = ["1시간 기온", "풍속 (동서)", "풍속 (남북)", "풍향",
-        //                   "풍속", "하늘 상태", "강수 형태", "강수 확률",
-        //                   "파고", "1시간 강수량"]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
 
-        seperate_list = ["TMP", "UUU", "VVV", "VEC",
-                         "WSD", "SKY", "PTY", "POP",
-                         "WAV", "PCP"];
+        api("55", "127");
+        function api(nx, ny){
+            // seperate_list1 = ["1시간 기온", "풍속 (동서)", "풍속 (남북)", "풍향",
+            //                   "풍속", "하늘 상태", "강수 형태", "강수 확률",
+            //                   "파고", "1시간 강수량"]
 
-        xhr = api_input(nx, ny);
-        api_output(xhr, seperate_list);
-        xhr.send('');
-    }
+            seperate_list = ["TMP", "UUU", "VVV", "VEC",
+                             "WSD", "SKY", "PTY", "POP",
+                             "WAV", "PCP"];
 
-    // api input
-    function api_input(nx, ny){
-        let today = new Date();
-        let year = today.getFullYear(); // 년도
-        let month = today.getMonth() + 1;  // 월
-        let date = today.getDate();  // 날짜
-        weather_time = String(year) + String(month) + String(date);
+            xhr = api_input(nx, ny);
+            api_output(xhr, seperate_list);
+            xhr.send('');
+        }
 
-        var xhr = new XMLHttpRequest();
-        var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
-        var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
-        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-        queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
-        queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(weather_time); /**/
-        queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0200'); /**/
+        // api input
+        function api_input(nx, ny){
+            let today = new Date();
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();  // 날짜
+            weather_time = String(year) + String(month) + String(date);
 
-        queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent(nx); /**/
-        queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent(ny); /**/
-        xhr.open('GET', url + queryParams);
-        return xhr
-    };
+            var xhr = new XMLHttpRequest();
+            var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+            queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
+            queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(weather_time); /**/
+            queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0200'); /**/
 
-    // api 결과
-    function api_output(xhr, seperate_list){
-        answer = [];
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                temp = this.responseText;
-                answer = []
-                for (let i = 0; i < seperate_list.length; i++){
-                    mk_value = seperate_list[i];
-                    start = temp.search(mk_value) + mk_value.length;
-                    temp = temp.substring(start, temp.length);
-                    start   = temp.search("\"fcstValue\":\"") + "\"fcstValue\":\"".length;
-                    end     = temp.search("\",\"nx");
-                    answer.push(temp.substring(start, end));
-                    }
-                answer = status(answer);
-                document.write(answer);
-            }
-        }   // 이 괄호를 넘어가면 값이 지워짐
-    }
-    
-    // 문서화
-    function status(answer){
-        if(answer[3] <= 45)            {answer[3] = "북, 북동";}
-        else if(answer[3] <= 90)       {answer[3] = "동, 북동";}
-        else if(answer[3] <= 135)      {answer[3] = "동, 남동";}
-        else if(answer[3] <= 180)      {answer[3] = "남, 남동";}
-        else if(answer[3] <= 225)      {answer[3] = "남, 남서";}
-        else if(answer[3] <= 270)      {answer[3] = "서, 남서";}
-        else if(answer[3] <= 315)      {answer[3] = "서, 북서";}
-        else {answer[3] = "북, 북서"}
+            queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent(nx); /**/
+            queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent(ny); /**/
+            xhr.open('GET', url + queryParams);
+            return xhr
+        };
 
-        if(answer[5] <= 5)         {answer[5] = "맑음";}
-        else if(answer[5] <= 8)    {answer[5] = "구름 많음";}
-        else                    {answer[5] = "흐림";}
+        // api 결과
+        function api_output(xhr, seperate_list){
+            answer = [];
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    temp = this.responseText;
+                    answer = []
+                    for (let i = 0; i < seperate_list.length; i++){
+                        mk_value = seperate_list[i];
+                        start = temp.search(mk_value) + mk_value.length;
+                        temp = temp.substring(start, temp.length);
+                        start   = temp.search("\"fcstValue\":\"") + "\"fcstValue\":\"".length;
+                        end     = temp.search("\",\"nx");
+                        answer.push(temp.substring(start, end));
+                        }
+                    answer = status(answer);
+                    document.write(answer);
+                }
+            }   // 이 괄호를 넘어가면 값이 지워짐
+        }
+        
+        // 문서화
+        function status(answer){
+            if(answer[3] <= 45)            {answer[3] = "북, 북동";}
+            else if(answer[3] <= 90)       {answer[3] = "동, 북동";}
+            else if(answer[3] <= 135)      {answer[3] = "동, 남동";}
+            else if(answer[3] <= 180)      {answer[3] = "남, 남동";}
+            else if(answer[3] <= 225)      {answer[3] = "남, 남서";}
+            else if(answer[3] <= 270)      {answer[3] = "서, 남서";}
+            else if(answer[3] <= 315)      {answer[3] = "서, 북서";}
+            else {answer[3] = "북, 북서"}
 
-        return answer;
-    }
-</script>
+            if(answer[5] <= 5)         {answer[5] = "맑음";}
+            else if(answer[5] <= 8)    {answer[5] = "구름 많음";}
+            else                    {answer[5] = "흐림";}
+
+            return answer;
+        }
+    </script>
+</body>
+</html>
