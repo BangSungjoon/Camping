@@ -1,0 +1,35 @@
+{% block content %}   
+
+{% csrf_token %}
+<h2>내 문의내역</h2>
+
+<div>
+    {% if user_inquiries %}
+        <table id="user_inquiries">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성일</th>
+                <th>답변여부</th>
+            </tr>
+            {% for inquiry in user_inquiries %}
+            <tr>
+                <td>{{ inquiry.inq_no }}</td>
+                <td>{{ inquiry.inq_title }}</td>
+                <td>{{ inquiry.inq_content }}</td>
+                <td>{{ inquiry.inq_date }}</td>
+                <td>{{ inquiry.rep_status }}</td>
+                <td><a href="{% url 'user_inquiry_rep' inquiry.inq_no %}">{{ camp.camp_no }}</a></td>
+                <td><a href="{% url '' inquiry.inq_no %}" 
+                    onclick="return confirm('취소하시겠습니까?')">
+                <button class='btn'>문의 취소</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>문의 내역이 없습니다.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

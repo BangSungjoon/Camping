@@ -9,6 +9,18 @@
 </head>
 <body>
     <header>
+        <div id='signbar'>
+            <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'user_mypage' %}">{{ user.username }}님 환영합니다!</a></li>
+            <li><a href="{% url 'sign_out' %}">로그아웃</a></li>
+            {% else %}
+                <li><a href="{% url 'sign_in' %}">로그인</a></li>
+                <li><a href="{% url 'sign_up_select' %}">회원가입</a></li>
+            {% endif %}
+            </ul>
+        </div>
+        <hr>
         <div class="header-container">
             <div>
                 <a href="{% url 'index' %}"><img src={% static "/img/Logo.png" %}>

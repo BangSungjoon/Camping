@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -21,7 +22,7 @@ class AuthGroupPermissions(models.Model):
 
 class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)    
     codename = models.CharField(max_length=100)
 
     class Meta:
@@ -31,11 +32,11 @@ class AuthPermission(models.Model):
 
 
 class Booking(models.Model):
-    book_no = models.AutoField(primary_key=True)
+    book_no = models.IntegerField(primary_key=True)
     book_date = models.DateTimeField()
     stay_date = models.DateTimeField()
-    camp_no = models.ForeignKey('CampInfo', models.DO_NOTHING, db_column='camp_no')
-    id = models.ForeignKey('UsersAppCompanyuser', models.DO_NOTHING, db_column='id')
+    camp_no = models.IntegerField()
+    id = models.ForeignKey('UsersAppUser', models.DO_NOTHING, db_column='id')
 
     class Meta:
         managed = False
@@ -45,9 +46,9 @@ class Booking(models.Model):
 class CampFacInfo(models.Model):
     camp_no = models.OneToOneField('CampInfo', models.DO_NOTHING, db_column='camp_no', primary_key=True)
     camp_main_fac = models.CharField(max_length=100, blank=True, null=True)
-    camp_etc_info = models.CharField(max_length=45, blank=True, null=True)
-    camp_brazier = models.CharField(max_length=10, blank=True, null=True)
-    camp_safe_fac = models.CharField(max_length=45, blank=True, null=True)
+    camp_etc_info = models.CharField(max_length=45, blank=True, null=True)  
+    camp_brazier = models.CharField(max_length=10, blank=True, null=True)   
+    camp_safe_fac = models.CharField(max_length=45, blank=True, null=True)  
 
     class Meta:
         managed = False
@@ -56,21 +57,18 @@ class CampFacInfo(models.Model):
 
 class CampInfo(models.Model):
     camp_no = models.AutoField(primary_key=True)
-    camp_name = models.CharField(max_length=100, blank=True, null=True)
-    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)
-    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)
-    camp_address = models.CharField(max_length=100, blank=True, null=True)
-    camp_call = models.CharField(max_length=100, blank=True, null=True)
+    camp_name = models.CharField(max_length=100, blank=True, null=True)     
+    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)     
+    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)   
+    camp_address = models.CharField(max_length=100, blank=True, null=True)  
+    camp_call = models.CharField(max_length=100, blank=True, null=True)     
     camp_environment = models.CharField(max_length=100, blank=True, null=True)
-    camp_type = models.CharField(max_length=100, blank=True, null=True)
+    camp_type = models.CharField(max_length=100, blank=True, null=True)     
     camp_ope_period = models.CharField(max_length=100, blank=True, null=True)
-    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)
-    camp_pagelink = models.CharField(max_length=500, blank=True, null=True)
-    camp_book = models.CharField(max_length=100, blank=True, null=True)
+    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)  
+    camp_pagelink = models.CharField(max_length=500, blank=True, null=True) 
+    camp_book = models.CharField(max_length=100, blank=True, null=True)     
     camp_itd = models.TextField(blank=True, null=True)
-
-    def __str__(self) :
-        return self.camp_name    
 
     class Meta:
         managed = False
@@ -78,22 +76,21 @@ class CampInfo(models.Model):
 
 
 class CampMemeberInfo(models.Model):
-    camp_no = models.AutoField(primary_key=True)
-    camp_name = models.CharField(max_length=100, blank=True, null=True)
-    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)
-    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)
-    camp_address = models.CharField(max_length=100, blank=True, null=True)
-    camp_call = models.CharField(max_length=100, blank=True, null=True)
+    camp_no = models.IntegerField(primary_key=True)
+    camp_name = models.CharField(max_length=100, blank=True, null=True)     
+    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)     
+    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)   
+    camp_address = models.CharField(max_length=100, blank=True, null=True)  
+    camp_call = models.CharField(max_length=100, blank=True, null=True)     
     camp_environment = models.CharField(max_length=100, blank=True, null=True)
-    camp_type = models.CharField(max_length=100, blank=True, null=True)
+    camp_type = models.CharField(max_length=100, blank=True, null=True)     
     camp_ope_period = models.CharField(max_length=100, blank=True, null=True)
-    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)
-    camp_pagelink = models.CharField(max_length=500, blank=True, null=True)
-    camp_book = models.CharField(max_length=100, blank=True, null=True)
+    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)  
+    camp_pagelink = models.CharField(max_length=500, blank=True, null=True) 
+    camp_book = models.CharField(max_length=100, blank=True, null=True)     
     camp_itd = models.TextField(blank=True, null=True)
     id = models.ForeignKey('UsersAppUser', models.DO_NOTHING, db_column='id', blank=True, null=True)
-    distinguish_no = models.IntegerField(blank=True, null=True)
-    approve = models.CharField(max_length=20, blank=True, null=True)
+    approve = models.CharField(max_length=20, blank=True, null=True)        
 
     class Meta:
         managed = False
@@ -101,8 +98,8 @@ class CampMemeberInfo(models.Model):
 
 
 class CampReview(models.Model):
-    review_no = models.AutoField(primary_key=True)
-    rev_title = models.CharField(max_length=100, blank=True, null=True)
+    review_no = models.IntegerField(primary_key=True)
+    rev_title = models.CharField(max_length=100, blank=True, null=True)     
     rev_content = models.TextField(blank=True, null=True)
     rev_date = models.DateTimeField(blank=True, null=True)
     rev_rate = models.FloatField(blank=True, null=True)
@@ -139,7 +136,7 @@ class CampTypePrice(models.Model):
 
 
 class CampUtility(models.Model):
-    camp_no = models.IntegerField(primary_key=True)
+    camp_no = models.OneToOneField(CampInfo, models.DO_NOTHING, db_column='camp_no', primary_key=True)
     electric = models.IntegerField(blank=True, null=True)
     wifi = models.IntegerField(blank=True, null=True)
     firewood = models.IntegerField(blank=True, null=True)
@@ -202,29 +199,36 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class FavoriteList(models.Model):
+    camp_no = models.IntegerField(primary_key=True)  # The composite primary key (camp_no, id) found, that is not supported. The first column is selected.
+    id = models.ForeignKey('UsersAppUser', models.DO_NOTHING, db_column='id')
+
+    class Meta:
+        managed = False
+        db_table = 'favorite_list'
+        unique_together = (('camp_no', 'id'),)
 
 
 class ImageLink(models.Model):
     camp_no = models.OneToOneField(CampInfo, models.DO_NOTHING, db_column='camp_no', primary_key=True)
-    main_img_link = models.CharField(max_length=150, blank=True, null=True)
-    col1_img_link = models.CharField(max_length=150, blank=True, null=True)
-    col2_img_link = models.CharField(max_length=150, blank=True, null=True)
-    col3_img_link = models.CharField(max_length=150, blank=True, null=True)
-    last1_img_link = models.CharField(max_length=150, blank=True, null=True)
-    last2_img_link = models.CharField(max_length=150, blank=True, null=True)
-    last3_img_link = models.CharField(max_length=150, blank=True, null=True)
+    main_img_link = models.CharField(max_length=150, blank=True, null=True) 
+    col1_img_link = models.CharField(max_length=150, blank=True, null=True) 
+    col2_img_link = models.CharField(max_length=150, blank=True, null=True) 
+    col3_img_link = models.CharField(max_length=150, blank=True, null=True) 
+    last1_img_link = models.CharField(max_length=150, blank=True, null=True)    
+    last2_img_link = models.CharField(max_length=150, blank=True, null=True)    
+    last3_img_link = models.CharField(max_length=150, blank=True, null=True)    
     last4_img_link = models.CharField(max_length=150, blank=True, null=True)
-
     class Meta:
         managed = False
         db_table = 'image_link'
 
 
 class InqReply(models.Model):
-    rep_no = models.AutoField(primary_key=True)
+    rep_no = models.IntegerField(primary_key=True)
     rep_content = models.CharField(max_length=500)
     rep_date = models.DateField(blank=True, null=True)
-    inq_no = models.ForeignKey('UserInquire', models.DO_NOTHING, db_column='inq_no')
+    inq_no = models.IntegerField()
 
     class Meta:
         managed = False
@@ -232,7 +236,7 @@ class InqReply(models.Model):
 
 
 class UserInquire(models.Model):
-    inq_no = models.AutoField(primary_key=True)
+    inq_no = models.IntegerField(primary_key=True)
     inq_title = models.CharField(max_length=500)
     inq_content = models.CharField(max_length=500)
     inq_date = models.DateField(blank=True, null=True)
@@ -245,18 +249,10 @@ class UserInquire(models.Model):
 
 
 class UsersAppCompanyuser(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    company_id = models.IntegerField(unique=True)
-    username = models.CharField(unique=True, max_length=20)
-    company_email = models.CharField(unique=True, max_length=254)
-    company_name = models.CharField(max_length=30, blank=True, null=True)
+    user_ptr = models.OneToOneField('UsersAppUser', models.DO_NOTHING, primary_key=True)
+    company_name = models.CharField(max_length=30)
     company_tel = models.CharField(max_length=20)
     company_address = models.CharField(max_length=200)
-    company_licensefile = models.CharField(max_length=100, blank=True, null=True)
-    company_subscribe_sms = models.IntegerField(blank=True, null=True)
-    company_subscribe_email = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -279,9 +275,9 @@ class UsersAppUser(models.Model):
     user_age = models.IntegerField(blank=True, null=True)
     user_gender = models.IntegerField(blank=True, null=True)
     user_tel = models.CharField(max_length=20)
-    user_address = models.CharField(max_length=200)
-    user_subscribe_sms = models.IntegerField(blank=True, null=True)
-    user_subscribe_email = models.IntegerField(blank=True, null=True)
+    user_address = models.CharField(max_length=200, blank=True, null=True)  
+    user_subscribe_sms = models.IntegerField()
+    user_subscribe_email = models.IntegerField()
 
     class Meta:
         managed = False
