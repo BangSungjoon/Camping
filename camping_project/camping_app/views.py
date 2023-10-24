@@ -4,10 +4,11 @@ from .models import CampInfo
 from .forms import CampingForm
 from django.views.generic import DetailView
 from .models import ImageLink
-from .models import CampFacInfo
+from .models import CampFacInfo, CampReview
 from .models import CampUtility
 from .form_book import bookcampingForm
 from .review_from import campreviewform
+
 
 # Create your views here.
 def index(request):
@@ -31,8 +32,9 @@ def camping_detail(request, camp_no):
     image_links = get_object_or_404(ImageLink, pk=camp_no)
     camp_fac_info = get_object_or_404(CampFacInfo, pk=camp_no)
     camp_utility = get_object_or_404(CampUtility, pk=camp_no)
+    reviews= CampReview.objects.filter(camp_no=camp_no)
 
-    return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility})
+    return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility, 'reviews':reviews})
 
 
 def camping_insert(request):
