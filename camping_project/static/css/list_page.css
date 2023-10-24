@@ -312,7 +312,7 @@ div.select_box select.detail_select {
 .camp_cont .item_group {
 	position:relative;
 	margin-bottom:20px;
-  padding-top: 1px;
+  padding-top: 2px;
 	height:auto;
 	clear:both;
 	overflow:hidden;
@@ -352,6 +352,10 @@ div.select_box select.detail_select {
 	margin-top:22px;
 	display:block;
 	padding-bottom:5px;
+}
+.camp_tt a {
+	color: black;
+	font-weight: bold;
 }
 .camp_stt {
 	display:block;
@@ -403,7 +407,7 @@ div.select_box select.detail_select {
 	border-radius:5px;
 	margin:20px 0 0 0;
 	overflow:hidden;
-	min-height: 40px;
+	min-height: 38px;
 }
 .camp_item_box ul li {
 	/* display:inline-block; */
