@@ -87,7 +87,7 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   z-index: 3;
   text-align: center;
   color: #fff;
-  top: 50px;
+  top: 75px;
   text-shadow: 2px 2px 3px rgb(0,0,0);
 }
 
@@ -116,7 +116,7 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   background: url("https://www.gocamping.or.kr/img/2018/main/search_box_bg.png") repeat;
   left: 50%;
   margin-left: -310px;
-  margin-top: 245px;
+  margin-top: 285px;
   z-index: 99;
   border: 1px solid black;
   border-radius: 5px;
