@@ -407,7 +407,7 @@ div.select_box select.detail_select {
 	border-radius:5px;
 	margin:20px 0 0 0;
 	overflow:hidden;
-	min-height: 38px;
+	min-height: 37px;
 }
 .camp_item_box ul li {
 	/* display:inline-block; */

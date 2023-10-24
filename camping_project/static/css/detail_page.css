@@ -46,6 +46,7 @@ body {
   position: relative;
   width: 100%;
   height: auto;
+  margin-top: 15px;
 }
 #sub_title_wrap2 {
   position: relative;
@@ -164,7 +165,7 @@ body {
   float: left;
   color: #fff;
   padding: 0 5px;
-  font-size: 15px;
+  font-size: 17px;
 }
 #sub_title_wrap2 ul.share {
   position: absolute;
@@ -185,13 +186,6 @@ body {
   background: #000 url('/img/2018/sub/camp/camp_typebg_03.jpg') no-repeat center top;
   padding-bottom: 50px;
 }
-.gray_bar {
-  width: 100%;
-  height: auto;
-  padding: 9px 0;
-  background: #eff0f4;
-  position: relative;
-}
 #section1 {
   position: relative;
   overflow: hidden;
@@ -202,7 +196,7 @@ body {
   position: relative;
   height: auto;
   clear: both;
-  padding: 15px 0 95px 0;
+  padding: 30px 0 95px 0;
   background: #fff;
 }
 .camp_info_box {
@@ -415,14 +409,14 @@ button,
 
 .camp_intro {
   width: 100%;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   position: relative;
   overflow: hidden;
 }
 
 .image-list {
   list-style: none;
-  padding: 0;
+  padding: 15px 0 15px 0;
   margin: 0;
   display: flex;
 }
@@ -441,10 +435,10 @@ button,
 .camp_intro_txt {
   width: 100%;
   padding: 20px 0;
-  border-top: 2px solid #000;
+  border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 0px;
   display: block;
   clear: both;
 }
@@ -570,7 +564,7 @@ i.ico_ico_ico_tramp {
   position: relative;
   width: 99.5%;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .table_w .table_t4 {
   position: relative;
@@ -636,25 +630,9 @@ ul.table_ul05 li {
   background: url('/img/2018/sub/dot_ul05.gif') no-repeat left center;
   padding-left: 20px;
 }
-.camp_intro_txt {
-  width: 100%;
-  padding: 20px 0;
-  border-top: 2px solid #000;
-  border-bottom: 1px solid #000;
-  overflow: hidden;
-  margin-top: 20px;
-  display: block;
-  clear: both;
-}
 .camp_intro_txt > span.info_notice {
   font-size: 13px;
   font-weight: bold;
-}
-.camp_intro_txt > span {
-  font-size: 14px;
-  color: #000;
-  display: block;
-  line-height: 25px;
 }
 .mt_50 {
   margin-top: 50px !important;
