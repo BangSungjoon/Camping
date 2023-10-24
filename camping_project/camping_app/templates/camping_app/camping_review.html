@@ -7,7 +7,50 @@
     {% csrf_token %} 
     <!-- # form 취약한 해킹코드 방지, 입력한 다음 값 못들어오도록 막아줌 -->
     <table id="form_tbl">
-        {{rform}}
+        <tr>
+    <th><label for="id_rev_title">제목:</label></th>
+    <td>
+      <input type="text" name="rev_title" maxlength="100" id="id_rev_title">
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_rev_content">리뷰 내용</label></th>
+    <td>
+      <textarea name="rev_content" cols="40" rows="10" id="id_rev_content">
+</textarea>
+    </td>
+  </tr>
+  <tr>
+    <th><label for="id_rev_rate">평점</label></th>
+    <td>
+      
+      <input type="number" name="rev_rate" step="any" id="id_rev_rate"
+      ax="5" min="0" value="5">
+      
+      
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_id">사용자id</label></th>
+    <td>
+        <select name="id" id="id_id">
+            <option value="{{user.id}}" selected>{{user.username}}</option>
+          </select>
+    </td>
+  </tr>
+
+  <tr>
+    <th><label for="id_camp_no">캠핑장이름 </label></th>
+    <td>
+        <input type="text" value="{{rform.camp_no}}">
+        <!-- <select name="camp_no" required id="id_camp_no">
+            <option value="{{rform.camp_no}}"></option>
+        </select> -->
+    </td>
+  </tr>
     </table><br>
     <button id="form_btn" type="submit">등록</button>
 </form>
