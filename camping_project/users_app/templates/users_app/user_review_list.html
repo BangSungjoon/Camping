@@ -1,0 +1,40 @@
+{% block content %}   
+
+{% csrf_token %}
+<h2>내 리뷰 목록</h2>
+
+<div>
+    {% if user_camp_reviews %}
+        <table id="camp_review">
+            <tr>
+                <th>번호</th>
+                <th>캠핑장</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성일</th>
+                <th>별점</th>
+                <th>리뷰 수정</th>
+                <th>리뷰 삭제</th>
+            </tr>
+            {% for review in user_reviews %}
+            <tr>
+                <td>{{ review.review_no }}</td>
+                <td>{{ review.camp_no.camp_name }}</td>
+                <td>{{ review.rev_title }}</td>
+                <td>{{ review.rev_content }}</td>
+                <td>{{ review.rev_date }}</td>
+                <td>{{ review.rev_rate }}</td>
+                <td><a href="{% url 'review_update' review.review_no %}">
+                    <button class='btn'>수정</button></a></td>
+                <td><a href="{% url '' review.review_no %}" 
+                    onclick="return confirm('삭제하시겠습니까?')">
+                <button class='btn'>찜 취소</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>작성한 리뷰가 없습니다.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

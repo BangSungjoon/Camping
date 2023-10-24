@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}   
+
+<h2>문의하기</h2>
+
+
+<div id='inquire'>
+<form method="post">
+    {% csrf_token %}
+        <div id="iquire_box">
+            <div>
+                <label>제목</label>
+                <input type="text" name="inquire_title" id="inquire_title">
+            </div>
+            <div>
+                <label>문의사항</label>
+                <textarea name="inquire_message" rows="4" cols="50"></textarea>
+            </div><br>
+        </div>
+    <br>
+    <button id="inquire_form_btn" type="submit">완료</button>
+</form>
+</div>
+{% endblock content %}
+
+
+
+

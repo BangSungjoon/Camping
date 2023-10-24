@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}   
+
+<h2>마이페이지</h2>
+
+
+<div id='mypage'>
+    {% csrf_token %}
+
+    <div class="sidebar">
+        <ul>
+            <li><a class="menu-link" href="{% url 'user_info_edit' %}" data-page="1"
+                id='user_info_edit'>내 정보 수정하기</a></li>
+            <li><a class="menu-link" href="{% url 'user_favorite_list' %}" data-page="2"
+                id='user_favorite_list'>내가 찜한 캠핑장</a></li>
+            <li><a class="menu-link" href="{% url 'user_review_list' %}" data-page="3"
+                id='user_review_list'>리뷰내역</a></li>
+            <li><a class="menu-link" href="{% url 'user_inquiry_list' %}" data-menu-item="4"
+                id='user_inquire'>문의내역</a></li>
+            <li><a class="menu-link" href="{% url 'sign_up2' %}" data-menu-item="5"
+                id='sign_up2'>기업회원 전환</a></li>
+        </ul>
+    </div>
+    <div id="mycontent">
+        <h3>대시보드</h3>
+        <br>예약현황-작성필요
+        <br>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+</div>
+
+
+{% endblock content %}

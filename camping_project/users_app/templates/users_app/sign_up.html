@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div id="sign_up_box">
+	<span class="page_title">회원가입</span><br><br>
+    <span class="signup_hint">별표는 필수 항목이므로 빠짐없이 작성해주세요.</span>
+    <br>
+    <br>
+    <form id="signupform" action="{% url 'sign_up_user' %}" method="post">
+        {% csrf_token %}         
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <label class='lbl'>ID *</label>   <input type="text" name='username' maxlength="12">
+        <br><span class="signup_hint"> 영문, 숫자 4~12글자 </span><br>
+          <div class="success-message hide">사용할 수 있는 아이디입니다</div>
+          {{ form.username.errors }}
+
+        <label class='lbl'>비밀번호 *</label>   <input type="password" name='password' maxlength="12">
+        <br><span class="signup_hint">8~12글자, 영문, 숫자, 특수문자(@$!%*#?&) 각 1개 이상 사용</span><br>
+            <div class="strongPassword-message hide"></div>
+            {{ form.password.errors }}
+
+        <label class='lbl'>비밀번호 확인 *</label>    <input type="password" name='passwordconfirm' id="password-retype">
+          <div class="mismatch-message hide">비밀번호가 일치하지 않습니다</div><br>
+          {{ form.password.errors }}
+
+        <label class='lbl'>성명 *</label>    <input type="text" name='user_name' placeholder="한글로 띄어쓰기 없이 입력"> <br>
+        {{ form.user_name.errors }}
+
+        <label class='lbl'>생년월일</label>    <input type="text" name='user_age' placeholder="생년월일 8자리" maxlength="8">
+        <br><span class="signup_hint">입력하시고 생일자 할인 쿠폰을 받아보세요.</span><br>
+
+        <label class='lbl'>성별 *</label>        
+            <input type="radio" id="gender_male" name="user_gender" value="1" required>남
+            <input type="radio" id="gender_female" name="user_gender" value="2" required>여
+        <br>
+        {{ form.user_gender.errors }}
+
+        <label class='lbl'>전화번호 *</label>    <input type="text" name='user_tel' placeholder="하이픈(-)없이 입력"> <br>
+        {{ form.user_tel.errors }}
+
+        <label class='lbl'>주소</label>    <input type="text" name='user_address'>
+        <br><span class="signup_hint">미입력시 위치기반 서비스 제공이 어렵습니다.</span><br>
+        <label class='lbl'>이메일 *</label>   <input type="email" name='email' placeholder="email@mail.com 형태로 입력"> <br>
+        {{ form.email.errors }}
+
+        <label class='lbl'>메일링 수신여부</label>   
+            <input type="checkbox" name="user_subscribe_sms" value="on" id="user_subscribe_sms">문자메시지
+            <input type="checkbox" name="user_subscribe_email" value="on" id="user_subscribe_email">이메일
+        <br><br>
+        <button type="submit" id="submit_button" class='btn'>완료</button>        
+    </form>
+</div>
+<br>
+{% endblock content %}

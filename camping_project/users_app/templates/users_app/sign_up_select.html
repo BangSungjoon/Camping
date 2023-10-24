@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}   
+<br>
+<div class="sign_up_title">
+    <span id="sign_up_title">회원가입</span><br>
+    <br><span id="sign_up_ad">캠핑어때의 캠핑친구가 되어 바로예약 할인쿠폰, 내 캠핑장 홍보 등 다양한 혜택을 누려보세요.</span><br>
+</div>
+<br><br>
+<div id='sign_up_select'>
+    <div class='sign_up_button'>
+        <a href="{% url 'sign_up_user' %}">
+            <img class="signupimg" src="{% static 'img/user_signup.png' %}">
+            <div class="sign_up_text">회원가입</div>
+        </a>
+    </div>
+    <br>
+    <div class='sign_up_button' id="usertype_change">
+        <a href="{% url 'sign_in' %}">
+            <img class="signupimg" src="{% static 'img/company_signup.png' %}">
+            <div class="sign_up_text">기업회원으로 전환</div>
+        </a>
+    </div>
+    
+</div>
+<br><br>
+
+
+{% comment %} <div id='social_sign_up'>
+    <button onclick="social_sign_up()">소셜 계정으로 가입</button>    
+</div>
+<br> {% endcomment %}
+
+{% endblock content %}

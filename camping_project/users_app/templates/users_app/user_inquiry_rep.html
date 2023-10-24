@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>문의 내역</h2>
+
+<div>
+    <p><strong>문의 제목:</strong> {{ inquiry.inq_title }}</p>
+    <p><strong>문의 내용:</strong> {{ inquiry.inq_content }}</p>
+    <p><strong>문의 날짜:</strong> {{ inquiry.inq_date }}</p>
+    <p><strong>답변 상태:</strong> {{ inquiry.rep_status }}</p>
+</div>
+
+{% if reply %}
+<h2>답변 내용</h2>
+<div>
+    <p><strong>답변 내용:</strong> {{ reply.rep_content }}</p>
+    <p><strong>답변 날짜:</strong> {{ reply.rep_date }}</p>
+</div>
+{% else %}
+<p>아직 답변이 작성되지 않았습니다.</p>
+{% endif %}
+
+<a href="{% url 'user_inquiry_list' %}" class="btn">뒤로 가기</a>
+
+</div>
+
+{% endblock content %}
