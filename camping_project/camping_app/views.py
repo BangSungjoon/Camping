@@ -80,7 +80,7 @@ class CampImagesDetailView(DetailView):
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
 
-def camping_search(request, keyword=None, c_do=None, c_signgu=None):
+def camping_search(request, keyword=None, c_do=None, c_signgu=None, theme=None):
     # page = request.GET.get('page', 1)
     # print(page)
     
@@ -92,8 +92,11 @@ def camping_search(request, keyword=None, c_do=None, c_signgu=None):
     keyword = request.GET.get('searchKrwd','') or keyword
     c_do = request.GET.get('c_do','') or c_do
     c_signgu = request.GET.get('c_signgu','') or c_signgu
-    # theme = request.GET['searchLctCl'] 
+    theme = request.GET.get('searchLctCl','') or theme
     
+    # selected_seasons = (request.GET.get('camp_ope_period') or '').split(',')
+    # selected_days = (request.GET.get('camp_ope_day') or '').split('+')
+    # selected_types = (request.GET.get('camp_type') or '').split(',')
     # 필터링할 캠핑장 목록 초기화
     camp_list = CampInfo.objects.all()
 
@@ -111,9 +114,21 @@ def camping_search(request, keyword=None, c_do=None, c_signgu=None):
         # 시/군 (c_signgu)로 필터링
         camp_list = camp_list.filter(Q(camp_address__icontains=c_signgu))
 
-    # if theme:
-    #     # 테마 (theme)로 필터링
-    #     camp_list = camp_list.filter(searchLctCl=theme)
+    if theme:
+        # 테마 (theme)로 필터링
+        camp_list = camp_list.filter(Q(camp_environment__icontains=theme))
+    
+    # if selected_seasons :
+    #     for season in selected_seasons:
+    #         camp_list = camp_list.filter(Q(camp_ope_period__icontains=season))
+    
+    # if selected_days :
+    #     for day in selected_days:
+    #         camp_list = camp_list.filter(Q(camp_ope_day__icontains=day))
+    
+    # if selected_types :
+    #     for type in selected_types:
+    #         camp_list = camp_list.filter(Q(camp_type__icontains=type))
 
     # 페이징
     paginator = Paginator(camp_list, 10)

@@ -87,7 +87,7 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   z-index: 3;
   text-align: center;
   color: #fff;
-  top: 75px;
+  top: 50px;
   text-shadow: 2px 2px 3px rgb(0,0,0);
 }
 
@@ -111,13 +111,14 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
 .search_box {
   position: absolute;
   width: 620px;
-  height: 246px;
+  /* height: 246px; */
+  height: auto;
   background: url("https://www.gocamping.or.kr/img/2018/main/search_box_bg.png") repeat;
   left: 50%;
   margin-left: -310px;
-  margin-top: 285px;
+  margin-top: 245px;
   z-index: 99;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   border-radius: 5px;
   /* overflow: hidden; */
 }
@@ -138,7 +139,7 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
 }
 
 .search_box .search_box_form {
-  margin: 40px 40px 0 40px;
+  margin: 10px 40px 0 40px;
 }
 
 .search_box .search_box_form .form1_1 {
@@ -156,6 +157,7 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   font-size: 16px;
   line-height: 44px;
   margin-top: 0px !important;
+  font-weight: bold;
 }
 
 .skip {
@@ -194,6 +196,8 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   font-size: 16px;
   line-height: 45px;
   margin-top: 0px !important;
+  font-weight: bold;
+
 }
 
 .search_box .search_box_form .form1_2 select.select_01 {
@@ -313,3 +317,63 @@ header, footer, main, nav, section, article, aside, details, figcaption, figure,
   background: url("https://www.gocamping.or.kr/img/2018/main/m_bg_03.jpg") no-repeat center top;
 }
 
+.search_box .search_box_form .form2_1 {
+  position: relative;
+  height: 45px;
+  clear: both;
+  margin-top: 14px;
+}
+
+.search_box .search_box_form .form2_1 .tt {
+  display: block;
+  float: left;
+  color: #fff;
+  width: 100px;
+  text-align: left;
+  font-size: 16px;
+  line-height: 45px;
+  margin-top: 0px !important;
+  font-weight: bold;
+
+}
+.search_box .search_box_form .form2_1 {
+  overflow: hidden;
+  color: white;
+}
+
+.search_box .search_box_form .form2_1 div.checkbox_div {
+  width: 436px;
+  height: 44px;
+  /* float: right; */
+  display: inline-block;
+  border: 0;
+  color: #000;
+  line-height: 45px;
+  font-size: 16px;
+}
+
+.search_box .search_box_form .form2_1 div.checkbox_div input[type="checkbox"] {
+  appearance: none; /* 기본 체크박스 스타일 제거 */
+  background-color: white; /* 체크박스 색상 변경 */
+  width: 24px; /* 체크박스 크기 조정 */
+  height: 24px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  margin-right: 25px;
+  position: relative;
+}
+.search_box .search_box_form .form2_1 div.checkbox_div input[type="checkbox"]:checked::after {
+  content: ""; /* 체크 표시를 추가 */
+  display: block;
+  width: 10px;
+  height: 20px;
+  border: solid black;
+  border-radius: 4px;
+  border-width: 0 5px 5px 0;
+  transform: rotate(45deg) translateX(-1px) translateY(-11px);
+}
