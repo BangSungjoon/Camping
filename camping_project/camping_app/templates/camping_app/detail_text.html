@@ -1,3 +1,4 @@
+{% load humanize %}
 {% if camp_type_price %}
     <div class="camp_intro">
         <style>
@@ -52,10 +53,10 @@
                     <tbody class="t_c">
                         <tr>
                                 <th scope="col">일반</th>
-                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_normal_off_season_price_wd }}</td>
-                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_normal_off_season_price_we }}</td>
-                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_normal_peak_season_price_wd }}</td>
-                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_normal_peak_season_price_wd }}</td>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_normal_off_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_normal_off_season_price_we|intcomma }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_normal_peak_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_normal_peak_season_price_wd|intcomma }}</td>
                             </tr>
                         </tbody>
                 </table>
@@ -92,10 +93,10 @@
                     <tbody class="t_c">
                         <tr>
                                 <th scope="col">오토캠핑</th>
-                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_auto_off_season_price_wd }}</td>
-                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_auto_off_season_price_we }}</td>
-                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_auto_peak_season_price_wd }}</td>
-                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_auto_peak_season_price_we }}</td>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_auto_off_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_auto_off_season_price_we|intcomma }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_auto_peak_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_auto_peak_season_price_we|intcomma }}</td>
                             </tr>
                         </tbody>
                 </table>
@@ -131,10 +132,10 @@
                     <tbody class="t_c">
                         <tr>
                                 <th scope="col">글램핑</th>
-                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_glam_off_season_price_wd }}</td>
-                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_glam_off_season_price_we }}</td>
-                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_glam_peak_season_price_wd }}</td>
-                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_glam_peak_season_price_we }}</td>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_glam_off_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_glam_off_season_price_we|intcomma }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_glam_peak_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_glam_peak_season_price_we|intcomma }}</td>
                             </tr>
                         </tbody>
                 </table>
@@ -170,10 +171,10 @@
                     <tbody class="t_c">
                         <tr>
                                 <th scope="col">카라반</th>
-                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_crv_off_season_price_wd }}</td>
-                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_crv_off_season_price_we }}</td>
-                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_crv_peak_season_price_wd }}</td>
-                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_crv_peak_season_price_we }}</td>
+                                <td data-cell-header="평상시 주중：">{{ camp_type_price.camp_crv_off_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="평상시 주말 : ">{{ camp_type_price.camp_crv_off_season_price_we|intcomma }}</td>
+                                <td data-cell-header="성수기 주중：">{{ camp_type_price.camp_crv_peak_season_price_wd|intcomma }}</td>
+                                <td data-cell-header="성수기 주말 : ">{{ camp_type_price.camp_crv_peak_season_price_we|intcomma }}</td>
                             </tr>
                         </tbody>
                 </table>
