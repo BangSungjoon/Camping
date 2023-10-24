@@ -392,7 +392,7 @@
                           <th>리뷰날짜</th>
                           <th>평점</th>
                           <th>사용자id</th>
-                          <th>캠핑장고유번호</th>
+
                   
                       </tr>
                       {% for review in  reviews %}
@@ -402,7 +402,6 @@
                           <td>{{ review.rev_date}}</td>
                           <td>{{ review.rev_rate}}</td>
                           <td>{{ review.id}}</td>
-                          <td>{{ review.prd_no}}</td>
                       </tr>
                       {% endfor %}
                   </table>

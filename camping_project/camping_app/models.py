@@ -106,7 +106,7 @@ class CampReview(models.Model):
     rev_content = models.TextField(blank=True, null=True)
     rev_date = models.DateTimeField()
     rev_rate = models.FloatField(blank=True, null=True)
-    id = models.BigIntegerField(blank=True, null=True)
+    id = models.ForeignKey('UsersAppUser', models.DO_NOTHING, db_column='id', blank=True, null=True)
     camp_no = models.ForeignKey(CampInfo, models.DO_NOTHING, db_column='camp_no')
 
     class Meta:
