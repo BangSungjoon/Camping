@@ -18,7 +18,7 @@ button {
   background: transparent;
   letter-spacing: -1px;
   cursor: pointer;
-  font-family: 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
+  font-family: 'Nanum Gothic', '맑은 고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
 }
 button {
   text-transform: none;
@@ -30,6 +30,15 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 28px;
+  font-family: 'Nanum Gothic', '나눔고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
+  color: #626262;
+  letter-spacing: -1px;
+  height: 100%;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
   font-family: 'Nanum Gothic', '나눔고딕', Dotum, '돋움', Helvetica, AppleGothic, Sans-serif, 'Tahoma', 'MS PGothic';
   color: #626262;
   letter-spacing: -1px;

@@ -9,7 +9,14 @@
   padding: 0;
   list-style: none;
 }
-
+hr {
+  margin: 0;
+  padding: 0;
+}
+ul.nav_ul {
+  display: block;
+  margin: 14px 0;
+}
 .nav_ul li {
   display: inline-block;
   margin-left:30px;
