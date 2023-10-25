@@ -6,8 +6,154 @@
 <form method="post">
     {% csrf_token %}
     <table id="form_tbl">
-        {{ form }}
-    </table><br>
+        <tr>
+            <th><label for="id_camp_name">캠핑장 이름</label></th>
+            <td>
+              
+              <input type="text" name="camp_name" maxlength="100" id="id_camp_name">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_s_tt">한줄 소개</label></th>
+            <td>
+              
+              <input type="text" name="camp_s_tt" maxlength="200" id="id_camp_s_tt">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_tag_li">태그 ex)물좋은/친절한</label></th>
+            <td>
+              
+              <input type="text" name="camp_tag_li" maxlength="500" id="id_camp_tag_li">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_address">주소</label></th>
+            <td>
+              
+              <input type="text" name="camp_address" maxlength="100" id="id_camp_address">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_call">전화번호</label></th>
+            <td>
+              
+              <input type="text" name="camp_call" maxlength="100" id="id_camp_call">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_environment">주변 환경 ex)숲/계곡</label></th>
+            <td>
+              
+              <input type="text" name="camp_environment" maxlength="100" id="id_camp_environment">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_type">캠핑장 타입(일반/글램핑/카라반/자동차)</label></th>
+            <td>
+              
+              <input type="text" name="camp_type" maxlength="100" id="id_camp_type">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_ope_period">운영 계절</label></th>
+            <td>
+              
+              <input type="text" name="camp_ope_period" maxlength="100" id="id_camp_ope_period">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_ope_day">운영 요일</label></th>
+            <td>
+              
+              <input type="text" name="camp_ope_day" maxlength="100" id="id_camp_ope_day">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_pagelink">홈페이지</label></th>
+            <td>
+              
+              <input type="text" name="camp_pagelink" maxlength="500" id="id_camp_pagelink">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_book">예약 방식</label></th>
+            <td>
+              
+              <input type="text" name="camp_book" maxlength="100" id="id_camp_book">
+              
+              
+            </td>
+          </tr>
+        
+          <tr>
+            <th><label for="id_camp_itd">상세 소개</label></th>
+            <td>
+              
+              <textarea name="camp_itd" cols="40" rows="10" id="id_camp_itd">
+        </textarea>
+              
+              
+            </td>
+          </tr>
+        
+          <tr style="display: none;">
+            <th><label for="id_id">id:</label></th>
+            <td>
+              
+              <select name="id" id="id_id">
+          <option value="{{user.id}}" selected>{{user.username}}</option>
+        
+          <option value="1">minyeol1315</option>
+        
+        </select>
+              
+              
+            </td>
+          </tr>
+        
+          <tr style="display: none;">
+            <th><label for="id_approve">승인여부:</label></th>
+            <td>
+              
+              <input type="text" name="approve" maxlength="20" id="id_approve" value="미승인">
+              
+              
+                
+              
+            </td>
+          </tr>
+            </table><br>
     <button id="form_btn" type="submit">등록</button>
 </form>
 

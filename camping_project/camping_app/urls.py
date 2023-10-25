@@ -21,4 +21,6 @@ urlpatterns = [
     path('camping/book/<str:camp_no>/' , views.camping_book, name='camping_book'),
     path('camping/review/<str:camp_no>/' , views.camping_review, name='camping_review'),
     path('camping/secondhanded/', views.camping_secondhanded, name='camping_secondhanded'),
+    path('camping/camping_new_list/', views.camping_new_list, name='camping_new_list'),
+
 ]
