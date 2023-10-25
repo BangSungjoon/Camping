@@ -1,16 +1,16 @@
-{% if camping %}
+{% if reviews %}
     <table id="prd_list">
         <tr>
-            <th>제목</th>
-            <th>리뷰 내용</th>
-            <th>리뷰날짜</th>
-            <th>평점</th>
-            <th>사용자id</th>
+            <th style="width: 20%; font-size: 16px;">제목</th>
+            <th style="width: 50%; font-size: 16px;">내용</th>
+            <th style="width: 10%; font-size: 16px;">작성일</th>
+            <th style="width: 10%; font-size: 16px;">평점</th>
+            <th style="width: 10%; font-size: 16px;">사용자ID</th>
         </tr>
         {% for review in  reviews %}
         <tr>
             <td>{{ review.rev_title}}</td>
-            <td>{{ review.rev_content}}</td>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">{{ review.rev_content}}</td>
             <td>{{ review.rev_date}}</td>
             <td>{{ review.rev_rate}}</td>
             <td>{{ review.id}}</td>
@@ -20,3 +20,55 @@
 {% else %}
   <p>해당하는 리뷰가 없습니다.</p>
 {% endif %}
+
+<!-- {% if reviews %}
+    {% for review in reviews %}
+        <div class="table_w">
+            <table class="table_t4 camp_etc_tb">
+                <caption>
+                    <strong>리뷰 ajax 페이지</strong>
+                </caption>
+                <tbody class="t_c">
+                    <tr>
+                    <th scope="col">제목</th>
+                    <td>
+                        <ul class="table_ul05">
+                        <li>{{ review.rev_title}}</li>
+                        </ul>
+                    </td>
+                    </tr>
+                    <tr>
+                    <th scope="col">평점</th>
+                    <td>
+                        <ul class="table_ul05">
+                        <li>{{ review.rev_rate}}</li>
+                        </ul>
+                    </td>
+                    </tr>
+                    <tr>
+                    <th scope="col">내용</th>
+                    <td class="etc_type">{{ review.rev_content}}</td>
+                    </tr>
+                    <tr>
+                    <th scope="col">작성일</th>
+                    <td>
+                        <ul class="table_ul05">
+                        <li>{{ review.rev_date}}</li>
+                        </ul>
+                    </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">작성자 ID</th>
+                        <td>
+                        <ul class="table_ul05">
+                            <li>{{ review.id}}</li>
+                        </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% else %}
+  <p>해당하는 리뷰가 없습니다.</p>
+{% endif %} -->

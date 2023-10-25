@@ -152,20 +152,19 @@
                         >예약하기
                         </button>
                       </a>
+                      <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                      <a href="#">
                         <button
                           type="button"
                           class="btn_rB1 zzim"
-                          onclick="fnCampBkmk(); return false"
                         >
                           찜하기
                         </button>
-                        <button
+                      </a>
+                        <a href="{% url 'camping_review' camping.camp_no%}"><button
                           type="button"
                           class="btn_gB1 btn_modify"
-                          onclick="location.href='/zboard/createForm.do?lmCode=campRequest&amp;c_no=1776'; return false;"
-                        >
-                          정보수정요청
-                        </button>
+                        >리뷰작성</button></a>
                       </div>
                     </div>
                     <!--//E:table-->
