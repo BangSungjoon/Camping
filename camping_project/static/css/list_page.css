@@ -384,7 +384,7 @@ div.select_box select.detail_select {
 	margin:0;
 }
 .camp_info01 li.addr {
-	background:url("https://gocamping.or.kr/img/2018/sub/ico_map01.png") no-repeat left 5px;
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_map01.png") no-repeat left 4px;
 	padding-left:25px;
 	margin-right:20px;
 }
@@ -394,7 +394,7 @@ div.select_box select.detail_select {
 	color:#000;
 }
 .camp_info01 li.call_num {
-	background:url("https://gocamping.or.kr/img/2018/sub/ico_call01.png") no-repeat left 5px;
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_call01.png") no-repeat left 4px;
 	padding-left:25px;
 }
 .camp_search_list .c_list.update .camp_item_box {
