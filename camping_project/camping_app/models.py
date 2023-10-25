@@ -62,9 +62,18 @@ class CampInfo(models.Model):
     camp_tag_li = models.CharField(max_length=500, blank=True, null=True)
     camp_address = models.CharField(max_length=100, blank=True, null=True)
     camp_call = models.CharField(max_length=100, blank=True, null=True)
+    camp_name = models.CharField(max_length=100, blank=True, null=True)
+    camp_s_tt = models.CharField(max_length=200, blank=True, null=True)
+    camp_tag_li = models.CharField(max_length=500, blank=True, null=True)
+    camp_address = models.CharField(max_length=100, blank=True, null=True)
+    camp_call = models.CharField(max_length=100, blank=True, null=True)
     camp_environment = models.CharField(max_length=100, blank=True, null=True)
     camp_type = models.CharField(max_length=100, blank=True, null=True)
+    camp_type = models.CharField(max_length=100, blank=True, null=True)
     camp_ope_period = models.CharField(max_length=100, blank=True, null=True)
+    camp_ope_day = models.CharField(max_length=100, blank=True, null=True)
+    camp_pagelink = models.CharField(max_length=500, blank=True, null=True)
+    camp_book = models.CharField(max_length=100, blank=True, null=True)
     camp_ope_day = models.CharField(max_length=100, blank=True, null=True)
     camp_pagelink = models.CharField(max_length=500, blank=True, null=True)
     camp_book = models.CharField(max_length=100, blank=True, null=True)
@@ -118,6 +127,22 @@ class CampReview(models.Model):
 
 class CampTypePrice(models.Model):
     camp_no = models.OneToOneField(CampInfo, models.DO_NOTHING, db_column='camp_no', primary_key=True)
+    camp_normal_off_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_normal_off_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_normal_peak_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_normal_peak_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_auto_off_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_auto_off_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_auto_peak_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_auto_peak_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_glam_off_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_glam_off_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_glam_peak_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_glam_peak_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_crv_off_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_crv_off_season_price_we = models.IntegerField(blank=True, null=True)
+    camp_crv_peak_season_price_wd = models.IntegerField(blank=True, null=True)
+    camp_crv_peak_season_price_we = models.IntegerField(blank=True, null=True)
     camp_normal_off_season_price_wd = models.IntegerField(blank=True, null=True)
     camp_normal_off_season_price_we = models.IntegerField(blank=True, null=True)
     camp_normal_peak_season_price_wd = models.IntegerField(blank=True, null=True)
@@ -213,9 +238,23 @@ class FavoriteList(models.Model):
         db_table = 'favorite_list'
         unique_together = (('camp_no', 'id'),)
 
+# class FavoriteList(models.Model):
+#     fav_id = models.AutoField(primary_key=True)
+#     camp_no = models.ForeignKey(CampInfo, models.DO_NOTHING, db_column='camp_no')
+#     # id = models.ForeignKey(User, models.DO_NOTHING, db_column='id',  primary_key=True)   
+#     id = models.ForeignKey(User, models.DO_NOTHING, db_column='id')
+
+#     class Meta:
+#         managed = False
+#         db_table = 'favorite_list'
+
 
 class ImageLink(models.Model):
     camp_no = models.OneToOneField(CampInfo, models.DO_NOTHING, db_column='camp_no', primary_key=True)
+    main_img_link = models.CharField(max_length=150, blank=True, null=True)
+    col1_img_link = models.CharField(max_length=150, blank=True, null=True)
+    col2_img_link = models.CharField(max_length=150, blank=True, null=True)
+    col3_img_link = models.CharField(max_length=150, blank=True, null=True)
     main_img_link = models.CharField(max_length=150, blank=True, null=True)
     col1_img_link = models.CharField(max_length=150, blank=True, null=True)
     col2_img_link = models.CharField(max_length=150, blank=True, null=True)

@@ -1,4 +1,5 @@
 from tkinter import messagebox
+from django.db.models import Q 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import CampInfo
 from .forms import CampingForm
@@ -26,6 +27,7 @@ def camping_list(request):
     page = request.GET.get('page', 1)
     campings = Paginator(CampInfo.objects.all(), 10).get_page(page)
 
+    # print(page)
     for camp in campings:
         camp.image_link = ImageLink.objects.get(camp_no=camp.camp_no)
         camp.camp_utility = CampUtility.objects.get(camp_no=camp.camp_no)
@@ -49,12 +51,14 @@ def camping_list(request):
     
 def camping_detail(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
+    tags = camping.camp_tag_li.split(',')
+    tags = ['#' + tag for tag in tags if tag]
     image_links = get_object_or_404(ImageLink, pk=camp_no)
     camp_fac_info = get_object_or_404(CampFacInfo, pk=camp_no)
     camp_utility = get_object_or_404(CampUtility, pk=camp_no)
     reviews= CampReview.objects.filter(camp_no=camp_no)
 
-    return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility, 'reviews':reviews})
+    return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility,'tags':tags})
 
 
 def camping_insert(request):
@@ -76,6 +80,86 @@ class CampImagesDetailView(DetailView):
 
 def camping_search_location(request):
     return render(request, 'camping_app/camping_search_location.html')
+
+def camping_search(request, keyword=None, c_do=None, c_signgu=None, theme=None):
+    # page = request.GET.get('page', 1)
+    # print(page)
+    
+    # request.method == "POST" 조건을 삭제합니다.
+    
+    # if keyword:
+    #     keyword = keyword.replace('-', ' ')
+    
+    keyword = request.GET.get('searchKrwd','') or keyword
+    c_do = request.GET.get('c_do','') or c_do
+    c_signgu = request.GET.get('c_signgu','') or c_signgu
+    theme = request.GET.get('searchLctCl','') or theme
+    
+    # selected_seasons = (request.GET.get('camp_ope_period') or '').split(',')
+    # selected_days = (request.GET.get('camp_ope_day') or '').split('+')
+    # selected_types = (request.GET.get('camp_type') or '').split(',')
+    # 필터링할 캠핑장 목록 초기화
+    camp_list = CampInfo.objects.all()
+
+    if keyword:
+        # 키워드로 필터링
+        camp_list = camp_list.filter(Q(camp_name__icontains=keyword) |
+                                Q(camp_s_tt__icontains=keyword) |
+                                Q(camp_itd__icontains=keyword))
+
+    if c_do:
+        # 지역 (c_do)로 필터링
+        camp_list = camp_list.filter(Q(camp_address__icontains=c_do))
+
+    if c_signgu:
+        # 시/군 (c_signgu)로 필터링
+        camp_list = camp_list.filter(Q(camp_address__icontains=c_signgu))
+
+    if theme:
+        # 테마 (theme)로 필터링
+        camp_list = camp_list.filter(Q(camp_environment__icontains=theme))
+    
+    # if selected_seasons :
+    #     for season in selected_seasons:
+    #         camp_list = camp_list.filter(Q(camp_ope_period__icontains=season))
+    
+    # if selected_days :
+    #     for day in selected_days:
+    #         camp_list = camp_list.filter(Q(camp_ope_day__icontains=day))
+    
+    # if selected_types :
+    #     for type in selected_types:
+    #         camp_list = camp_list.filter(Q(camp_type__icontains=type))
+
+    # 페이징
+    paginator = Paginator(camp_list, 10)
+    page = request.GET.get('page')
+    campings = paginator.get_page(page)
+
+    for camp in campings:
+        camp.image_link = ImageLink.objects.get(camp_no=camp.camp_no)
+        camp.camp_utility = CampUtility.objects.get(camp_no=camp.camp_no)
+
+    start = math.floor((campings.number - 1) / 10) * 10 + 1
+    end = min(campings.paginator.num_pages, start + 9)
+    next_tens_page = math.ceil(campings.number / 10) * 10 + 1
+    prev_tens_page = max(1, (math.floor((campings.number - 1) / 10) * 10))
+
+    camp_count = camp_list.count()
+
+    context = {
+        'campings': campings,
+        'page_range': range(start, end + 1),
+        'next_tens_page': next_tens_page,
+        'prev_tens_page': prev_tens_page,
+        'camp_count': camp_count
+    }
+
+
+    return render(request, 'camping_app/camping_search_result.html',context)
+
+
+    
 
 def detail_intro(request, camp_no):
     image_links = get_object_or_404(ImageLink, pk=camp_no)
@@ -109,7 +193,7 @@ def detail_review(request, camp_no):
 
 # 캠핑 예약 - 로그인 시에만 가능 
 def camping_book(request, camp_no):
-    # if request.user.is_authenticated:
+    if request.user.is_authenticated:
         camping= get_object_or_404(CampInfo, pk=camp_no)
         # 1) 요청이 post 인지 확인하고 
         if request.method == "POST":
@@ -133,15 +217,15 @@ def camping_book(request, camp_no):
 
         #7) else : post 요청이 아니라면 입력 폼 그대로 출력 
         return render(request, 'camping_app/camp_book.html', {'forms':forms})
-    # else:
-    #     messagebox.showinfo('경고','로그인 후 가능합니다.')
-    #     return redirect('../../../users/sign_in')
-    #     # 비로그인 시 로그인 화면으로 이동 
+    else:
+        messagebox.showinfo('경고','로그인 후 가능합니다.')
+        return redirect('../../../users/sign_in')
+        # 비로그인 시 로그인 화면으로 이동 
 
 
 # 리뷰 등록
 def camping_review(request, camp_no):
-    # if request.user.is_authenticated:
+    if request.user.is_authenticated:
         camping= get_object_or_404(CampInfo, pk=camp_no)
         # 1) 요청이 post 인지 확인하고 
         if request.method == "POST":
@@ -165,7 +249,10 @@ def camping_review(request, camp_no):
 
         #7) else : post 요청이 아니라면 입력 폼 그대로 출력 
         return render(request, 'camping_app/camping_review.html', {'rform':rform})
-    # else:
-    #     messagebox.showinfo('경고','로그인 후 가능합니다.')
-    #     return redirect('../../../users/sign_in')
-    #     # 비로그인 시 로그인 화면으로 이동 
+    else:
+        messagebox.showinfo('경고','로그인 후 가능합니다.')
+        return redirect('../../../users/sign_in')
+        # 비로그인 시 로그인 화면으로 이동 
+
+def camping_secondhanded(request):
+    return render(request, 'camping_app/camping_secondhanded.html')

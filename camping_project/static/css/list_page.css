@@ -272,6 +272,7 @@ div.select_box select.detail_select {
 	width:100%;
 	height:100%;
 	object-fit:cover;
+	border-radius: 5px !important;
 }
 .c_list .img_box>.clist_icon {
 	position:absolute;
@@ -311,7 +312,7 @@ div.select_box select.detail_select {
 .camp_cont .item_group {
 	position:relative;
 	margin-bottom:20px;
-  padding-top: 1px;
+  padding-top: 2px;
 	height:auto;
 	clear:both;
 	overflow:hidden;
@@ -324,6 +325,7 @@ div.select_box select.detail_select {
 	height:23px;
 	line-height:23px;
 	margin:0 3px;
+	border-radius: 3px;
 }
 .camp_cont .item_group>span:first-child {
 	margin:0;
@@ -350,6 +352,10 @@ div.select_box select.detail_select {
 	margin-top:22px;
 	display:block;
 	padding-bottom:5px;
+}
+.camp_tt a {
+	color: black;
+	font-weight: bold;
 }
 .camp_stt {
 	display:block;
@@ -378,7 +384,7 @@ div.select_box select.detail_select {
 	margin:0;
 }
 .camp_info01 li.addr {
-	background:url("https://gocamping.or.kr/img/2018/sub/ico_map01.png") no-repeat left 5px;
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_map01.png") no-repeat left 4px;
 	padding-left:25px;
 	margin-right:20px;
 }
@@ -388,7 +394,7 @@ div.select_box select.detail_select {
 	color:#000;
 }
 .camp_info01 li.call_num {
-	background:url("https://gocamping.or.kr/img/2018/sub/ico_call01.png") no-repeat left 5px;
+	background:url("https://gocamping.or.kr/img/2018/sub/ico_call01.png") no-repeat left 4px;
 	padding-left:25px;
 }
 .camp_search_list .c_list.update .camp_item_box {
@@ -401,7 +407,7 @@ div.select_box select.detail_select {
 	border-radius:5px;
 	margin:20px 0 0 0;
 	overflow:hidden;
-	min-height: 45px;
+	min-height: 37px;
 }
 .camp_item_box ul li {
 	/* display:inline-block; */

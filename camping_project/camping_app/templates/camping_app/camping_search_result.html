@@ -42,20 +42,35 @@
           </header>
         </section>
         <!--내용시작-->
+        {% if campings %}
         <div id="contents">
           <div class="search_list_gr">
             <div class="select_box array_select">
-              <label for="selectListOrdrTrget" class="skip">정렬하기</label>
-              <select class="detail_select" id="selectListOrdrTrget" title="정렬하기">
+              <label
+                for="selectListOrdrTrget"
+                class="skip"
+                >정렬하기</label
+              >
+              <select
+                class="detail_select"
+                id="selectListOrdrTrget"
+                title="정렬하기"
+              >
                 <option value="last_updusr_pnttm">업데이트순</option>
                 <option value="frst_register_pnttm">등록일순</option>
-                <option value="c_rdcnt" selected="selected">조회순</option>
+                <option
+                  value="c_rdcnt"
+                  selected="selected"
+                >
+                  조회순
+                </option>
                 <option value="c_recomend_cnt">추천순</option>
               </select>
             </div>
           </div>
         </div>
         <!--리스트시작-->
+        
         <div class="camp_search_list">
           <ul>
             <li>
@@ -166,30 +181,34 @@
                   <!--//아이콘모음-->
                 </div>
               </div>
+              
               {% endfor %}
             </li>
         </ul>
     </div>
+
     <div class="paging">
         <ul>
             {% if campings.has_previous %}
-            <li><a href="?page=1"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre00.png" alt="처음으로" /></a></li>
-            <li><a href="?page={{ prev_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre01.png" alt="이전으로" /></a></li>
+            <li><a href="?{{ request.GET.urlencode }}&page=1"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre00.png" alt="처음으로" /></a></li>
+            <li><a href="?{{ request.GET.urlencode }}&page={{ prev_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_pre01.png" alt="이전으로" /></a></li>
             {% endif %}
-
+            
             {% for page_number in page_range %}
                 <li class="num {% if page_number == campings.number %}on{% endif %}">
-                    <a href="?page={{ page_number }}">{{ page_number }}</a>
+                    <a href="?{{ request.GET.urlencode }}&page={{ page_number }}">{{ page_number }}</a>
                 </li>
             {% endfor %}
-        
+            
             {% if campings.has_next %}
-            <li><a href="?page={{ next_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next01.png" alt="다음으로" /></a></li>
-            <li><a href="?page={{ campings.paginator.num_pages }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next00.png" alt="맨끝으로" /></a></li>
+            <li><a href="?{{ request.GET.urlencode }}&page={{ next_tens_page }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next01.png" alt="다음으로" /></a></li>
+            <li><a href="?{{ request.GET.urlencode }}&page={{ campings.paginator.num_pages }}"><img src="https://gocamping.or.kr//img/2018/sub/btn_next00.png" alt="마지막으로" /></a></li>
             {% endif %}
         </ul>
       </div>
-    
+      {% else %}
+      <h2>검색 결과가 없습니다.</h2>
+      {% endif %}
 </div> <!--sub_layout layout div-->
 </div> <!--cont_inner-->
 </div> <!--s_con-->

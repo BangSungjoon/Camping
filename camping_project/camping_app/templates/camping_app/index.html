@@ -3,12 +3,29 @@
 {% block extrahead %}
 <link rel="stylesheet" href="{% static '/css/index.css' %}">
 <script src="{% static '/js/index.js' %}"></script>
+<!-- <script>
+  window.onload = function() {
+  document.getElementById("searchBtn").addEventListener("click", function () {
+      // 검색 조건을 input 요소에 설정
+          var keyword = document.getElementById("searchKrwd").value;
+      var c_do = document.getElementById("c_do").value;
+      var c_signgu = document.getElementById("c_signgu").value;
+      
+      // URL 생성
+      var url = "{% url 'camping_search' 'keyword_placeholder' 'c_do_placeholder' 'c_signgu_placeholder' %}"
+        .replace("keyword_placeholder", keyword)
+        .replace("c_do_placeholder", c_do)
+        .replace("c_signgu_placeholder", c_signgu);
+
+      // 생성된 URL로 리다이렉트
+      window.location.href = url;
+    });
+};
+</script> -->
   {% endblock %}
 {% block content %}
   <section id="section1" style="right: 0px">
-    <h2>
-      <span class="skip">캠핑장 정보검색</span>
-    </h2>
+    <h2><span class="skip">캠핑장 정보검색</span></h2>
     <div class="section_01">
       <div class="layout">
         <div class="main_top">
@@ -25,14 +42,15 @@
             </div>
             <!--//타이틀-->
             <div class="search_box">
-              <form id="campSearchForm01" action="/bsite/camp/info/list.do" method="get">
-                <!-- <button type="button" class="btn_mylocation" onclick="geoFindMe(30, ''); return false;">내주변 캠핑장</button> -->
+              <form id="campSearchForm01" method="get" action="{% url 'camping_search' %}">
+                {% csrf_token %}
                 <button type="button" class="btn_dsearch">상세검색</button>
                 <!--검색박스-->
                 <div class="search_box_form">
                   <div class="form1_1">
                     <p class="tt">키워드검색</p>
-                    <label class="skip" for="searchKrwd_f">검색어를 입력하세요.</label> <input type="text" class="keyword2" id="searchKrwd_f" name="searchKrwd" title="검색어를 입력하세요.">
+                    <label class="skip" for="searchKrwd_f">검색어를 입력하세요.</label> 
+                    <input type="text" class="keyword2" id="searchKrwd" name="searchKrwd" title="검색어를 입력하세요.">
                   </div>
                   <div class="form1_2">
                     <p class="tt">지역별</p>
@@ -49,13 +67,13 @@
                         <option value="세종">세종특별자치시</option>
                         <option value="경기">경기도</option>
                         <option value="강원">강원도</option>
-                        <option value="충청북도">충청북도</option>
-                        <option value="충청남도">충청남도</option>
-                        <option value="전라북도">전라북도</option>
-                        <option value="전라남도">전라남도</option>
-                        <option value="경상북도">경상북도</option>
-                        <option value="경상남도">경상남도</option>
-                        <option value="제주">제주도</option>
+                        <option value="충북">충청북도</option>
+                        <option value="충남">충청남도</option>
+                        <option value="전북">전라북도</option>
+                        <option value="전남">전라남도</option>
+                        <option value="경북">경상북도</option>
+                        <option value="경남">경상남도</option>
+                        <option value="제주">제주특별자치도</option>
                     </select>
                       <label class="skip" for="c_signgu">시군별 검색</label> 
                       <select name="c_signgu" id="c_signgu" class="select_02" title="검색할 지역을 선택하세요.">
@@ -64,7 +82,8 @@
                   </div>
                   <div class="form1_2">
                     <p class="tt">테마별</p>
-                    <label class="skip" for="searchLctCl">테마별 검색</label> <select name="searchLctCl" id="searchLctCl" class="select_03" title="검색할 테마를 선택하세요.">
+                    <label class="skip" for="searchLctCl">테마별 검색</label> 
+                    <select name="searchLctCl" id="searchLctCl" class="select_03" title="검색할 테마를 선택하세요.">
                       <option value="">전체테마</option>
                       <option value="해변">해변</option>
                       <option value="섬">섬</option>
@@ -75,10 +94,68 @@
                       <option value="호수">호수</option>
                       <option value="도심">도심</option>
                       </select>
-                    <button type="submit" class="btnSearch_black01">검색</button>
+                    <button type="submit" class="btnSearch_black01" id="searchBtn">검색</button>
                     <!-- <button type="button" class="mylocation_tmv btn_none" onclick="geoFindMe(30, ''); return false;">내주변 캠핑장 검색</button> -->
                   </div>
-                </div>
+                  <!-- <div class="form2_1">
+                    <p class="tt">운영계절</p>
+                    <label class="skip" for="searchLctCl">운영계절 검색</label> 
+                    <div class="checkbox_div">
+                      <label class="checkbox">
+                        봄
+                        <input type="checkbox" name="camp_ope_period" id="봄" checked>
+                      </label>
+                      <label class="checkbox">
+                        여름
+                        <input type="checkbox" name="camp_ope_period" id="여름" checked>
+                      </label>
+                      <label class="checkbox">
+                        가을
+                        <input type="checkbox" name="camp_ope_period" id="가을" checked>
+                      </label>
+                      <label class="checkbox">
+                        겨울
+                        <input type="checkbox" name="camp_ope_period" id="겨울" checked>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form2_1">
+                    <p class="tt">운영일</p>
+                    <label class="skip" for="searchLctCl">운영일 검색</label> 
+                    <div class="checkbox_div">
+                      <label class="checkbox">
+                        평일
+                        <input type="checkbox" name="camp_ope_day" id="weekend" checked>
+                      </label>
+                      <label class="checkbox">
+                        주말
+                        <input type="checkbox" name="camp_ope_day" id="weekend" checked>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form2_1">
+                    <p class="tt">타입</p>
+                    <label class="skip" for="searchLctCl">타입 검색</label> 
+                    <div class="checkbox_div">
+                      <label class="checkbox">
+                        일반
+                        <input type="checkbox" name="camp_type" id="normal" checked>
+                      </label>
+                      <label class="checkbox">
+                        오토
+                        <input type="checkbox" name="camp_type" id="auto" checked>
+                      </label>
+                      <label class="checkbox">
+                        글램핑
+                        <input type="checkbox" name="camp_type" id="glam" checked>
+                      </label>
+                      <label class="checkbox">
+                        카라반
+                        <input type="checkbox" name="camp_type" id="crv" checked>
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
                 <!--//검색박스-->
               </form>
             </div><!--search-box 닫는 태그-->
