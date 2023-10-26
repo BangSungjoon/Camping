@@ -247,18 +247,6 @@
   }
   
   
-  #inquire{
-    background-color: orange;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    border-color: rgb(112, 112, 112);
-    border-style: double;
-    border-width: 1px;
-    transition: border-style 0.2s; 
-  }
-  
-  
   .btn_top {
     position: absolute; 
     width: 60px;
@@ -303,3 +291,15 @@
   .container {
     font-family: 'NanumBarunGothicLight', sans-serif;
   }
+
+  #inquire_btn{
+    background-color: orange;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    border-color: rgb(196, 37, 37);
+    border-style: double;
+    border-width: 1px;
+    transition: border-style 0.2s; 
+  }
+  

@@ -307,4 +307,55 @@ div #mypage_title {
 }
 
 
+/* 문의하기 */
+#userinqbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-radius: 3px;
+  box-shadow: 0 5px 10px grey;
+  font-family: 'NanumSquareRoundOTFB';
+}
 
+#userinqtitle, #userinqcontent {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#userinqtitle:focus, #userinqcontent:focus {
+  border-color: orange;
+  box-shadow: 0 0 5px orange;
+}
+
+.userinqbtn {
+  background-color: orange;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'NanumSquareRoundOTFB';
+}
+
+.userinqbtn:hover {
+  background-color: blue;
+}
+
+.userinq {
+  display: inline-block;
+  width: 100px; /* 원하는 너비로 설정 */
+  text-align: left; /* 텍스트를 오른쪽으로 정렬 */
+  margin-left: -50%; /* 라벨과 입력 필드 사이의 간격 설정 */
+}
+
+#inquire_title{
+  font-size: 20pt;
+
+}
