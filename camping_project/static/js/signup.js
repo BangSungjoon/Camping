@@ -25,7 +25,7 @@
 
 //         // if (!username.match(usernameRegex) || !password.match(passwordRegex) || password !== passwordConfirm || !user_name || !user_gender || !user_tel.match(telRegex) || !email.match(emailRegex)) {
 //         // if (!username || !password || !user_name || !user_gender || !user_tel || !email || password !== passwordConfirm) {
-//         if (!username.match(usernameRegex) || !password || !password.match(passwordRegex) || !user_name || !user_gender || !user_tel || !email) {            
+//         if (!username.match(usernameRegex) || !password || !user_name || !user_gender || !user_tel || !email) {            
 //             alert("필수 항목을 바르게 기입해주세요.");
 //             event.preventDefault();
 //         }
@@ -98,10 +98,11 @@
 //     }
 
 //     // 페이지 이동 시 세션 데이터 초기화
+//     window.onbeforeunload = clearFormData;
 //     function clearFormData() {
 //         sessionStorage.removeItem("signupFormData");
 //     }
-
+    
 //     // 페이지 이동 시 세션 데이터 초기화
 //     window.onbeforeunload = clearFormData;
 

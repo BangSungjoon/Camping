@@ -254,6 +254,6 @@ def user_inquiry_list(request):
 
 def user_inquiry_rep(request, inq_no):
     inquiry = get_object_or_404(UserInquire, inq_no=inq_no)
-    reply = InqReply.objects.filter(rep_no=inq_no).first()
+    reply = get_object_or_404(InqReply, inq_no=inq_no)
 
     return render(request, 'users_app/user_inquiry_rep.html', {'inquiry': inquiry, 'reply': reply})

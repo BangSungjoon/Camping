@@ -26,3 +26,12 @@ function initPage() {
         console.error("One or more elements not found.");
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const expandableCells = document.querySelectorAll('.expandable_cell');
+    expandableCells.forEach(cell => {
+        cell.addEventListener('click', function () {
+            this.classList.toggle('expanded');
+        });
+    });
+});
