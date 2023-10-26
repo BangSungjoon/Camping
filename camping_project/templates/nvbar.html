@@ -1,24 +1,6 @@
 <nav>
     {% if messages %}
-    <script>
-        // JavaScript를 사용하여 Django 메시지를 경고 창으로 표시
-        window.onload = function() {
-            var messageTags = {
-                'success': 'success',
-                'info': 'info',
-                'warning': 'warning',
-                'error': 'error',
-            };
 
-            {% for message in messages %}
-                var messageTag = "{{ message.tags }}";
-                var messageText = "{{ message|escapejs }}"; // JavaScript 이스케이프 처리
-
-                if (messageTag in messageTags) {
-                    alert(messageText);
-                }
-            {% endfor %}
-        };
     </script>
 {% endif %}
     <ul>
