@@ -14,8 +14,8 @@
             <li class='signbar'><a href="{% url 'user_mypage' %}">{{ user.username }}님 환영합니다!</a></li>
 
             {% else %}
-                <li class='signbar'><a href="{% url 'sign_in' %}">로그인</a></li>
                 <li class='signbar'><a href="{% url 'sign_up_select' %}">회원가입</a></li>
+                <li class='signbar'><a href="{% url 'sign_in' %}">로그인</a></li>
             {% endif %}
             </ul>
         </div>
