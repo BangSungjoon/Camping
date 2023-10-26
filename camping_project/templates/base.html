@@ -9,22 +9,34 @@
     {% endblock %}
     
     <link rel="icon" href="{% static '/img/icon.png' %}" type="image/png">
-    <link rel="stylesheet" href="{% static '/css/users.css' %}">
+    <link rel="stylesheet" href="{% static '/css/board.css' %}">
+    <link rel="stylesheet" href="{% static '/css/mypage_table.css' %}">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <link rel="stylesheet" href="{% static '/css/safety.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
-    <script src="{% static '/js/camping.js' %}"></script>
-    <script src="{% static '/js/icon.js' %}"></script>
-    <script src="{% static '/js/detail_ajax.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/css/users.css' %}">
     
+    <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static '/js/ajax.js' %}"></script>
+    <script src="{% static '/js/camping.js' %}"></script>
+    <script src="{% static '/js/detail_ajax.js' %}"></script>
+    <script src="{% static '/js/icon.js' %}"></script>
+    <script src="{% static '/js/signup.js' %}"></script>
+    <script src="{% static '/js/index.js' %}"></script>
+    <script src="{% static '/js/users.js' %}"></script>
+    {% comment %} <script src="{% static '/js/safety_page.js' %}"></script> {% endcomment %}
+    
+
 </head>
 <body>
     <div id="wrap">
         {% include "header.html" %}
-        <hr>
+        <div class='nvbarhr'><hr></div>
         {% include "nvbar.html" %}
-        <hr>
+        <div id='nvbarhr'><hr></div>
         {% block content %}   
          
         {% endblock content %} 

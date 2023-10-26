@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% load static %}   
 {% block content %}   
 
 <h2>문의하기</h2>
@@ -9,12 +11,14 @@
     {% csrf_token %}
         <div id="iquire_box">
             <div>
+                <input type="hidden" name="id" value='{{ user.id }}'>
+                <input type="hidden" name="inq_date" value='{% now "Y-m-d" %}'>
                 <label>제목</label>
-                <input type="text" name="inquire_title" id="inquire_title">
+                <input type="text" name="inq_title" id="inq_title">
             </div>
             <div>
                 <label>문의사항</label>
-                <textarea name="inquire_message" rows="4" cols="50"></textarea>
+                <textarea name="inq_content" rows="4" cols="50"></textarea>
             </div><br>
         </div>
     <br>

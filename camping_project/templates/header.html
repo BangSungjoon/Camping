@@ -1,29 +1,31 @@
-
 {% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>캠핑정보모아모아</title>
+    <title>캠핑정보모아</title>
     <!-- CSS 파일, 메타 데이터 및 스크립트를 여기에 포함 -->
 </head>
 <body>
     <header>
-        <div id='signbar'>
+        <div class='signbar'>
             <ul>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'user_mypage' %}">{{ user.username }}님 환영합니다!</a></li>
-            <li><a href="{% url 'sign_out' %}">로그아웃</a></li>
+            <li class='signbar'><a href="{% url 'sign_out' %}">로그아웃</a></li>
+            <li class='signbar'><a href="{% url 'user_mypage' %}">{{ user.username }}님 환영합니다!</a></li>
+
             {% else %}
-                <li><a href="{% url 'sign_in' %}">로그인</a></li>
-                <li><a href="{% url 'sign_up_select' %}">회원가입</a></li>
+                <li class='signbar'><a href="{% url 'sign_in' %}">로그인</a></li>
+                <li class='signbar'><a href="{% url 'sign_up_select' %}">회원가입</a></li>
+
+
             {% endif %}
             </ul>
-        </div>
-        <hr>
+        </div><br>
+        <br><div id='signbarhr'><hr></div>
+        <br>
         <div class="header-container">
             <div>
-                <a href="{% url 'index' %}"><img src= "{% static '/img/Logo.png' %}" style="width: 250px; margin: 20px 0 20px 0;"> 
+                <a  href="{% url 'index' %}"><img id='logo' src={% static "/img/Logo.png" %}>
                 </a>
             </div>
         </div>

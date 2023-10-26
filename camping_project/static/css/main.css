@@ -1,0 +1,305 @@
+@font-face {
+    font-family: 'NanumBarunGothicLight';
+    src: url('/static/font/NanumBarunGothicLight.otf') format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'NanumBarunGothicBold';
+    src: url('/static/font/NanumBarunGothicBold.otf') format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'NanumSquareRoundOTFB';
+    src: url('/static/font/NanumSquareRoundOTFB.otf') format('opentype');
+  }
+   
+   /* base */
+   #wrap {
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+  }
+  
+  #signbar {
+    text-align:right;
+    height: 20px;
+  }
+
+#signbarhr{
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 1px;
+    width: 80%;
+    padding:0;
+    border-style: solid; 
+    border-color: #ffffff; 
+    margin-left: 20%;
+    border-radius: 5px; 
+    box-shadow: 0 2px 2px orange; 
+  }
+  
+
+
+  .signbar {
+    color: #000000;
+    border: none;
+    padding: 0px;
+    margin-top:-5px;
+    margin-bottom:-20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .signbar ul {
+    list-style: none;
+    padding: 5px;
+    margin:50;
+    margin-right: 3px;
+    text-align: right;
+  }
+  
+  .signbar li a {
+    font-family: 'NanumSquareRoundOTFB';
+    float: right;
+    padding: 6px;
+    margin: 5px;
+    margin-left:20px;
+    margin-right:10px;
+    background-color: #ffc370;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-style: outset;
+    border-width: 2px;
+    border-color: #ffdab3;
+  }
+  
+  .signbar li a:hover {
+    background-color: orange;
+  }
+  
+  .signbar a:visited {
+    color: inherit; 
+  }
+  
+  .signbar a:active {
+    color: inherit; 
+  }
+  
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* ul li {
+    display: inline-block;
+    margin-left:30px;
+    margin-right: 30px;
+  } */
+  
+ .navbr {
+    display: inline;
+    margin-left:40px;
+    color: #000000;
+
+    margin-right: 40px;
+  }
+
+  .nvbarhr {
+    width: 100%;
+    margin: 0px auto; /* 위아래 여백 설정 */
+    border: 0px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 0 0px 2px rgb(139, 63, 0);
+  }
+    #nvbarhr {
+    width: 100%;
+    margin: 0px auto; /* 위아래 여백 설정 */
+    border: 0px;
+    padding:0px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 0px 2px rgb(110, 51, 37);
+  }
+
+  #nvbarhr hr {
+    visibility: hidden;
+  }  
+  .nvbarhr hr {
+    visibility: hidden;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color:red;
+  }
+  
+  /* 캠핑장 리스트 */
+  
+  #camping_search{
+    text-align: justify;
+  
+  }
+  
+  table {
+      margin: 0 auto;
+  }
+  
+  table#prd_list {
+    border-bottom: brown;
+  }
+  
+  table#camping_list th {
+    width: 100px;
+    background-color: orange;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+  }
+  
+  table#prd_list tr td {
+    border-bottom: orange 1px dashed;
+    height: 30px;
+    line-height: 30px;
+  }
+  
+  .btn {
+    background-color: orange;
+    width: 50px;
+    height: 35;
+    color:white;
+    border-radius: 5px;
+  }
+  
+  /* 헤더 */
+  #logo {
+    width: 160px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  #signbar{
+    height: 40px;
+    padding: 0px;
+    margin-bottom: 0px;
+    line-height: 40px;
+    font-family: NanumBarunGothicLight;
+  }
+  
+  #signbar a:visited {
+    color: inherit; /* 기본 텍스트 색상으로 설정 */
+  }
+  
+  /* 클릭한 링크 스타일 설정 */
+  #signbar a:active {
+    color: inherit; /* 기본 텍스트 색상으로 설정 */
+  }
+  
+  /* nav */
+  nav {
+    /* background-color: rgb(250, 207, 128); */
+    font-size:large;
+    /* background-color: #ffdfb5; */
+    padding: 0;
+    margin: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: NanumBarunGothicBold;
+  }
+  
+  nav li:hover {
+    color: orange;
+    transition: color 0.15s ease;
+  }
+  /* nav + hr , nav + hr {
+    margin-top: 0;
+    margin-bottom: 0;
+  } */
+  
+  nav a:visited {
+    color: inherit; /* 기본 텍스트 색상으로 설정 */
+  }
+  
+  /* 클릭한 링크 스타일 설정 */
+  nav a:active {
+    color: inherit; /* 기본 텍스트 색상으로 설정 */
+  }
+  
+  
+  /* 푸터 */
+  
+  
+  .site_imfomation {
+    text-align: right;
+    display: inline-block;
+    width: 85%;
+    vertical-align: center;
+  }
+  
+  
+  #inquire{
+    background-color: orange;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    border-color: rgb(112, 112, 112);
+    border-style: double;
+    border-width: 1px;
+    transition: border-style 0.2s; 
+  }
+  
+  
+  .btn_top {
+    position: absolute; 
+    width: 60px;
+    height: 60px;
+    bottom: 80px; /* 원하는 거리로 조절하세요. */
+    right: 5px; /* 원하는 거리로 조절하세요. */
+    cursor: pointer;
+    background: url("/static/img/btn_top.png") no-repeat 0 0;
+    font-size: 0;
+    line-height: 0;
+    z-index: 9999;
+  }
+
+  
+  
+  /* 스타일 시트 (예: style.css) */
+  .container {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  
+  
+  /* 안전수칙페이지 */
+  
+  #safetyrules{
+      text-align: justify;
+      list-style-type: none;
+      margin-left:30px;
+      margin-right: 30px;
+    }
+  
+  
+  /* footer */
+  
+  
+  .container {
+    font-family: 'NanumBarunGothicLight', sans-serif;
+  }

@@ -2,22 +2,28 @@
 
 {% block content %}   
 
-<h2>내가 찜한 캠핑장</h2>
-
+<span class='mypage_title'>내가 찜한 캠핑장</span>
 <div>
-    {% if user_favorite_campings %}
+    {% if favorites %}
         <table id="favorite_list">
             <tr>
-                <th>번호</th>
+                <th>찜한 순서</th>
                 <th>캠핑장</th>
+                <th>전화번호</th>
+                <th>찜 취소</th>
             </tr>
-            {% for favorite in user_favorite_campings %}
+            {% for favorite in favorites %}
             <tr>
-                <td>{{ favorite.camp_no }}</td>
-                <td>{{ favorite.camp_no.camp_name }}</td>
-                <td><a href="{% url 'user_favorite_delete' favorite.camp_no %}" 
-                    onclick="return confirm('삭제하시겠습니까?')">
-                <button class='btn'>찜 취소</button></a></td>
+                <td>
+                    {{ forloop.counter }}</td>
+                <td>{{ favorite.camp_no.camp_name }}
+                    {% comment %} <a href="{% url 'camping_detail' favorite.camp_no.camp_name %}"></a></td> {% endcomment %}
+                <td>
+                    {{ favorite.camp_no.camp_call }}</td>
+                <td>
+                    <a href="{% url 'user_favorite_delete' favorite.fav_id %}" 
+                    onclick="if (confirm('삭제하시겠습니까?')) { showCancellationMessage(); return true; } else { return false; }">
+                    <button class='btn btn-cancel'>취소</button></a></td>
             </tr>
             {% endfor %}
         </table>

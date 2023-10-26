@@ -10,7 +10,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'user_name', 'user_age', 'user_gender', 'user_tel', 'user_address', 'email', 'user_subscribe_sms', 'user_subscribe_email']
-        
+        # 유효성검사는 프론트에서
         email = forms.EmailField(
             required=True,
             error_messages={'required': '이메일 주소를 입력해주세요.', 'invalid': '올바른 이메일 주소를 입력해주세요.'}
@@ -22,6 +22,7 @@ class SignUpForm(UserCreationForm):
                 message='숫자만 입력해주세요.'
             )]
         )
+        
     user_address = forms.CharField(required=False)
     user_age = forms.CharField(required=False)
     
@@ -51,24 +52,4 @@ class SignUpForm(UserCreationForm):
 #             )]
 #         )
 #         company_address = forms.CharField(required=False)
-        
-
-class CompanyUserForm(forms.ModelForm):
-    class Meta:
-        model = CompanyUser  # 또는 User, CompanyUser (사용하려는 모델 선택)
-        fields = ['company_name', 'company_tel', 'company_address']
-
-    def __init__(self, user_instance, *args, **kwargs):
-        super(CompanyUserForm, self).__init__(*args, **kwargs)
-        self.fields['user_instance'] = forms.ModelChoiceField(
-            queryset=user_instance,  # user_instance로 사용자 모델 인스턴스 전달
-            widget=forms.HiddenInput()  # 숨긴 필드로 설정하거나 필요한 형태로 렌더링 가능
-        )
-
-
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['user_name', 'user_age', 'user_gender', 'user_tel', 'user_address', 'email', 'user_subscribe_sms', 'user_subscribe_email']
-        
         

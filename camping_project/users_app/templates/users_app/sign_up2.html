@@ -7,17 +7,9 @@
     <span class="signup_hint"> whynotcamping@gma.co.kr </span><br><br>
 
     <form action="{% url 'sign_up2_company' %}" method="post">
-        {% csrf_token %}         
+        {% csrf_token %}        
 
-        {% comment %} {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"
-                        {% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %} {% endcomment %}
-        {% comment %} <label class='lbl'>아이디 확인 *</label>    <input type="text" name='username'> <br> {% endcomment %}
+        <input type="hidden" name="user_ptr_id" value='{{ user.id }}'>
         <label class='lbl'>회사명 *</label>    <input type="text" name='company_name'> <br>
         <label class='lbl'>전화번호 *</label>    <input type="text" name='company_tel' placeholder="하이픈(-)없이 입력"> <br>
         <label class='lbl'>주소 *</label>    <input type="text" name='company_address'> <br>

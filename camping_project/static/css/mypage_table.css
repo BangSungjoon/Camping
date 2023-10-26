@@ -1,0 +1,50 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 테이블 헤더 스타일 */
+  th {
+    background: #1b1e24;
+    color: #fafafa;
+    text-align: left;
+    font-size: 23px;
+    font-weight: 400;
+    padding: 20px;
+    border-bottom: 4px solid #9ea7af;
+    border-right: 1px solid #343a45;
+  }
+  
+  /* 테이블 셀 스타일 */
+  td {
+    background: #FFFFFF;
+    padding: 20px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 300;
+    border-right: 1px solid #C1C3D1;
+  }
+  
+  /* 짝수 행 배경색 */
+  tr:nth-child(even) {
+    background: #EBEBEB;
+  }
+  
+  /* 행에 호버 효과 */
+  tr:hover {
+    background: #4E5066;
+    color: #FFFFFF;
+  }
+  
+  /* 첫 번째 셀의 왼쪽 경계 반경 */
+  td:first-child {
+    border-bottom-left-radius: 3px;
+  }
+  
+  /* 마지막 셀의 오른쪽 경계 반경 */
+  td:last-child {
+    border-right: 0;
+    border-bottom-right-radius: 3px;
+  }

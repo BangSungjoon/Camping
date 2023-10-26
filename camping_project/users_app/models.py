@@ -15,20 +15,38 @@ class User(AbstractUser):
     user_subscribe_sms = models.BooleanField(default=False) #메일링(공통)
     user_subscribe_email = models.BooleanField(default=False) #메일링(공통)
 
+    # def __str__(self) :
+    #     return self.username
+
 #  User 상속 받음 :
 # CompanyUser 별도로 생성됨 
 # 기본키 : usr_ptr_id (User 테이블을 참조하는 외래키가 됨)
-class CompanyUser(User):
-    # class Meta :  
-    #     proxy = True
-    
-    # 새로운 필드 추가 
-    company_name = models.CharField(max_length=30) #회사명
-    company_tel = models.CharField(max_length=20) #회사전번
-    company_address = models.CharField(max_length=200) #회사위치
+class UsersAppCompanyuser(models.Model):
+    # user_ptr_id = models.ForeignKey(User, models.DO_NOTHING, db_column='user_ptr_id', unique=True, primary_key=True)
+    user_ptr_id = models.OneToOneField(User, models.DO_NOTHING, db_column='user_ptr_id', primary_key=True)
+    company_name = models.CharField(max_length=30)
+    company_tel = models.CharField(max_length=20)
+    company_address = models.CharField(max_length=200)
+
     class Meta:
-        managed = True
+        managed = False
+        db_table = 'users_app_companyuser'
+
+# class CompanyUser(models.Model):
+#     user_ptr_id = models.ForeignKey(User, models.DO_NOTHING, db_column='id', primary_key=True)
+#     # id = models.ForeignKey(User, models.DO_NOTHING, db_column='id', blank=True, null=False)  # Field name made lowercase.   
+#     # id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE, related_name='user_ptr_id')
+
+#     company_name = models.CharField(max_length=30) #회사명
+#     company_tel = models.CharField(max_length=20) #회사전번
+#     company_address = models.CharField(max_length=200) #회사위치
         
+#     # def __str__(self) :
+#     #     return self.username
+    
+#     class Meta:
+#         managed = False
+    
 # Create your models here.
 # class User(AbstractUser):
 #     # pass # 기본 auth_user 테이블과 동일

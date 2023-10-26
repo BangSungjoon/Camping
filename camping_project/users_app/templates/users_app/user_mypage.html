@@ -2,33 +2,83 @@
 {% load static %}
 {% block content %}   
 
-<h2>마이페이지</h2>
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <div id='mypage'>
     {% csrf_token %}
-
-    <div class="sidebar">
+<br>
+    <div id="sidebar">
+        <li id='mypage_title'>마이페이지</li>
         <ul>
-            <li><a class="menu-link" href="{% url 'user_info_edit' %}" data-page="1"
-                id='user_info_edit'>내 정보 수정하기</a></li>
-            <li><a class="menu-link" href="{% url 'user_favorite_list' %}" data-page="2"
+            <li><a class="menu-link sidemenu" href="{% url 'user_booked' %}" data-page="1"
+                id='user_booked'>예약내역</a></li>
+            <li><a class="menu-link sidemenu" href="{% url 'user_favorite_list' %}" data-page="2"
                 id='user_favorite_list'>내가 찜한 캠핑장</a></li>
-            <li><a class="menu-link" href="{% url 'user_review_list' %}" data-page="3"
+            <li><a class="menu-link sidemenu" href="{% url 'user_review_list' %}" data-page="3"
                 id='user_review_list'>리뷰내역</a></li>
-            <li><a class="menu-link" href="{% url 'user_inquiry_list' %}" data-menu-item="4"
+            <li><a class="menu-link sidemenu" href="{% url 'user_inquiry_list' %}" data-page="4"
                 id='user_inquire'>문의내역</a></li>
-            <li><a class="menu-link" href="{% url 'sign_up2' %}" data-menu-item="5"
-                id='sign_up2'>기업회원 전환</a></li>
+            <li><a class="menu-link sidemenu" href="{% url 'sign_up2' %}" data-page="5"
+                 id='sign_up2'>기업회원 전환</a></li>
+            {% comment %} <li><a type='hidden' class="menu-link sidemenu" href="{% url 'user_inquiry_rep' %}" data-page="6"
+                id='user_inquiry_rep'></a></li> {% endcomment %}
+            {% comment %} <li><a class="menu-link sidemenu" href="{% url 'user_regi_req' %}" data-page="6"
+                    id='user_regi_req'>캠핑장 관리하기</a></li> {% endcomment %}
         </ul>
     </div>
     <div id="mycontent">
-        <h3>대시보드</h3>
-        <br>예약현황-작성필요
+        {% comment %} <li id='mypage_title'> {% endcomment %}
+            {% comment %} {% if user.id in companyuser.user_ptr_id.id %}
+                파트너 {{ user.username }} 님, 무엇을 도와드릴까요?
+            {% else %}
+                {{ user.username }} 님, 무엇을 도와드릴까요?
+            {% endif %} {% endcomment %}
+            <div>
+                <span class='mypage_title'>등록내역</span>
+                {% if reg_requests %}
+                    <table id="reg_request_list">
+                        <tr>
+                            <th>등록번호</th>
+                            <th>캠핑장 이름</th>
+                            <th>주소</th>
+                            <th>전화번호</th>
+                            <th>승인여부</th>
+                            <th>등록신청 취소</th>
+                        </tr>
+                        {% for reg_request in reg_requests %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ reg_request.camp_name }}</td>
+                                <td>{{ reg_request.camp_address }}</td>
+                                <td>{{ reg_request.camp_call }}</td>
+                                <td>
+                                    {% if reg_request.approve is not null %}
+                                        {{ reg_request.approve }}
+                                    {% else %}
+                                        검토대기
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'camp_register_delete' reg_request.camp_no %}" 
+                                    onclick="if (confirm('신청을 취소하시겠습니까?')) { showCancellationMessage(); return true; } else { return false; }">
+                                    <button class='btn btn-cancel'>취소</button></a></td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                {% else %}
+                    <p>등록 내역이 없습니다.</p>
+                {% endif %}
+        </li>
         <br>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!-- 나머지 내용 추가 -->
     </div>
+    
 </div>
 
 
