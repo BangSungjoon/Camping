@@ -4,6 +4,9 @@
     width: 90%;
     text-align: center;
 }
+.header-container {
+  height: 100px;
+}
 
 .nav_ul {
   padding: 0;
@@ -13,7 +16,7 @@
 .nav_ul li {
   display: inline-block;
   margin-left:30px;
-  margin-right: 30px;
+  margin-right: 30px; 
 }
 
 a {

@@ -1,0 +1,391 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/detail_page.css' %}">
+{% endblock %}
+
+{% block content %}
+      <div id="s_contanier">
+        <!--상단타이틀영역-->
+        <div id="sub_title_wrap2">
+          <div class="layout">
+            <h2>
+              <span class="skip">{{ camping.camp_name }}</span>
+            </h2>
+            <!--타이틀-->
+            <div class="s_title2">
+              <p class="camp_name">{{ camping.camp_name }}</p>
+              <p class="camp_s_tt">{{ camping.camp_s_tt }}</p>
+            </div>
+            <!--//타이틀-->
+            <!--태그영역-->
+            <div class="camp_tag">
+              <p class="tag_tt">태그</p>
+              <ul class="tag_list" id="tag_list">
+                {% for tag in tags %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!--//태그영역-->
+          </div>
+          <div class="sub_bg_w">
+            <div class="camp_bg_03"></div>
+          </div>
+        </div>
+        <!--//상단타이틀영역-->
+
+        <section
+          id="section1"
+          style="right: 0px"
+        >
+          <h2 class="skip">캠핑장정보 영역 입니다.</h2>
+          <!--콘텐츠박스-->
+          <div id="cont_inner">
+            <div class="sub_layout layout">
+              <article>
+                <header class="camp_top_info">
+                  <h2 class="skip">캠핑장 정보</h2>
+                  <div class="camp_info_box">
+                    <div class="img_b">
+                      <img
+                        src="https://i.ibb.co/sPcnQXt/2-2.png"
+                        alt="캠핑장 메인 이미지"
+                      />
+                    </div>
+                    <!--//S:table-->
+                    <div class="cont_tb">
+                      <table class="table">
+                        <caption>
+                          캠핑장 기본정보입니다. 주소, 문의처, 캠핑장 환경, 캠핑장 유형, 운영기간, 운영일, 홈페이지, 예약방법, 찾아오시는길로 나뉘어 설명합니다.
+                        </caption>
+                        <colgroup>
+                          <col style="width: 30%" />
+                          <col style="width: 70%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="col">주소</th>
+                            <td>{{ camping.camp_address }}</td>
+                          </tr>
+                          <tr class="camp_call_pcVer">
+                            <th scope="col">문의처</th>
+                            <td>{{ camping.camp_call }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">캠핑장 환경</th>
+                            <td>{{ camping.camp_environment }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">캠핑장 유형</th>
+                            <td>{{ camping.camp_type }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">운영기간</th>
+                            <td>{{ camping.camp_ope_period }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">운영일</th>
+                            <td>{{ camping.camp_ope_day }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">홈페이지</th>
+                            <td>
+                              <a
+                                href="{{ camping.camp_pagelink }}"
+                                target="_BLANK"
+                                title="새창열림"
+                                >홈페이지 바로가기</a
+                              >
+                              <i class="ico_link"><span class="skip">새창으로</span></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="col">주변이용가능시설</th>
+                            <td>산책로, 낚시, 강/물놀이, 청소년체험시설</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">이용요금</th>
+                            <td>요금표 확인 후 전화로 문의해주세요!</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="camp_call_tmVer">
+                        <ul>
+                          <li class="tt">문의처</li>
+                          <li class="call">
+                            <a
+                              href="tel:{{ camping.camp_call }}"
+                              title="전화하기"
+                              class="btn_bB1 best"
+                              >전화하기</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="btn_w"><a href="{% url 'camping_book' camping.camp_no%}">
+                        <button
+                          type="button"
+                          class="btn_bB1 best"
+                          onclick="fnCampLike(); return false"
+                        >예약하기
+                        </button>
+                      </a>
+                      <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                      <a href="#">
+                        <button
+                          type="button"
+                          class="btn_rB1 zzim"
+                        >
+                          찜하기
+                        </button>
+                      </a>
+                        <a href="{% url 'camping_review' camping.camp_no%}"><button
+                          type="button"
+                          class="btn_gB1 btn_modify"
+                        >리뷰작성</button></a>
+                      </div>
+                    </div>
+                    <!--//E:table-->
+                  </div>
+                </header>
+              </article>
+            </div>
+            <!--내용시작-->
+            <div id="contents">
+                <div class="camp_cont_w">
+                  <h2 class="skip">캠핑장 이용안내</h2>
+                  <div class="line_100">
+                    <span class="skip">탭영역 다단 라인</span>
+                  </div>
+                  <div class="layout">
+                    <ul class="camp_tab05">
+                      <li>
+                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                        <a href="#" class="camp_introduce">캠핑장 소개</a>
+                      </li>
+                      <li id="c_guide">
+                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                        <a href="#" class="camp_guide">이용 요금</a>
+                      </li>
+                      <li id="c_map">
+                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                        <a href="#" class="camp_map">위치/날씨</a>
+                      </li>
+                      <li id="c_review">
+                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
+                        <a href="#" class="camp_review">캠핑&amp;여행후기</a>
+                      </li>
+                      <li id="c_notice">
+                        <a href="#" class="camp_weather">날씨</a>
+                      </li>
+                    </ul>
+  
+                    <div class="camp_intro">
+                      <div id="resultbox"></div>
+                      <!-- <ul class="image-list">
+                      {% if not image_links.col1_img_link and not image_links.col2_img_link and not image_links.col3_img_link %}
+                          <ul class="image-list" style="display: none;">
+                      {% else %}
+                          <ul class="image-list">
+                      {% endif %}
+                        <li class="col_03 img_box">
+                          <img
+                            src="{{ image_links.col1_img_link }}"
+                            class="imgFit"
+                            alt="캠핑장소개 이미지"
+                          />
+                        </li>
+                        <li class="col_03 img_box">
+                          <img
+                            src="{{ image_links.col2_img_link }}"
+                            class="imgFit"
+                            alt="캠핑장소개 이미지"
+                          />
+                        </li>
+                        <li class="col_03 img_box">
+                          <img
+                            src="{{ image_links.col3_img_link }}"
+                            class="imgFit"
+                            alt="캠핑장소개 이미지"
+                          />
+                        </li>
+                      </ul> -->
+                      { % comment %}
+  
+                      {% if camping.camp_itd %}
+  
+                      <!-- <p class="camp_intro_txt">
+                        <span
+                          >{{ camping.camp_itd }}</span>
+                      </p> -->
+                      {% endif %}
+                      { % endcomment %}
+  
+                      <h3 class="icon_h3">캠핑장 시설정보</h3>
+                      <div class="camp_item_g">
+                        <ul>
+                            {% if camp_utility.electric %}
+                              <li>
+                                <i class="ico_volt"><span>전기</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.wifi %}
+                              <li>
+                                <i class="ico_wifi"><span>와이파이</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.firewood %}
+                              <li>
+                                <i class="ico_wood"><span>장작판매</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.warm_water %}
+                              <li>
+                                <i class="ico_hotwater"><span>온수</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.water_playground %}
+                              <li>
+                                <i class="ico_pool"><span>물놀이장</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.adv_ground %}
+                              <li>
+                                <i class="ico_playzone"><span>놀이터</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.athletic_fac %}
+                              <li>
+                                <i class="ico_ico_sports"><span>운동시설</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.sports_ground %}
+                              <li>
+                                <i class="sports_ground"><span>운동장</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.walking_load %}
+                              <li>
+                                <i class="ico_walk"><span>산책로</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.market %}
+                              <li>
+                                <i class="ico_mart"><span>마트.편의점</span></i>
+                              </li>
+                            {% endif %}
+                            {% if camp_utility.trampoline %}
+                              <li>
+                                <i class="ico_ico_ico_tramp"><span>트렘폴린</span></i>
+                              </li>
+                            {% endif %}
+                        </ul>
+                      </div>
+                      <h3 class="icon_h3">기타 주요시설</h3>
+                      <section id="table_type03">
+                        <h2 class="skip">기타 주요시설 안내 테이블입니다.</h2>
+                        <div class="table_w">
+                          <table class="table_t4 camp_etc_tb">
+                            <caption>
+                              <strong>기타 주요시설 안내 테이블</strong>
+                              <p>주요시설, 사이트간격, 바닥형태, 편의시설, 캠핑장비대여, 반려동물출입, 화로대로 나뉘어 설명합니다.</p>
+                            </caption>
+  
+                            <tbody class="t_c">
+                              <tr>
+                                <th scope="col">주요시설</th>
+                                <td>
+                                  <ul class="table_ul05">
+                                    <li>{{ camp_fac_info.camp_main_fac }}</li>
+                                  </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="col">기타 정보</th>
+                                <td>
+                                  <ul class="table_ul05">
+                                    <li>{{ camp_fac_info.camp_etc_info }}</li>
+                                  </ul>
+                                  <br />
+                                  <br />
+                                  (※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="col">화로대</th>
+                                <td class="etc_type">{{ camp_fac_info.camp_brazier }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="col">안전시설현황</th>
+                                <td>
+                                  <ul class="table_ul05">
+                                    <li>{{ camp_fac_info.camp_safe_fac }}</li>
+                                  </ul>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <p class="camp_intro_txt">
+                          <span class="info_notice" style="font-size: 15px;">
+                            &nbsp;* <span style="color : #ffbd59">캠핑어때</span>에 등록된 정보는 현장상황과 다소 다를 수 있으니
+                            <span style="color: red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리
+                            확인하시기 바랍니다.
+                          </span>
+                        </p>
+                      </section>
+                      
+                      {% if not image_links.last1_img_link and not image_links.last2_img_link and not image_links.last3_img_link and not image_links.last4_img_link  %}
+                      <div class="box_photo" style="display: none;">
+                      {% else %}
+                      <h3 class="icon_h3 mt_50">캠핑장 사진</h3>
+                      <div class="box_photo">
+                      {% endif %}
+                        <div
+                          id="gallery"
+                          style="max-width: 100%; min-width: 150px; height: auto; width: auto"
+                          class="ug-gallery-wrapper ug-theme-tiles">
+                                                  <div class="ug-image-div">
+                                                      <img
+                                                          src="{{ image_links.last1_img_link }}"
+                                                          alt="캠핑장 등록 사진"
+                                                          class="ug-thumb-image"
+                                                      />
+                                                  </div>
+                          <div class="ug-image-div">
+                              <img
+                                src="{{ image_links.last2_img_link }}"
+                                alt="캠핑장 등록 사진"
+                                class="ug-thumb-image"
+                              />
+                                                  </div>
+                          <div class="ug-image-div">
+                            <img
+                              src="{{ image_links.last3_img_link }}"
+                              alt="캠핑장 등록 사진"
+                              class="ug-thumb-image"
+                              />
+                                                  </div>
+                          <div class="ug-image-div">
+                            <img
+                              src="{{ image_links.last4_img_link }}"
+                              alt="캠핑장 등록 사진"
+                              class="ug-thumb-image"
+                              />
+                                                  </div>
+                        </div>
+                      </div>
+                     
+
+                  </div>
+                    </div>
+                    <!-- 		<button type="button" class="btn_grey_M">더보기</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--//내용종료-->
+          <!--//콘텐츠박스-->
+        </section>
+{% endblock content %}

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}   
+ 
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/mypage_table.css' %}">
+{% endblock %}
 
+{% block content %}  
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
