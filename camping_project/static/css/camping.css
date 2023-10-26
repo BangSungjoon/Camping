@@ -4,6 +4,9 @@
     width: 90%;
     text-align: center;
 }
+.header-container {
+  height: 100px;
+}
 
 .nav_ul {
   padding: 0;
