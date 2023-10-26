@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>캠핑정보모아</title>
+    <title>캠핑어때</title>
     <!-- CSS 파일, 메타 데이터 및 스크립트를 여기에 포함 -->
 </head>
 <body>
     <header>
-        <div class='signbar'>
-            <ul style="margin: 0;">
+        <div class='signbar' style="height: 55px; box-sizing: border-box; display: block; text-align: center;">
+            <ul style="margin: 0; ">
             {% if user.is_authenticated %}
             <li class='signbar'><a href="{% url 'sign_out' %}">로그아웃</a></li>
             <li class='signbar'><a href="{% url 'user_mypage' %}">{{ user.username }}님 환영합니다!</a></li>
@@ -16,16 +16,13 @@
             {% else %}
                 <li class='signbar'><a href="{% url 'sign_in' %}">로그인</a></li>
                 <li class='signbar'><a href="{% url 'sign_up_select' %}">회원가입</a></li>
-
-
             {% endif %}
             </ul>
-        </div><br>
-        <br><div id='signbarhr'><hr></div>
-        <br>
-        <div class="header-container">
-            <div>
-                <a  href="{% url 'index' %}"><img id='logo' src={% static "/img/Logo.png" %}>
+        </div>
+        
+        <div class="header-container" style="margin: 0 auto; box-sizing: border-box; text-align: center; ">
+            <div style="margin: 0 auto; text-align: center; height: 100%;">
+                <a  href="{% url 'index' %}" style="margin: 25px 0;"><img id='logo' src="{% static '/img/Logo.png' %}" style="display: block; height: 45px; margin: 10px auto 0; padding: 25px;">
                 </a>
             </div>
         </div>
