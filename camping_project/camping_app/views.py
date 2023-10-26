@@ -87,17 +87,17 @@ def camping_detail(request, camp_no):
     return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility,'tags':tags})
 
 
-def camping_insert(request):
-    if request.method == "POST":
-        form = CampingForm(request.POST)
-        if form.is_valid():
-            camping = form.save(commit=False)
-            camping.save()
-            return redirect('camping_list')
-    else:
-        form = CampingForm()
+# def camping_insert(request):
+#     if request.method == "POST":
+#         form = CampingForm(request.POST)
+#         if form.is_valid():
+#             camping = form.save(commit=False)
+#             camping.save()
+#             return redirect('camping_list')
+#     else:
+#         form = CampingForm()
 
-    return render(request, 'camping_app/camping_form.html', {'form':form})
+#     return render(request, 'camping_app/camping_form.html', {'form':form})
 
 class CampImagesDetailView(DetailView):
     model = ImageLink
@@ -282,3 +282,19 @@ def camping_review(request, camp_no):
 
 def camping_secondhanded(request):
     return render(request, 'camping_app/camping_secondhanded.html')
+
+def camping_insert(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = CampingForm(request.POST)
+            if form.is_valid():
+                camping = form.save(commit=False)
+                camping.save()
+                return redirect('camping_list')
+        else:
+            form = CampingForm()
+
+        return render(request, 'camping_app/camping_form.html', {'form':form})
+    else:
+        messagebox.showinfo('경고','로그인 후 가능합니다.')
+        return redirect('../../../users/sign_in')
