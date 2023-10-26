@@ -4,86 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-
-        api("55", "127");
-        function api(nx, ny){
-            // seperate_list1 = ["1시간 기온", "풍속 (동서)", "풍속 (남북)", "풍향",
-            //                   "풍속", "하늘 상태", "강수 형태", "강수 확률",
-            //                   "파고", "1시간 강수량"]
-
-            seperate_list = ["TMP", "UUU", "VVV", "VEC",
-                             "WSD", "SKY", "PTY", "POP",
-                             "WAV", "PCP"];
-
-            xhr = api_input(nx, ny);
-            api_output(xhr, seperate_list);
-            xhr.send('');
+        main("경남");
+​
+        // 메인
+        function main(location){
+            weather_time = time();
+            locate = address(location);
+            weather(locate, weather_time);
+            tempture(locate, weather_time);
         }
-
-        // api input
-        function api_input(nx, ny){
+​
+        // 날씨
+        function weather(locate, weather_time){
+            var xhr = new XMLHttpRequest();
+            var url = 'http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+            queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('XML'); /**/
+            queryParams += '&' + encodeURIComponent('regId') + '=' + encodeURIComponent(locate); /**/
+            queryParams += '&' + encodeURIComponent('tmFc') + '=' + encodeURIComponent(weather_time); /**/
+            xhr.open('GET', url + queryParams);
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    temp = this.responseText;
+                    answer = seperate(temp);
+                }
+            };
+        xhr.send('');
+        }
+​
+        // 시간
+        function time(){
             let today = new Date();
             let year = today.getFullYear(); // 년도
             let month = today.getMonth() + 1;  // 월
             let date = today.getDate();  // 날짜
-            weather_time = String(year) + String(month) + String(date);
-
+            let time = today.getHours();
+​
+            if(time < 18){time = "0600";}
+            else{time = "1800";}
+​
+            weather_time = String(year) + String(month) + String(date) + time;
+            return weather_time;
+        }
+​
+        // 주소 화
+        function address(name){
+            religion = [["서울", "인천", "경기도"],
+                        ["강원도영서"],
+                        ["강원도영동"],
+                        ["대전", "세종", "충청남도", "충남"],
+                        ["충청북도", "충북"],
+                        ["광주", "전라남도", "전남"],
+                        ["전라북도", "전북"],
+                        ["대구", "경상북도", "경북"],
+                        ["부산", "울산", "경상남도", "경남"], 
+                        ["제주도"]];
+            
+            religion_code = ["11B00000", "11D10000", "11D20000", "11C20000", "11C10000", "11F20000", "11F10000", "11H10000", "11H20000", "11G00000"];
+​
+            answer = ""
+            for (let i = 0; i < religion.length; i++) {
+                for (let j = 0; j < religion_code.length; j++) {
+                    if (name == religion[i][j]){
+                        answer = religion_code[i];
+                    }
+                }
+            }
+            return answer;
+        }
+​
+        function seperate(temp){
+            mean =          [["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"],
+                             ["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"],
+                             ["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"], ["강수 확률", "날씨"],
+                             ["강수 확률", "날씨"]];
+​
+            seperate_list = [["rnSt3Am", "wf3Am"], ["rnSt3Pm", "wf3Pm"], ["rnSt4Am", "wf4Am"], ["rnSt4Pm", "wf4Pm"],
+                             ["rnSt5Am", "wf5Am"], ["rnSt5Pm", "wf5Pm"], ["rnSt6Am", "wf6Am"], ["rnSt6Pm", "wf6Pm"],
+                             ["rnSt7Am", "wf7Am"], ["rnSt7Pm", "wf7Pm"], ["rnSt8", "wf8"], ["rnSt9", "wf9"],
+                             ["rnSt10", "wf10"]];
+            
+            answer = [];
+            for (let i = 0; i < seperate_list.length; i++) {
+                answer.push([]);
+                for (let j = 0; j < seperate_list[i].length; j++) {
+                    key_word = seperate_list[i][j];
+                    start = "<" + key_word + ">";
+                    start_location = temp.search(start) + start.length;
+​
+                    end = "</" + key_word + ">";
+                    end_location = temp.search(end);
+​
+                    answer[i].push(temp.substring(start_location, end_location));
+                }
+            }
+​
+            
+            let date = new Date();
+            write = "";
+            for (let i = 0; i < 7; i++) {
+                write_temp = "[";
+                for (let j = 0; j < answer[i].length; j++) {
+                    temp = date.getDate() + mean[i][j] +" : " + answer[i][j];
+                    write_temp += temp + " ";
+                }
+                write_temp += "] <br>";
+                write += write_temp;
+                date.setDate(date.getDate() + 1);
+            }
+            document.write(write);
+        }
+        
+        // 날씨 2
+        function tempture(){
             var xhr = new XMLHttpRequest();
-            var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
-            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
+            var url = 'http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '=' +'AHla9RcxmJC/U34bT5xBISsQU5wum4d4iL1xi7JH2GcEtnZeZHXKoDDkxvPQiEDjtthCxBcrodHph5SfwEOCaQ=='; /*Service Key*/
             queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
             queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
             queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
-            queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(weather_time); /**/
-            queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0200'); /**/
-
-            queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent(nx); /**/
-            queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent(ny); /**/
+            queryParams += '&' + encodeURIComponent('regId') + '=' + encodeURIComponent(locate); /**/
+            queryParams += '&' + encodeURIComponent('tmFc') + '=' + encodeURIComponent(weather_time); /**/
             xhr.open('GET', url + queryParams);
-            return xhr
-        };
-
-        // api 결과
-        function api_output(xhr, seperate_list){
-            answer = [];
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4) {
                     temp = this.responseText;
+​
+                    start = temp.search("taMin3") - 1;
+                    end = temp.search("}]},\"pageNo\":1,\"numOfRows\":10,\"totalCount\":1}}}")
+                    filter_temp = (temp.substring(start, end));
+                    test = filter_temp.search(":");
+               
                     answer = []
-                    for (let i = 0; i < seperate_list.length; i++){
-                        mk_value = seperate_list[i];
-                        start = temp.search(mk_value) + mk_value.length;
-                        temp = temp.substring(start, temp.length);
-                        start   = temp.search("\"fcstValue\":\"") + "\"fcstValue\":\"".length;
-                        end     = temp.search("\",\"nx");
-                        answer.push(temp.substring(start, end));
-                        }
-                    answer = status(answer);
-                    document.write(answer);
+                    while (test != -1){
+                        test = filter_temp.search(":");
+                        answer.push(filter_temp.substring(0, test));
+                        filter_temp = filter_temp.substring(test + 1, filter_temp.length);
+​
+                        test = filter_temp.search(",");
+                        answer.push(filter_temp.substring(0, test));
+                        filter_temp = filter_temp.substring(test + 1, filter_temp.length);
+                    }
+                    korean(answer);
                 }
-            }   // 이 괄호를 넘어가면 값이 지워짐
+            };
+            xhr.send('');
         }
-        
-        // 문서화
-        function status(answer){
-            if(answer[3] <= 45)            {answer[3] = "북, 북동";}
-            else if(answer[3] <= 90)       {answer[3] = "동, 북동";}
-            else if(answer[3] <= 135)      {answer[3] = "동, 남동";}
-            else if(answer[3] <= 180)      {answer[3] = "남, 남동";}
-            else if(answer[3] <= 225)      {answer[3] = "남, 남서";}
-            else if(answer[3] <= 270)      {answer[3] = "서, 남서";}
-            else if(answer[3] <= 315)      {answer[3] = "서, 북서";}
-            else {answer[3] = "북, 북서"}
-
-            if(answer[5] <= 5)         {answer[5] = "맑음";}
-            else if(answer[5] <= 8)    {answer[5] = "구름 많음";}
-            else                    {answer[5] = "흐림";}
-
-            return answer;
+​
+        function korean(answer){
+            for (let i = 0; i < answer.length; i++) {
+                if (answer[i] == '"taMin3"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax3"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin4"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax4"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin5"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax5"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin6"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax6"') {answer[i] = "최고 기온";}
+                
+                if (answer[i] == '"taMin7"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax7"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin8"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax8"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin9"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax9"') {answer[i] = "최고 기온";}
+​
+                if (answer[i] == '"taMin10"') {answer[i] = "최저 기온";}
+                if (answer[i] == '"taMax10"') {answer[i] = "최고 기온";}
+            }
+​
+            answer2 = [];
+            temp = [];
+            for (let i = 0; i < 94; i++) {
+                
+                if(i % 12 == 0){
+                    temp.push(answer[i]);
+                }
+​
+                if(i % 12 == 1){
+                    temp.push(answer[i]);
+                }
+​
+                if(i % 12 == 6){
+                    temp.push(answer[i]);
+                }
+​
+                if(i % 12 == 7){
+                    temp.push(answer[i]);
+                    answer2.push(temp);
+                    temp = [];
+                }
+            }
+            write_text(answer2);
+        }
+​
+        //////////////// 값 작성하는 부분
+        function write_text(answer){
+            document.write(answer);        
         }
     </script>
+</head>
+<body>
+    <div id = weather></div>
 </body>
 </html>

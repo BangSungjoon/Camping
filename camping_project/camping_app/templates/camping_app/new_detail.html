@@ -151,7 +151,6 @@
                 </header>
               </article>
             </div>
-            <!--내용시작-->
             <div id="contents">
                 <div class="camp_cont_w">
                   <h2 class="skip">캠핑장 이용안내</h2>
@@ -161,12 +160,12 @@
                   <div class="layout">
                     <ul class="camp_tab05">
                       <li>
-                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
-                        <a href="#" class="camp_introduce">캠핑장 소개</a>
+                        <input type="hidden" value="준비중입니다." id="camp_no">
+                        <a href="#" onClick="alert('정보 등록 대기중입니다.')" class="camp_introduce">캠핑장 소개</a>
                       </li>
                       <li id="c_guide">
-                        <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
-                        <a href="#" class="camp_guide">이용 요금</a>
+                        <input type="hidden" value="준비중입니다" id="camp_no">
+                        <a href="#"  onClick="alert('정보 등록 대기중입니다.')" class="camp_guide">이용 요금</a>
                       </li>
                       <li id="c_map">
                         <input type="hidden" value="{{ camping.camp_no }}" id="camp_no">
@@ -211,16 +210,9 @@
                           />
                         </li>
                       </ul> -->
-                      { % comment %}
   
-                      {% if camping.camp_itd %}
-  
-                      <!-- <p class="camp_intro_txt">
-                        <span
-                          >{{ camping.camp_itd }}</span>
-                      </p> -->
-                      {% endif %}
-                      { % endcomment %}
+                      
+                      
   
                       <h3 class="icon_h3">캠핑장 시설정보</h3>
                       <div class="camp_item_g">
@@ -376,8 +368,7 @@
                                                   </div>
                         </div>
                       </div>
-                     
-
+                    <hr>
                   </div>
                     </div>
                     <!-- 		<button type="button" class="btn_grey_M">더보기</button> -->
