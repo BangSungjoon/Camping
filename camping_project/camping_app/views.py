@@ -205,8 +205,10 @@ def detail_text(request, camp_no):
     print(camp_type_price)
     return render(request, 'camping_app/detail_text.html', {'camp_type_price': camp_type_price})
 
-def detail_weather(request):
-    return render(request, 'camping_app/detail_weather.html')
+def detail_weather(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    print(camping)
+    return render(request, 'camping_app/detail_weather.html', {'camping': camping})
 
 def detail_map(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
