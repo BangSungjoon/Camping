@@ -87,6 +87,14 @@ def camping_detail(request, camp_no):
     return render(request, 'camping_app/detail.html', {'camping': camping, 'image_links': image_links, 'camp_fac_info': camp_fac_info,'camp_utility':camp_utility,'tags':tags})
 
 
+def camping_new_detail(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    tags = camping.camp_tag_li.split(',')
+    tags = ['#' + tag for tag in tags if tag]
+    reviews= CampReview.objects.filter(camp_no=camp_no)
+
+    return render(request, 'camping_app/new_detail.html', {'camping': camping, 'tags':tags})
+
 # def camping_insert(request):
 #     if request.method == "POST":
 #         form = CampingForm(request.POST)
