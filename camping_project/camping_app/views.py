@@ -159,8 +159,6 @@ def camping_search(request, keyword=None, c_do=None, c_signgu=None, theme=None):
     return render(request, 'camping_app/camping_search_result.html',context)
 
 
-    
-
 def detail_intro(request, camp_no):
     image_links = get_object_or_404(ImageLink, pk=camp_no)
     camping = get_object_or_404(CampInfo, pk=camp_no)
@@ -183,11 +181,10 @@ def detail_map(request, camp_no):
 
 def detail_review(request, camp_no):
     # 필터링할 조건을 만들어 쿼리셋을 생성
-    reviews = CampReview.objects.filter(review_no=camp_no)
-    camping = get_object_or_404(CampInfo, pk=camp_no)
-    
+    reviews = CampReview.objects.filter(camp_no=camp_no)
+    print(reviews)
     # 필터링된 결과를 템플릿으로 전달
-    return render(request, 'camping_app/detail_review.html', {'reviews': reviews, 'camping': camping})
+    return render(request, 'camping_app/detail_review.html', {'reviews': reviews})
 
 
 
