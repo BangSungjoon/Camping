@@ -46,8 +46,8 @@
     color: #000000;
     border: none;
     padding: 0px;
-    margin-top:-5px;
-    margin-bottom:-20px;
+    /* margin-top:-5px; */
+    /* margin-bottom:-20px; */
     cursor: pointer;
     font-size: 14px;
   }
@@ -75,6 +75,11 @@
     border-style: outset;
     border-width: 2px;
     border-color: #ffdab3;
+    width: 57px;
+    text-align: center;
+    height: 27px;
+    line-height: 27px;
+    letter-spacing: -1px;
   }
   
   .signbar li a:hover {
