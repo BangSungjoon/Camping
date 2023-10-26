@@ -10,6 +10,15 @@
       letter-spacing: -1px;
       height: 100%;
   }
+
+  h2 {
+        color: #000; /* 제목의 색상을 검은색으로 설정 */
+  }
+
+  p {
+        color: #000; /* 글씨의 색상을 검은색으로 설정 */
+  }
+
   select {
     font-family: inherit;
   }
@@ -27,6 +36,13 @@
   #form_tbl td {
     padding-bottom: 15px;
   }
+
+  #form_tbl td input {
+    border: solid 1px black;
+    width: 400px;
+    box-shadow: 0 0 0 0;
+  }
+
   label {
       font-weight: bold;
       color: black;
@@ -144,7 +160,7 @@
           </tr>
         
           <tr>
-            <th><label for="id_camp_type">캠핑장 타입(일반/글램핑/카라반/자동차)</label></th>
+            <th><label for="id_camp_type">캠핑장 타입<br>(일반/글램핑/카라반/자동차)</label></th>
             <td>
               
               <input type="text" name="camp_type" maxlength="100" id="id_camp_type">

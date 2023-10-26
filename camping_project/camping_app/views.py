@@ -207,8 +207,10 @@ def detail_text(request, camp_no):
     print(camp_type_price)
     return render(request, 'camping_app/detail_text.html', {'camp_type_price': camp_type_price})
 
-def detail_weather(request):
-    return render(request, 'camping_app/detail_weather.html')
+def detail_weather(request, camp_no):
+    camping = get_object_or_404(CampInfo, pk=camp_no)
+    print(camping)
+    return render(request, 'camping_app/detail_weather.html', {'camping': camping})
 
 def detail_map(request, camp_no):
     camping = get_object_or_404(CampInfo, pk=camp_no)
@@ -217,11 +219,10 @@ def detail_map(request, camp_no):
 
 def detail_review(request, camp_no):
     # 필터링할 조건을 만들어 쿼리셋을 생성
-    reviews = CampReview.objects.filter(review_no=camp_no)
-    camping = get_object_or_404(CampInfo, pk=camp_no)
+    reviews = CampReview.objects.filter(camp_no=camp_no)
     
     # 필터링된 결과를 템플릿으로 전달
-    return render(request, 'camping_app/detail_review.html', {'reviews': reviews, 'camping': camping})
+    return render(request, 'camping_app/detail_review.html', {'reviews': reviews})
 
 
 
