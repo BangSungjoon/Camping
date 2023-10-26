@@ -9,7 +9,7 @@
 <div id='inquire'>
 <form method="post">
     {% csrf_token %}
-        <div id="iquire_box">
+        <div class='mypage_table'  id="iquire_box">
             <div>
                 <input type="hidden" name="id" value='{{ user.id }}'>
                 <input type="hidden" name="inq_date" value='{% now "Y-m-d" %}'>

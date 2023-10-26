@@ -1,41 +1,54 @@
-table {
+@font-face {
+  font-family: 'NanumSquareRoundOTFB';
+  src: url('/static/font/NanumSquareRoundOTFB.otf') format('opentype');}
+
+.mypage_table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px grey;
+    align-content: center;
+    font-family: 'NanumSquareRoundOTFB';
+    table-layout: fixed;
   }
   
   /* 테이블 헤더 스타일 */
-  th {
-    background: #1b1e24;
-    color: #fafafa;
-    text-align: left;
-    font-size: 23px;
+  .mypage_table th {
+    background: rgb(255, 223, 162);
+    color: black;
+    font-size: 16px;
     font-weight: 400;
     padding: 20px;
     border-bottom: 4px solid #9ea7af;
     border-right: 1px solid #343a45;
+    text-align: center;
   }
-  
-  /* 테이블 셀 스타일 */
-  td {
+
+  .mypage_table td {
+    width: 30px; /* 각 셀 너비 설정 */
     background: #FFFFFF;
     padding: 20px;
     text-align: left;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 300;
     border-right: 1px solid #C1C3D1;
-  }
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-height: 20px;
+}
   
   /* 짝수 행 배경색 */
-  tr:nth-child(even) {
-    background: #EBEBEB;
+  .mypage_table tr:nth-child(even) {
+    background: #fff6e6;
   }
   
   /* 행에 호버 효과 */
   tr:hover {
     background: #4E5066;
-    color: #FFFFFF;
+    color: orange;
   }
   
   /* 첫 번째 셀의 왼쪽 경계 반경 */
@@ -47,4 +60,15 @@ table {
   td:last-child {
     border-right: 0;
     border-bottom-right-radius: 3px;
+  }
+
+  .btn-cancel{
+    background-color: orange;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border-color:orangered;
+    border-width:2px;
+    font-family: 'NanumSquareRoundOTFB';
+    color: black;
   }

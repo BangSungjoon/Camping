@@ -1,10 +1,11 @@
 {% load static %}
-
+{% block extrahead %}
+{% endblock %}
 {% block content %}
-<span class='mypage_title'>예약내역</span>
+<span class='mypage_title'>예약내역</span><br><br>
 <div>
     {% if bookings %}
-        <table id="booking_list">
+        <table class='mypage_table' id="booking_list">
             <tr>
                 <th>예약번호</th>
                 <th>체크인</th>
@@ -15,11 +16,11 @@
             {% for book in bookings %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ book.book_date }}</td>
-                    <td>{{ book.stay_date }}</td>
-                    <td>    
-                        <a href="{% url 'camping_detail' camp_no=book.camp_no %}">
-                        {{ book.camp_no }}</td>
+                    <td>{{ book.book_date|date:"Y-m-d" }}</td>
+                    <td>{{ book.stay_date|date:"Y-m-d"  }}</td>
+                    <td class="expandable_cell">    
+                        {% comment %} <a href="{% url 'camping_detail' camp_no=book.camp_no %}"> {% endcomment %}
+                        {{ book.camp_no.camp_name }}</td>
                     <td>
                         <a href="{% url 'user_booked_delete' book.book_no %}" 
                         onclick="if (confirm('정말 예약을 취소하시겠습니까?')) { showCancellationMessage(); return true; } else { return false; }">
