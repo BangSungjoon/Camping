@@ -42,9 +42,9 @@
             </div>
             <!--//타이틀-->
             <div class="search_box">
-              <form id="campSearchForm01" method="get" action="{% url 'camping_search' %}">
+              <form id="campSearchForm01" method="get" action="{% url 'camping_search' %}" style="margin: 30px 0;">
                 {% csrf_token %}
-                <button type="button" class="btn_dsearch">상세검색</button>
+                <button type="button" class="btn_dsearch" style="display: none;">상세검색</button>
                 <!--검색박스-->
                 <div class="search_box_form">
                   <div class="form1_1">
