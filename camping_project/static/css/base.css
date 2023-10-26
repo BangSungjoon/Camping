@@ -3,7 +3,7 @@
   /* 레퍼런스 */
 
   /* footer ************************************************************************************************************************************************************/
-	footer { clear:both; position:relative; width:100%; height:200px; }
+	footer { clear:both; position:relative; width:100%; height:140px; }
 	/* 1.하단정보 */
 		.optr_link{display:none;}
 		.f_info_w { position:relative; width:100%; float:left; background:#2e2f31; border-bottom:1px solid #4a4a4c; min-height:90px; z-index:10; }
@@ -26,7 +26,7 @@
  
 	/* 2.주소 및 사이트링크 */
 		.f_link_w{ position:relative; width:100%; float:left; background:#2e2f31;  padding:30px 0;      }
-		.f_addr{font-size:13px; line-height:22px; color:#c0c0c0; padding:0 450px 0 0;}
+		.f_addr{font-size:13px; line-height:22px; color:#c0c0c0; padding-left:15px;}
 		.f_addr .f_mail{font-size:13px; line-height:22px; color:#c0c0c0 !important; text-decoration:none; letter-spacing:0;}
 		.f_addr div{float:left; margin-right:22px;}
 		.f_link{float:left; position:absolute; right:0; top:0; background: #393a3b;}
