@@ -4,6 +4,16 @@
     width: 90%;
     text-align: center;
 }
+
+/* 스크롤바를 숨김 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE와 Edge에서 스크롤바를 숨김 */
+  scrollbar-width: none;  /* Firefox에서 스크롤바를 숨김 */
+}
 .header-container {
   height: 100px;
 }
